@@ -1,983 +1,1983 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio · Ngôn ngữ Anh · Pastel</title>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      color: #3c3c4a;
-      line-height: 1.6;
-      padding: 2rem 0;
-      overflow-x: hidden;
-    }
-
-    /* === NỀN ĐỘNG VỚI HIỆU ỨNG HẠT === */
-    #particles-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      pointer-events: none;
-    }
-
-    .background-gradient {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: linear-gradient(135deg, #FDFCFB 0%, #FADADD 25%, #D8CFF0 50%, #B8E8F2 75%, #A7C7E7 100%);
-      background-size: 400% 400%;
-      animation: gradientMove 12s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
-
-    @keyframes gradientMove {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-    /* === LỚP PHỦ SƯƠNG MỜ === */
-    .overlay-blur {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      background: radial-gradient(ellipse at 20% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 60%),
-                  radial-gradient(ellipse at 80% 50%, rgba(184, 232, 242, 0.1) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* --- NAV --- */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 3rem;
-      background: rgba(253, 252, 251, 0.55);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 0.8rem 2rem;
-      border-radius: 60px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 8px 32px rgba(184, 232, 242, 0.12);
-      transition: all 0.3s;
-    }
-
-    .navbar:hover {
-      background: rgba(253, 252, 251, 0.75);
-      box-shadow: 0 12px 40px rgba(184, 232, 242, 0.2);
-    }
-
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: #5a4b6b;
-    }
-
-    .logo span {
-      background: linear-gradient(135deg, #B8E8F2, #D8CFF0);
-      padding: 0.1rem 0.8rem;
-      border-radius: 40px;
-      font-weight: 700;
-      color: #4a3b5a;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      font-weight: 500;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #5a4b6b;
-      transition: all 0.3s;
-      font-size: 1rem;
-      font-weight: 500;
-      padding: 0.3rem 0;
-      border-bottom: 2px solid transparent;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #B8E8F2, #D8CFF0);
-      transition: width 0.3s;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-links a:hover {
-      color: #7a5a8a;
-    }
-
-    .btn-outline {
-      border: 2px solid rgba(216, 207, 240, 0.5);
-      background: rgba(255, 255, 255, 0.3);
-      padding: 0.4rem 1.4rem;
-      border-radius: 30px;
-      font-weight: 600;
-      color: #7a6a8a;
-      transition: all 0.3s;
-      cursor: default;
-      backdrop-filter: blur(4px);
-    }
-
-    .btn-outline i {
-      margin-right: 6px;
-      color: #B8E8F2;
-    }
-
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.6);
-      border-color: #B8E8F2;
-    }
-
-    /* --- HERO --- */
-    .hero {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2.5rem;
-      margin-bottom: 4rem;
-      background: rgba(253, 252, 251, 0.5);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 2.8rem 3rem;
-      border-radius: 50px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 20px 60px rgba(184, 232, 242, 0.15);
-      transition: all 0.4s;
-      animation: floatIn 1s ease-out;
-    }
-
-    @keyframes floatIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px) scale(0.98);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    .hero:hover {
-      background: rgba(253, 252, 251, 0.7);
-      box-shadow: 0 24px 70px rgba(184, 232, 242, 0.25);
-    }
-
-    .hero-content {
-      flex: 1 1 300px;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, rgba(250, 218, 221, 0.7), rgba(255, 228, 230, 0.7));
-      backdrop-filter: blur(8px);
-      color: #7a4a5a;
-      font-weight: 600;
-      padding: 0.3rem 1.6rem;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      letter-spacing: 0.3px;
-      margin-bottom: 1.2rem;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      animation: pulseBadge 3s ease-in-out infinite;
-    }
-
-    @keyframes pulseBadge {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.03); }
-    }
-
-    .hero-content h1 {
-      font-size: 3.4rem;
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 0.8rem;
-      color: #4a3b5a;
-    }
-
-    .hero-content h1 i {
-      background: linear-gradient(135deg, #FADADD, #D8CFF0);
-      padding: 0.2rem 0.4rem;
-      border-radius: 20px;
-      font-size: 2.8rem;
-      display: inline-block;
-      animation: sparkle 4s ease-in-out infinite;
-    }
-
-    @keyframes sparkle {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.7; transform: scale(1.05) rotate(-3deg); }
-    }
-
-    .hero-content p {
-      font-size: 1.15rem;
-      color: #5f4f6f;
-      margin-bottom: 1.8rem;
-      max-width: 500px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #B8E8F2, #A7C7E7);
-      border: none;
-      padding: 0.8rem 2.4rem;
-      border-radius: 40px;
-      color: #3b3b4a;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all 0.3s;
-      cursor: default;
-      box-shadow: 0 8px 24px rgba(184, 232, 242, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
-      animation: shimmer 4s ease-in-out infinite;
-    }
-
-    @keyframes shimmer {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-    }
-
-    .btn-primary i {
-      margin-right: 8px;
-      color: #7a6a8a;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 12px 32px rgba(184, 232, 242, 0.5);
-    }
-
-    .social-icons {
-      display: flex;
-      gap: 0.8rem;
-      font-size: 1.2rem;
-    }
-
-    .social-icons a {
-      color: #A7C7E7;
-      transition: all 0.3s;
-      background: rgba(255, 255, 255, 0.3);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(4px);
-    }
-
-    .social-icons a:hover {
-      color: #5a4a6a;
-      background: rgba(216, 207, 240, 0.6);
-      transform: translateY(-4px) scale(1.1);
-      border-color: #D8CFF0;
-      box-shadow: 0 8px 24px rgba(216, 207, 240, 0.3);
-    }
-
-    .hero-image {
-      flex: 1 1 200px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .avatar-placeholder {
-      width: 200px;
-      height: 200px;
-      background: linear-gradient(145deg, #FADADD, #D8CFF0, #B8E8F2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 5rem;
-      font-weight: 300;
-      color: #7a5a7a;
-      box-shadow: 0 16px 40px rgba(184, 232, 242, 0.3);
-      border: 3px solid rgba(255, 255, 255, 0.6);
-      animation: floatAvatar 6s ease-in-out infinite;
-      transition: all 0.3s;
-    }
-
-    @keyframes floatAvatar {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-12px); }
-    }
-
-    .avatar-placeholder:hover {
-      transform: scale(1.05) rotate(-3deg);
-      box-shadow: 0 20px 50px rgba(184, 232, 242, 0.4);
-    }
-
-    /* --- SECTION TITLE --- */
-    .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1.8rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #4a3b5a;
-    }
-
-    .section-title i {
-      background: linear-gradient(135deg, #B8E8F2, #D8CFF0);
-      padding: 0.4rem;
-      border-radius: 16px;
-      font-size: 1.8rem;
-      color: #4a3b5a;
-    }
-
-    .section-sub {
-      color: #7a6a8a;
-      margin-bottom: 2.5rem;
-      font-size: 1.1rem;
-    }
-
-    /* --- ABOUT + SKILLS --- */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 2fr 1.2fr;
-      gap: 2.5rem;
-      margin-bottom: 4rem;
-    }
-
-    .card {
-      background: rgba(253, 252, 251, 0.55);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 2rem 2.2rem;
-      border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 8px 32px rgba(184, 232, 242, 0.08);
-      transition: all 0.4s;
-      animation: cardFade 0.8s ease-out forwards;
-      opacity: 0;
-    }
-
-    .card:nth-child(1) { animation-delay: 0.1s; }
-    .card:nth-child(2) { animation-delay: 0.2s; }
-
-    @keyframes cardFade {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .card:hover {
-      background: rgba(253, 252, 251, 0.8);
-      box-shadow: 0 12px 40px rgba(216, 207, 240, 0.2);
-      transform: translateY(-4px);
-    }
-
-    .card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1.2rem;
-      font-weight: 700;
-      color: #4a3b5a;
-    }
-
-    .card h3 i {
-      margin-right: 10px;
-      color: #B8E8F2;
-    }
-
-    .about-text p {
-      margin-bottom: 1rem;
-      color: #5a4a6a;
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem 0.9rem;
-      margin-top: 1rem;
-    }
-
-    .skill-tag {
-      background: linear-gradient(135deg, rgba(250, 218, 221, 0.6), rgba(255, 228, 230, 0.6));
-      backdrop-filter: blur(4px);
-      padding: 0.4rem 1.4rem;
-      border-radius: 30px;
-      font-weight: 500;
-      font-size: 0.95rem;
-      color: #4a3a4a;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: all 0.3s;
-    }
-
-    .skill-tag:hover {
-      transform: scale(1.05);
-      background: linear-gradient(135deg, rgba(250, 218, 221, 0.8), rgba(255, 228, 230, 0.8));
-    }
-
-    .lang-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid rgba(216, 207, 240, 0.2);
-    }
-
-    .lang-item:last-child {
-      border-bottom: none;
-    }
-
-    .lang-name {
-      font-weight: 500;
-      color: #4a3b5a;
-    }
-
-    .lang-level {
-      color: #5a4a6a;
-      background: linear-gradient(135deg, rgba(216, 207, 240, 0.5), rgba(200, 191, 224, 0.5));
-      backdrop-filter: blur(4px);
-      padding: 0.1rem 1.2rem;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    /* --- PROJECTS --- */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin: 2.5rem 0 3.5rem;
-    }
-
-    .project-item {
-      background: rgba(253, 252, 251, 0.5);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 1.8rem 1.8rem 2rem;
-      border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 4px 20px rgba(184, 232, 242, 0.06);
-      transition: all 0.4s ease;
-      animation: cardFade 0.8s ease-out forwards;
-      opacity: 0;
-    }
-
-    .project-item:nth-child(1) { animation-delay: 0.3s; }
-    .project-item:nth-child(2) { animation-delay: 0.4s; }
-    .project-item:nth-child(3) { animation-delay: 0.5s; }
-    .project-item:nth-child(4) { animation-delay: 0.6s; }
-
-    .project-item:hover {
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 16px 48px rgba(216, 207, 240, 0.2);
-      border-color: #B8E8F2;
-      background: rgba(253, 252, 251, 0.8);
-    }
-
-    .project-item i {
-      font-size: 2.2rem;
-      background: linear-gradient(135deg, #B8E8F2, #D8CFF0);
-      padding: 0.6rem;
-      border-radius: 16px;
-      margin-bottom: 1rem;
-      color: #4a3b5a;
-      display: inline-block;
-      transition: all 0.3s;
-    }
-
-    .project-item:hover i {
-      transform: rotate(-8deg) scale(1.1);
-    }
-
-    .project-item h4 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-      color: #4a3b5a;
-    }
-
-    .project-item p {
-      color: #6a5a7a;
-      margin-bottom: 1.2rem;
-      font-size: 0.98rem;
-    }
-
-    .project-tag {
-      background: linear-gradient(135deg, rgba(250, 218, 221, 0.6), rgba(255, 228, 230, 0.6));
-      backdrop-filter: blur(4px);
-      padding: 0.2rem 1.2rem;
-      border-radius: 30px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #5a4a5a;
-      display: inline-block;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    /* --- CONTACT --- */
-    .contact-wrapper {
-      background: rgba(253, 252, 251, 0.5);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 40px;
-      padding: 2.5rem 2.8rem;
-      margin-top: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 8px 32px rgba(184, 232, 242, 0.08);
-      transition: all 0.4s;
-    }
-
-    .contact-wrapper:hover {
-      background: rgba(253, 252, 251, 0.7);
-      box-shadow: 0 12px 48px rgba(184, 232, 242, 0.15);
-    }
-
-    .contact-info h3 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #4a3b5a;
-    }
-
-    .contact-info p {
-      color: #6a5a7a;
-      margin: 0.3rem 0 0.8rem;
-    }
-
-    .contact-info i {
-      background: linear-gradient(135deg, #B8E8F2, #D8CFF0);
-      padding: 0.4rem;
-      border-radius: 12px;
-      width: 36px;
-      text-align: center;
-      color: #4a3b5a;
-      margin-right: 8px;
-    }
-
-    .contact-item {
-      margin: 0.5rem 0;
-      color: #5a4a6a;
-      display: flex;
-      align-items: center;
-    }
-
-    .btn-secondary {
-      background: linear-gradient(135deg, #D8CFF0, #C8BFE0);
-      border: none;
-      padding: 0.8rem 2.8rem;
-      border-radius: 40px;
-      color: #4a3b5a;
-      font-weight: 600;
-      transition: all 0.3s;
-      cursor: default;
-      box-shadow: 0 8px 24px rgba(216, 207, 240, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-secondary::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
-      animation: shimmer 5s ease-in-out infinite;
-    }
-
-    .btn-secondary i {
-      margin-right: 8px;
-      color: #7a6a8a;
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 12px 36px rgba(216, 207, 240, 0.4);
-    }
-
-    /* --- FOOTER --- */
-    .footer {
-      text-align: center;
-      margin-top: 4.5rem;
-      color: #7a6a8a;
-      border-top: 1px solid rgba(216, 207, 240, 0.2);
-      padding-top: 2.5rem;
-      font-size: 0.95rem;
-    }
-
-    .footer i {
-      background: linear-gradient(135deg, #B8E8F2, #D8CFF0);
-      padding: 0.2rem 0.4rem;
-      border-radius: 8px;
-      color: #4a3b5a;
-    }
-
-    /* --- RESPONSIVE --- */
-    @media (max-width: 760px) {
-      .hero {
-        flex-direction: column-reverse;
-        text-align: center;
-        padding: 2rem 1.5rem;
-      }
-      .hero-content p {
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .hero-actions {
-        justify-content: center;
-      }
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-      .navbar {
-        flex-direction: column;
-        align-items: stretch;
-        text-align: center;
-        padding: 1rem 1.5rem;
-        border-radius: 30px;
-      }
-      .nav-links {
-        justify-content: center;
-        gap: 1rem;
-      }
-      .contact-wrapper {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .section-title {
-        font-size: 1.7rem;
-      }
-      .hero-content h1 {
-        font-size: 2.6rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-content h1 {
-        font-size: 2.2rem;
-      }
-      .avatar-placeholder {
-        width: 150px;
-        height: 150px;
-        font-size: 3.8rem;
-      }
-      .hero {
-        padding: 1.5rem 1rem;
-      }
-      .card {
-        padding: 1.5rem;
-      }
-      .contact-wrapper {
-        padding: 1.5rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nguyễn Minh Anh — Portfolio</title>
+    <meta name="description" content="Portfolio của Nguyễn Minh Anh, Kỹ sư phần mềm & nhà phân tích dữ liệu tại Hà Nội." />
+    <meta property="og:title" content="Nguyễn Minh Anh — Portfolio" />
+    <meta property="og:description" content="Kỹ sư phần mềm & nhà phân tích dữ liệu" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        :root {
+            --pink: #FADADD;
+            --blue: #B8E8F2;
+            --cream: #FDFCFB;
+            --lavender: #D8CFF0;
+            --silver: #A7C7E7;
+            --ink: #5a4f6b;
+            --muted: #9b8faa;
+            --glass: rgba(253, 252, 251, 0.60);
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'Nunito', system-ui, sans-serif;
+            --mono: 'DM Mono', monospace;
+            --shadow: 0 10px 28px rgba(167, 199, 231, 0.22);
+            --rose: #f2a7b8;
+            --lilac: #c4b5e8;
+            --sky: #8ecae6;
+            --mint: #a8daba;
+            --card-bg: rgba(255, 255, 255, 0.62);
+            --border: rgba(255, 255, 255, 0.7);
+            --text-h: #3a2f4a;
+            --text-b: #5a4f68;
+            --text-s: #8a7a98;
+            --r-card: 28px;
+            --r-pill: 40px;
+            --shadow-h: 0 16px 56px rgba(130, 100, 180, 0.22);
+        }
+
+        /* Dark mode */
+        [data-theme="dark"] {
+            --cream: #1a1a2e;
+            --ink: #e8e0f0;
+            --muted: #b8aac8;
+            --glass: rgba(26, 26, 46, 0.75);
+            --shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+            --card-bg: rgba(26, 26, 46, 0.7);
+            --border: rgba(216, 207, 240, 0.15);
+            --text-h: #e8e0f0;
+            --text-b: #c8b8d8;
+            --text-s: #9a8aaa;
+        }
+
+        [data-theme="dark"] .blob-1,
+        [data-theme="dark"] .blob-2,
+        [data-theme="dark"] .blob-3,
+        [data-theme="dark"] .blob-4 {
+            opacity: 0.2;
+        }
+
+        [data-theme="dark"] nav {
+            background: rgba(26, 26, 46, 0.8);
+            border-bottom-color: rgba(216, 207, 240, 0.15);
+        }
+
+        [data-theme="dark"] .tag {
+            background: rgba(26, 26, 46, 0.85);
+            border-color: rgba(216, 207, 240, 0.2);
+            color: #b8aac8;
+        }
+
+        [data-theme="dark"] .hero-stat-card,
+        [data-theme="dark"] .glass,
+        [data-theme="dark"] .project-arrow,
+        [data-theme="dark"] .proj-card,
+        [data-theme="dark"] .sum-card,
+        [data-theme="dark"] .stat-box {
+            background: rgba(26, 26, 46, 0.7);
+            border-color: rgba(216, 207, 240, 0.15);
+        }
+
+        [data-theme="dark"] .btn-outline {
+            background: rgba(26, 26, 46, 0.7);
+            color: #e8e0f0;
+            border-color: rgba(216, 207, 240, 0.3);
+        }
+
+        [data-theme="dark"] .btn-outline:hover {
+            background: rgba(184, 232, 242, 0.12);
+        }
+
+        [data-theme="dark"] footer,
+        [data-theme="dark"] .info-item {
+            border-color: rgba(216, 207, 240, 0.15);
+        }
+
+        [data-theme="dark"] .proj-card .proj-detail {
+            background: rgba(196, 181, 232, 0.1);
+        }
+
+        [data-theme="dark"] .proj-card .tag-tool {
+            background: rgba(142, 202, 230, 0.15);
+            color: #8ecae6;
+        }
+
+        [data-theme="dark"] .proj-card .tag-topic {
+            background: rgba(242, 167, 184, 0.15);
+            color: #f2a7b8;
+        }
+
+        [data-theme="dark"] .proj-card .tag-result {
+            background: rgba(168, 218, 186, 0.15);
+            color: #a8daba;
+        }
+
+        [data-theme="dark"] .btn-pdf {
+            background: rgba(196, 181, 232, 0.2);
+            color: #e8e0f0;
+        }
+
+        [data-theme="dark"] .btn-pdf:hover {
+            background: rgba(196, 181, 232, 0.4);
+        }
+
+        [data-theme="dark"] .btn-sm {
+            background: rgba(26, 26, 46, 0.7);
+            border-color: rgba(216, 207, 240, 0.2);
+            color: #c8b8d8;
+        }
+
+        [data-theme="dark"] .btn-sm:hover {
+            background: rgba(26, 26, 46, 0.9);
+        }
+
+        [data-theme="dark"] .reflection-block {
+            background: rgba(196, 181, 232, 0.08);
+        }
+
+        [data-theme="dark"] .highlight-list li {
+            background: rgba(168, 218, 186, 0.08);
+            border-color: rgba(168, 218, 186, 0.15);
+        }
+
+        [data-theme="dark"] .challenge-list li .ch-icon {
+            background: rgba(196, 181, 232, 0.15);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--ink);
+            font-family: var(--sans);
+            font-weight: 300;
+            font-size: 15px;
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ── Blobs ───────────────────────────────────── */
+        .blob-wrap {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.42;
+            animation: float-blob linear infinite;
+        }
+
+        .blob-1 {
+            width: 620px;
+            height: 620px;
+            background: var(--pink);
+            top: -140px;
+            left: -160px;
+            animation-duration: 24s;
+        }
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--blue);
+            top: 28%;
+            right: -100px;
+            animation-duration: 30s;
+            animation-delay: -9s;
+        }
+        .blob-3 {
+            width: 420px;
+            height: 420px;
+            background: var(--lavender);
+            bottom: 8%;
+            left: 22%;
+            animation-duration: 20s;
+            animation-delay: -5s;
+        }
+        .blob-4 {
+            width: 340px;
+            height: 340px;
+            background: var(--silver);
+            top: 58%;
+            left: -70px;
+            animation-duration: 26s;
+            animation-delay: -14s;
+        }
+
+        @keyframes float-blob {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(35px, -45px) scale(1.06);
+            }
+            50% {
+                transform: translate(-22px, 32px) scale(0.97);
+            }
+            75% {
+                transform: translate(44px, 12px) scale(1.04);
+            }
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+        }
+
+        #sparkle-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ── Nav ─────────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px;
+            background: rgba(253, 252, 251, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(216, 207, 240, 0.3);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .nav-logo {
+            font-family: var(--serif);
+            font-size: 1.35rem;
+            background: linear-gradient(135deg, #c9a0c8, var(--silver));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.78rem;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: 500;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 1.5px;
+            background: linear-gradient(90deg, var(--pink), var(--silver));
+            transform: scaleX(0);
+            transition: transform 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--ink);
+        }
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .theme-toggle {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(216, 207, 240, 0.4);
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.25s;
+            color: var(--ink);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.08);
+            border-color: var(--silver);
+        }
+
+        /* ── Sections above blobs ────────────────────── */
+        nav,
+        section,
+        footer {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ── Layout ─────────────────────────────────── */
+        .wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        /* ── Divider ─────────────────────────────────── */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 56px;
+        }
+
+        .divider span {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #c9a0c8, var(--silver));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            white-space: nowrap;
+        }
+
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(216, 207, 240, 0.55), transparent);
+        }
+
+        /* ── Hero ────────────────────────────────────── */
+        #hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 80px;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 20px;
+            animation: fade-slide 0.8s ease both;
+        }
+
+        .hero-name {
+            font-family: var(--serif);
+            font-size: 5.5rem;
+            line-height: 1.04;
+            background: linear-gradient(135deg, #c9a0c8 0%, var(--silver) 55%, #b8d8f2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+            animation: fade-slide 0.8s 0.1s ease both;
+        }
+
+        .hero-tagline {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--muted);
+            max-width: 420px;
+            line-height: 1.6;
+            margin-bottom: 44px;
+            animation: fade-slide 0.8s 0.2s ease both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 14px;
+            animation: fade-slide 0.8s 0.3s ease both;
+        }
+
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            animation: fade-slide 0.8s 0.25s ease both;
+        }
+
+        .hero-stat-card {
+            background: var(--glass);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(216, 207, 240, 0.45);
+            border-radius: 18px;
+            padding: 26px 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.25s, box-shadow 0.25s, background 0.3s;
+        }
+
+        .hero-stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .stat-num {
+            font-family: var(--serif);
+            font-size: 1.9rem;
+            line-height: 1;
+            background: linear-gradient(135deg, #c9a0c8, var(--silver));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        @keyframes fade-slide {
+            from {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--muted);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            animation: bob 2.2s ease-in-out infinite;
+        }
+
+        @keyframes bob {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(7px);
+            }
+        }
+
+        /* ── Buttons ─────────────────────────────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 30px;
+            border-radius: 999px;
+            font-family: var(--sans);
+            font-size: 0.84rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #e4a8c8, var(--silver));
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(167, 199, 231, 0.38);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 28px rgba(167, 199, 231, 0.5);
+        }
+
+        .btn-outline {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            color: var(--ink);
+            border: 1.5px solid rgba(216, 207, 240, 0.6);
+            transition: all 0.25s ease, background 0.3s, color 0.3s;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--silver);
+            background: rgba(184, 232, 242, 0.18);
+            transform: translateY(-3px);
+        }
+
+        .btn-sm {
+            padding: .4rem 1.2rem;
+            font-size: .82rem;
+            background: rgba(255, 255, 255, .5);
+            border: 1.5px solid var(--border);
+            color: var(--text-b);
+            border-radius: var(--r-pill);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .btn-sm:hover {
+            background: rgba(255, 255, 255, .8);
+            transform: translateY(-2px);
+        }
+
+        /* ── Glass ───────────────────────────────────── */
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(216, 207, 240, 0.42);
+            border-radius: 18px;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* ── About ───────────────────────────────────── */
+        #about {
+            padding: 110px 0 60px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .about-bio {
+            font-size: 1.02rem;
+            color: var(--ink);
+            line-height: 1.9;
+        }
+
+        .about-bio p+p {
+            margin-top: 18px;
+        }
+
+        .about-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .info-item {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(216, 207, 240, 0.38);
+            transition: border-color 0.3s ease;
+        }
+
+        .info-item:first-child {
+            padding-top: 0;
+        }
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-family: var(--mono);
+            font-size: 0.63rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 3px;
+        }
+
+        .info-value {
+            font-size: 0.92rem;
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        /* ── Projects & Summary Grid ──────────────────── */
+        #projects {
+            padding: 0 0 110px;
+        }
+
+        .projects-summary-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.6rem;
+        }
+
+        /* ── Project Cards ─────────────────────────────── */
+        .proj-card {
+            padding: 1.6rem 1.7rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+            backdrop-filter: blur(18px);
+            border: 1.5px solid var(--border);
+            border-radius: var(--r-card);
+            box-shadow: var(--shadow);
+            transition: all 0.4s;
+            animation: cardIn .7s ease-out forwards;
+            opacity: 0;
+        }
+
+        .proj-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-h);
+            background: rgba(255, 255, 255, .8);
+            border-color: rgba(196, 181, 232, .5);
+        }
+
+        [data-theme="dark"] .proj-card:hover {
+            background: rgba(26, 26, 46, 0.85);
+        }
+
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .proj-card:nth-child(1) {
+            animation-delay: .05s;
+        }
+        .proj-card:nth-child(2) {
+            animation-delay: .1s;
+        }
+        .proj-card:nth-child(3) {
+            animation-delay: .15s;
+        }
+        .proj-card:nth-child(4) {
+            animation-delay: .2s;
+        }
+        .proj-card:nth-child(5) {
+            animation-delay: .25s;
+        }
+        .proj-card:nth-child(6) {
+            animation-delay: .3s;
+        }
+
+        .proj-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            transition: transform .3s;
+        }
+
+        .proj-card:hover .proj-icon {
+            transform: rotate(-8deg) scale(1.1);
+        }
+
+        .i1 {
+            background: linear-gradient(135deg, #fde6ed, #fcc8d6);
+            color: #c0507a;
+        }
+        .i2 {
+            background: linear-gradient(135deg, #e8e0fa, #d4c8f4);
+            color: #7a4aa8;
+        }
+        .i3 {
+            background: linear-gradient(135deg, #fff0c8, #ffe4a0);
+            color: #a87820;
+        }
+        .i4 {
+            background: linear-gradient(135deg, #d4f0e0, #b8e8cc);
+            color: #2a8a5a;
+        }
+        .i5 {
+            background: linear-gradient(135deg, #d4eef9, #b8dff0);
+            color: #2a7aa8;
+        }
+        .i6 {
+            background: linear-gradient(135deg, #fde6ed, #e8e0fa);
+            color: #8a4a9a;
+        }
+
+        [data-theme="dark"] .i1 {
+            background: linear-gradient(135deg, rgba(253, 230, 237, 0.3), rgba(252, 200, 214, 0.3));
+            color: #f2a7b8;
+        }
+        [data-theme="dark"] .i2 {
+            background: linear-gradient(135deg, rgba(232, 224, 250, 0.3), rgba(212, 200, 244, 0.3));
+            color: #c4b5e8;
+        }
+        [data-theme="dark"] .i3 {
+            background: linear-gradient(135deg, rgba(255, 240, 200, 0.3), rgba(255, 228, 160, 0.3));
+            color: #e8c860;
+        }
+        [data-theme="dark"] .i4 {
+            background: linear-gradient(135deg, rgba(212, 240, 224, 0.3), rgba(184, 232, 204, 0.3));
+            color: #80c8a0;
+        }
+        [data-theme="dark"] .i5 {
+            background: linear-gradient(135deg, rgba(212, 238, 249, 0.3), rgba(184, 223, 240, 0.3));
+            color: #7ab8d8;
+        }
+        [data-theme="dark"] .i6 {
+            background: linear-gradient(135deg, rgba(253, 230, 237, 0.3), rgba(232, 224, 250, 0.3));
+            color: #b08ac0;
+        }
+
+        .proj-num {
+            display: inline-block;
+            font-size: .72rem;
+            font-weight: 800;
+            background: linear-gradient(130deg, #fde6ed, #ffe4f0);
+            color: #b0507a;
+            padding: .12rem .7rem;
+            border-radius: 20px;
+            margin-bottom: .4rem;
+            border: 1px solid rgba(255, 255, 255, .5);
+        }
+
+        [data-theme="dark"] .proj-num {
+            background: rgba(253, 230, 237, 0.2);
+            color: #f2a7b8;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .proj-card h4 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-h);
+            margin-bottom: .5rem;
+        }
+
+        .proj-card p {
+            font-size: .9rem;
+            color: var(--text-b);
+            flex: 1;
+            margin-bottom: .8rem;
+        }
+
+        .proj-detail {
+            font-size: .82rem;
+            color: var(--text-b);
+            background: rgba(196, 181, 232, .12);
+            padding: .6rem .9rem;
+            border-radius: 14px;
+            border-left: 3px solid var(--sky);
+            margin-bottom: .9rem;
+        }
+
+        .proj-detail i {
+            color: var(--sky);
+            margin-right: .4rem;
+        }
+        .proj-detail strong {
+            color: var(--text-h);
+        }
+
+        .result-list {
+            list-style: none;
+            margin: .4rem 0 .7rem;
+        }
+
+        .result-list li {
+            font-size: .83rem;
+            color: var(--text-b);
+            padding: .25rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: .5rem;
+        }
+
+        .result-list li i {
+            color: var(--rose);
+            margin-top: .15rem;
+            font-size: .78rem;
+            flex-shrink: 0;
+        }
+
+        .tag-tool {
+            background: rgba(142, 202, 230, .22);
+            color: #2a6a8a;
+        }
+
+        .tag-topic {
+            background: rgba(242, 167, 184, .22);
+            color: #8a3060;
+        }
+
+        .tag-result {
+            background: rgba(168, 218, 186, .25);
+            color: #2a6a4a;
+        }
+
+        .btn-pdf {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            margin-top: .8rem;
+            padding: .42rem 1.1rem;
+            border-radius: 20px;
+            font-size: .8rem;
+            font-weight: 700;
+            background: linear-gradient(130deg, rgba(196, 181, 232, .3), rgba(142, 202, 230, .3));
+            border: 1.5px solid rgba(255, 255, 255, .55);
+            color: var(--text-h);
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .btn-pdf:hover {
+            background: linear-gradient(130deg, rgba(196, 181, 232, .55), rgba(142, 202, 230, .55));
+            transform: translateY(-2px);
+        }
+
+        .btn-pdf i {
+            color: var(--rose);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .35rem .5rem;
+            margin-top: auto;
+        }
+
+        .tag {
+            padding: .18rem .85rem;
+            border-radius: 20px;
+            font-size: .73rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, .4);
+            font-family: var(--sans);
+        }
+
+        /* ── Summary Section (bên phải) ────────────────── */
+        .summary-side {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .sum-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(18px);
+            border: 1.5px solid var(--border);
+            border-radius: var(--r-card);
+            padding: 1.8rem 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.4s;
+            animation: cardIn .7s ease-out forwards;
+            opacity: 0;
+        }
+
+        .sum-card:nth-child(1) {
+            animation-delay: .1s;
+        }
+        .sum-card:nth-child(2) {
+            animation-delay: .2s;
+        }
+        .sum-card:nth-child(3) {
+            animation-delay: .3s;
+        }
+        .sum-card:nth-child(4) {
+            animation-delay: .4s;
+        }
+
+        .sum-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-h);
+            background: rgba(255, 255, 255, .8);
+        }
+
+        [data-theme="dark"] .sum-card:hover {
+            background: rgba(26, 26, 46, 0.85);
+        }
+
+        .sum-card h3 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--text-h);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .sum-card h3 i {
+            color: var(--lilac);
+            font-size: 1.1rem;
+        }
+
+        .stat-box {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: .8rem 0;
+            border-bottom: 1px solid rgba(196, 181, 232, .12);
+        }
+
+        .stat-box:last-child {
+            border-bottom: none;
+        }
+
+        .stat-box .stat-icon-sm {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .stat-box .stat-icon-sm.i-rose {
+            background: rgba(242, 167, 184, .2);
+            color: var(--rose);
+        }
+        .stat-box .stat-icon-sm.i-lilac {
+            background: rgba(196, 181, 232, .2);
+            color: var(--lilac);
+        }
+        .stat-box .stat-icon-sm.i-sky {
+            background: rgba(142, 202, 230, .2);
+            color: var(--sky);
+        }
+        .stat-box .stat-icon-sm.i-mint {
+            background: rgba(168, 218, 186, .2);
+            color: var(--mint);
+        }
+
+        .stat-box .stat-info {
+            flex: 1;
+        }
+
+        .stat-box .stat-info .stat-num-sm {
+            font-size: 1.4rem;
+            font-weight: 900;
+            background: linear-gradient(130deg, #c4a6f0, #8ecae6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .stat-box .stat-info .stat-label-sm {
+            font-size: .82rem;
+            color: var(--text-s);
+            font-weight: 600;
+        }
+
+        .reflection-block {
+            background: linear-gradient(130deg, rgba(242, 167, 184, .08), rgba(196, 181, 232, .08));
+            border-radius: 16px;
+            padding: 1rem 1.2rem;
+            border-left: 3px solid var(--rose);
+            margin-bottom: .5rem;
+        }
+
+        .reflection-block p {
+            font-size: .88rem;
+            color: var(--text-b);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .highlight-list {
+            list-style: none;
+        }
+
+        .highlight-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: .55rem;
+            padding: .4rem 0;
+            font-size: .85rem;
+            color: var(--text-b);
+            border-bottom: 1px solid rgba(196, 181, 232, .08);
+        }
+
+        .highlight-list li:last-child {
+            border-bottom: none;
+        }
+
+        .highlight-list li i {
+            color: var(--mint);
+            flex-shrink: 0;
+            margin-top: .2rem;
+            font-size: .8rem;
+        }
+
+        .challenge-list {
+            list-style: none;
+        }
+
+        .challenge-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: .7rem;
+            padding: .5rem 0;
+            border-bottom: 1px solid rgba(242, 167, 184, .1);
+        }
+
+        .challenge-list li:last-child {
+            border-bottom: none;
+        }
+
+        .challenge-list li .ch-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .75rem;
+            background: linear-gradient(130deg, rgba(242, 167, 184, .2), rgba(196, 181, 232, .2));
+            color: #b05a80;
+            margin-top: .05rem;
+        }
+
+        .challenge-list li .ch-text {
+            font-size: .85rem;
+            color: var(--text-b);
+        }
+
+        .challenge-list li .ch-text strong {
+            display: block;
+            font-size: .82rem;
+            font-weight: 700;
+            color: var(--text-h);
+            margin-bottom: .05rem;
+        }
+
+        /* ── PDF Modal ─────────────────────────────────── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(40, 30, 60, .55);
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+            animation: fadeM .25s ease;
+        }
+
+        @keyframes fadeM {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-box {
+            background: rgba(255, 255, 255, .94);
+            border-radius: 24px;
+            border: 1.5px solid var(--border);
+            box-shadow: 0 24px 80px rgba(80, 40, 130, 0.28);
+            width: 100%;
+            max-width: 880px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: scaleM .3s ease;
+        }
+
+        [data-theme="dark"] .modal-box {
+            background: rgba(26, 26, 46, .94);
+        }
+
+        @keyframes scaleM {
+            from {
+                transform: scale(.94);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.1rem 1.6rem;
+            border-bottom: 1.5px solid rgba(196, 181, 232, .25);
+            background: linear-gradient(130deg, rgba(242, 167, 184, .08), rgba(196, 181, 232, .08));
+        }
+
+        .modal-header h3 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--text-h);
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .modal-header h3 i {
+            color: var(--rose);
+        }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            background: rgba(242, 167, 184, .2);
+            color: var(--text-b);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .25s;
+        }
+
+        .modal-close:hover {
+            background: rgba(242, 167, 184, .5);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pdf-toolbar {
+            display: flex;
+            align-items: center;
+            gap: .7rem;
+            padding: .7rem 1.2rem;
+            background: rgba(248, 246, 255, .8);
+            border-bottom: 1px solid rgba(196, 181, 232, .2);
+            flex-wrap: wrap;
+        }
+
+        [data-theme="dark"] .pdf-toolbar {
+            background: rgba(26, 26, 46, .6);
+        }
+
+        .pdf-toolbar .btn-sm {
+            font-size: .78rem;
+            padding: .32rem 1rem;
+        }
+
+        .pdf-toolbar span {
+            font-size: .82rem;
+            color: var(--text-s);
+        }
+
+        .pdf-frame-wrap {
+            flex: 1;
+            overflow: hidden;
+            min-height: 480px;
+        }
+
+        .pdf-frame-wrap iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 480px;
+            border: none;
+        }
+
+        .pdf-note {
+            padding: .7rem 1.4rem;
+            font-size: .78rem;
+            color: var(--text-s);
+            text-align: center;
+            background: rgba(248, 246, 255, .7);
+        }
+
+        [data-theme="dark"] .pdf-note {
+            background: rgba(26, 26, 46, .5);
+        }
+
+        /* ── Footer ──────────────────────────────────── */
+        footer {
+            padding: 22px 80px;
+            border-top: 1px solid rgba(216, 207, 240, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.77rem;
+            color: var(--muted);
+            transition: border-color 0.3s ease;
+        }
+
+        /* ── Fade-up ─────────────────────────────────── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fade-up {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .blob,
+            #sparkle-canvas {
+                display: none;
+            }
+        }
+
+        /* ── Responsive ───────────────────────────────── */
+        @media (max-width: 1024px) {
+            nav {
+                padding: 16px 30px;
+            }
+
+            .wrap {
+                padding: 0 30px;
+            }
+
+            #hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding-top: 40px;
+                min-height: auto;
+                padding-bottom: 80px;
+            }
+
+            .hero-name {
+                font-size: 3.8rem;
+            }
+
+            .hero-tagline {
+                max-width: 100%;
+            }
+
+            .hero-right {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .hero-stat-card {
+                flex: 1;
+                min-width: 200px;
+            }
+
+            .projects-summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-scroll {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 12px 16px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+            .nav-links a {
+                font-size: 0.6rem;
+                letter-spacing: 0.06em;
+            }
+
+            .nav-actions {
+                gap: 12px;
+            }
+
+            .theme-toggle {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+            }
+
+            .wrap {
+                padding: 0 16px;
+            }
+
+            .hero-name {
+                font-size: 2.8rem;
+            }
+
+            .hero-tagline {
+                font-size: 1rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-cta .btn {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .hero-stat-card {
+                flex: 1 1 100%;
+                padding: 18px 20px;
+            }
+
+            .stat-num {
+                font-size: 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                padding: 16px 20px;
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .divider {
+                margin-bottom: 32px;
+            }
+
+            #about {
+                padding: 60px 0 30px;
+            }
+            #projects {
+                padding: 0 0 60px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <!-- NỀN ĐỘNG -->
-  <div class="background-gradient"></div>
-  <div class="overlay-blur"></div>
-  <canvas id="particles-canvas"></canvas>
-
-<div class="container">
-
-  <!-- NAV -->
-  <nav class="navbar">
-    <div class="logo">Lingua<span>Port</span></div>
-    <div class="nav-links">
-      <a href="#">Giới thiệu</a>
-      <a href="#">Kỹ năng</a>
-      <a href="#">Dự án</a>
-      <a href="#">Liên hệ</a>
-      <span class="btn-outline"><i class="fas fa-file-alt"></i> CV</span>
+    <div class="blob-wrap" aria-hidden="true">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
     </div>
-  </nav>
+    <canvas id="sparkle-canvas" aria-hidden="true"></canvas>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-content">
-      <div class="hero-badge"><i class="fas fa-graduation-cap"></i> Sinh viên Ngôn ngữ Anh</div>
-      <h1>Xin chào, tôi là <br />Minh <i class="fas fa-feather-alt"></i></h1>
-      <p>Đam mê ngôn ngữ, dịch thuật và giao tiếp đa văn hóa. Tôi xây dựng cầu nối giữa các nền văn hóa qua từng câu chữ.</p>
-      <div class="hero-actions">
-        <span class="btn-primary"><i class="fas fa-paper-plane"></i> Dự án của tôi</span>
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#"><i class="fab fa-github"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
+    <!-- ── Nav ──────────────────────────────────────── -->
+    <nav>
+        <div class="nav-logo">NMA ✦</div>
+        <div class="nav-actions">
+            <ul class="nav-links">
+                <li><a href="#about">Về tôi</a></li>
+                <li><a href="#projects">Dự án</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Chuyển đổi giao diện">
+                🌙
+            </button>
         </div>
-      </div>
-    </div>
-    <div class="hero-image">
-      <div class="avatar-placeholder"><i class="fas fa-user-graduate"></i></div>
-    </div>
-  </header>
+    </nav>
 
-  <!-- ABOUT + SKILLS -->
-  <div class="about-grid">
-    <div class="card about-text">
-      <h3><i class="fas fa-user-edit"></i> Về tôi</h3>
-      <p>Tôi là sinh viên năm 3 chuyên ngành Ngôn ngữ Anh tại Đại học Ngoại ngữ. Yêu thích văn học, biên dịch và ngôn ngữ học ứng dụng.</p>
-      <p>Đã tham gia các câu lạc bộ tiếng Anh, phiên dịch tình nguyện tại sự kiện văn hóa và có kinh nghiệm viết nội dung song ngữ.</p>
-      <p><i class="fas fa-quote-left" style="color:#D8CFF0; opacity:0.7; background: none; padding: 0; width: auto;"></i> Ngôn ngữ là tấm vé để hiểu thế giới.</p>
-    </div>
-
-    <div class="card">
-      <h3><i class="fas fa-cogs"></i> Năng lực</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">Tiếng Anh (C1)</span>
-        <span class="skill-tag">Tiếng Pháp (B1)</span>
-        <span class="skill-tag">Dịch thuật</span>
-        <span class="skill-tag">Biên tập</span>
-        <span class="skill-tag">Viết sáng tạo</span>
-        <span class="skill-tag">Giao tiếp</span>
-        <span class="skill-tag">Canva</span>
-        <span class="skill-tag">MS Office</span>
-      </div>
-      <div style="margin-top: 1.8rem;">
-        <div class="lang-item">
-          <span class="lang-name">Tiếng Anh · Nghe / Nói</span>
-          <span class="lang-level">Thông thạo</span>
+    <!-- ── Hero ─────────────────────────────────────── -->
+    <section id="hero">
+        <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:80px;min-height:100vh;padding-top:80px;">
+            <div class="hero-left">
+                <div class="hero-eyebrow">✦ Xin chào, tôi là</div>
+                <h1 class="hero-name">Nguyễn<br>Minh Anh.</h1>
+                <p class="hero-tagline">Kỹ sư phần mềm & nhà phân tích dữ liệu — tôi xây dựng những thứ đơn giản mà hoạt động thật tốt.</p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">✦ Xem dự án</a>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="hero-stat-card">
+                    <div class="stat-icon">🚀</div>
+                    <div class="stat-body">
+                        <div class="stat-num">3+</div>
+                        <div class="stat-label">Năm kinh nghiệm phát triển phần mềm</div>
+                    </div>
+                </div>
+                <div class="hero-stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-body">
+                        <div class="stat-num">12+</div>
+                        <div class="stat-label">Dự án đã hoàn thành</div>
+                    </div>
+                </div>
+                <div class="hero-stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-body">
+                        <div class="stat-num">5+</div>
+                        <div class="stat-label">Lĩnh vực chuyên môn đa dạng</div>
+                    </div>
+                </div>
+                <div class="hero-stat-card">
+                    <div class="stat-icon">💡</div>
+                    <div class="stat-body">
+                        <div class="stat-num">∞</div>
+                        <div class="stat-label">Đam mê học hỏi và sáng tạo</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="lang-item">
-          <span class="lang-name">Tiếng Anh · Viết / Đọc</span>
-          <span class="lang-level">C1</span>
+        <div class="hero-scroll">
+            <svg width="13" height="19" viewBox="0 0 13 20" fill="none" stroke="#9b8faa" stroke-width="1.5">
+                <rect x="1" y="1" width="11" height="18" rx="5.5"/>
+                <circle cx="6.5" cy="6" r="1.5" fill="#9b8faa" stroke="none">
+                    <animate attributeName="cy" values="6;11;6" dur="1.8s" repeatCount="indefinite"/>
+                </circle>
+            </svg>
+            cuộn xuống
         </div>
-        <div class="lang-item">
-          <span class="lang-name">Tiếng Pháp</span>
-          <span class="lang-level">B1</span>
+    </section>
+
+    <!-- ── About ─────────────────────────────────────── -->
+    <section id="about">
+        <div class="wrap">
+            <div class="divider fade-up"><span>✦ Về tôi</span></div>
+            <div class="about-grid fade-up">
+                <div class="about-bio">
+                    <p>Tôi là một kỹ sư phần mềm với niềm đam mê biến những ý tưởng phức tạp thành sản phẩm đơn giản, dễ dùng và đẹp mắt.</p>
+                    <p>Với nền tảng vững chắc về phát triển web, phân tích dữ liệu và hệ thống nhúng, tôi thích giải quyết những bài toán đòi hỏi sự kết hợp giữa tư duy kỹ thuật và thiết kế.</p>
+                    <p>Ngoài công việc, tôi quan tâm đến toán học, thị trường tài chính và robotics — những lĩnh vực luôn giúp tôi nhìn vấn đề theo góc độ mới.</p>
+                </div>
+                <div class="about-info">
+                    <div class="info-item">
+                        <div class="info-label">Vị trí</div>
+                        <div class="info-value">Hà Nội, Việt Nam</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Chuyên môn</div>
+                        <div class="info-value">Phát triển phần mềm & Phân tích dữ liệu</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Học vấn</div>
+                        <div class="info-value">Kỹ thuật điện tử — Đại học Bách Khoa</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Trạng thái</div>
+                        <div class="info-value" style="background:linear-gradient(90deg,#c9a0c8,var(--silver));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:600;">● Đang tìm cơ hội mới</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="lang-item">
-          <span class="lang-name">Tiếng Việt</span>
-          <span class="lang-level">Bản ngữ</span>
+    </section>
+
+    <!-- ── Projects + Summary ──────────────────────────── -->
+    <section id="projects">
+        <div class="wrap">
+            <div class="divider fade-up"><span>✦ Dự án & Tổng kết</span></div>
+            <div class="projects-summary-grid">
+
+                <!-- Cột trái: 6 dự án -->
+                <div class="projects-grid">
+
+                    <!-- BÀI 1 -->
+                    <div class="proj-card">
+                        <div class="proj-icon i1"><i class="fas fa-folder-tree"></i></div>
+                        <span class="proj-num">Bài 1 · Mục 1.4</span>
+                        <h4>Thao tác cơ bản với tệp tin & thư mục</h4>
+                        <p>Thực hành quản lý hệ thống tệp trên Windows: tạo, đổi tên, sao chép, di chuyển, xóa và khôi phục từ Recycle Bin.</p>
+                        <div class="proj-detail">
+                            <i class="fas fa-folder"></i> <strong>Cấu trúc tạo:</strong><br/>
+                            <span style="font-size:.79rem;">ThucHanh_HaThiNgocLinh/<br/>
+                            ├─ TaiLieu/<br/>
+                            │&nbsp;&nbsp;├─ GhiChuQuanTrong.txt (Copy)<br/>
+                            │&nbsp;&nbsp;└─ DiChuyen.txt (Cut&Paste)<br/>
+                            └─ GhiChuQuanTrong.txt</span>
+                        </div>
+                        <ul class="result-list">
+                            <li><i class="fas fa-circle"></i> Tạo thư mục, đổi tên file</li>
+                            <li><i class="fas fa-circle"></i> Copy & Cut tệp vào thư mục con</li>
+                            <li><i class="fas fa-circle"></i> Xóa vào Recycle Bin và khôi phục</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag tag-tool">File Explorer</span>
+                            <span class="tag tag-tool">Windows 11</span>
+                            <span class="tag tag-result">✔ Hoàn thành</span>
+                        </div>
+                        <button class="btn-pdf" onclick="openPDF('cnsbai1.pdf','Bài tập 1 – Thao tác tệp tin & thư mục')">
+                            <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+                        </button>
+                    </div>
+
+                    <!-- BÀI 2 -->
+                    <div class="proj-card">
+                        <div class="proj-icon i2"><i class="fas fa-search"></i></div>
+                        <span class="proj-num">Bài 2 · Mục 2.4</span>
+                        <h4>Tìm kiếm & đánh giá thông tin học thuật</h4>
+                        <p>Chủ đề "Ngoại ngữ trong giáo dục" – sử dụng toán tử nâng cao trên 4 loại nguồn; đánh giá độ tin cậy theo 5 tiêu chí.</p>
+                        <div class="proj-detail">
+                            <i class="fas fa-quote-right"></i> <strong>Toán tử đã dùng:</strong><br/>
+                            <span style="font-size:.79rem;">"Foreign Language Education", site:edu, filetype:pdf</span>
+                        </div>
+                        <ul class="result-list">
+                            <li><i class="fas fa-circle"></i> Thu thập 10 tài liệu học thuật</li>
+                            <li><i class="fas fa-circle"></i> Đánh giá 5 tiêu chí độ tin cậy</li>
+                            <li><i class="fas fa-circle"></i> Xếp hạng nguồn từ Rất cao đến Trung bình</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag tag-tool">Google Scholar</span>
+                            <span class="tag tag-tool">Springer</span>
+                            <span class="tag tag-topic">Ngoại ngữ GD</span>
+                            <span class="tag tag-result">10 tài liệu</span>
+                        </div>
+                        <button class="btn-pdf" onclick="openPDF('cnsbai2.pdf','Bài tập 2 – Tìm kiếm học thuật')">
+                            <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+                        </button>
+                    </div>
+
+                    <!-- BÀI 3 -->
+                    <div class="proj-card">
+                        <div class="proj-icon i3"><i class="fas fa-pen-fancy"></i></div>
+                        <span class="proj-num">Bài 3 · Mục 3.4</span>
+                        <h4>Viết Prompt hiệu quả cho tác vụ học tập</h4>
+                        <p>So sánh 3 cấp độ prompt (cơ bản → cải tiến → nâng cao) trên 3 tác vụ học thuật về Triết học Mác–Lênin với ChatGPT & Gemini.</p>
+                        <div class="proj-detail">
+                            <i class="fas fa-lightbulb"></i> <strong>Kỹ thuật nâng cao:</strong><br/>
+                            <span style="font-size:.79rem;">CLEAR Model + Few-shot + Chain-of-Thought</span>
+                        </div>
+                        <ul class="result-list">
+                            <li><i class="fas fa-circle"></i> Tóm tắt "Chủ nghĩa duy vật biện chứng"</li>
+                            <li><i class="fas fa-circle"></i> Giải thích "Phép biện chứng duy vật"</li>
+                            <li><i class="fas fa-circle"></i> Tạo 15 câu hỏi ôn tập kèm đáp án</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag tag-tool">ChatGPT</span>
+                            <span class="tag tag-tool">Gemini</span>
+                            <span class="tag tag-topic">Prompt Engineering</span>
+                            <span class="tag tag-result">CLEAR Model</span>
+                        </div>
+                        <button class="btn-pdf" onclick="openPDF('cnsbai3.pdf','Bài tập 3 – Viết Prompt hiệu quả')">
+                            <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+                        </button>
+                    </div>
+
+                    <!-- BÀI 4 -->
+                    <div class="proj-card">
+                        <div class="proj-icon i4"><i class="fas fa-users-cog"></i></div>
+                        <span class="proj-num">Bài 4 · Mục 4.4</span>
+                        <h4>Hợp tác trực tuyến cho dự án nhóm</h4>
+                        <p>Dự án nhóm "Ứng dụng AI trong học ngoại ngữ" – vai trò Trưởng nhóm, điều phối 5 thành viên qua Google Workspace & Zalo.</p>
+                        <div class="proj-detail">
+                            <i class="fas fa-tasks"></i> <strong>Bộ công cụ:</strong><br/>
+                            <span style="font-size:.79rem;">Google Sheets · Google Docs · Google Drive · Zalo</span>
+                        </div>
+                        <ul class="result-list">
+                            <li><i class="fas fa-circle"></i> Tạo bảng phân công nhiệm vụ</li>
+                            <li><i class="fas fa-circle"></i> Theo dõi lịch sử chỉnh sửa Google Docs</li>
+                            <li><i class="fas fa-circle"></i> Phân tích 3 AI nổi bật</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag tag-tool">Google Docs</span>
+                            <span class="tag tag-tool">Google Sheets</span>
+                            <span class="tag tag-tool">Zalo</span>
+                            <span class="tag tag-result">Trưởng nhóm</span>
+                        </div>
+                        <button class="btn-pdf" onclick="openPDF('cnsbai4.pdf','Bài tập 4 – Hợp tác trực tuyến')">
+                            <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+                        </button>
+                    </div>
+
+                    <!-- BÀI 5 -->
+                    <div class="proj-card">
+                        <div class="proj-icon i5"><i class="fas fa-paint-brush"></i></div>
+                        <span class="proj-num">Bài 5 · Mục 5.4</span>
+                        <h4>AI tạo sinh hỗ trợ sáng tạo nội dung</h4>
+                        <p>Thiết kế Infographic "AI trong Giáo dục: Trợ lý đắc lực của sinh viên" với quy trình 3 bước dùng Gemini, ChatGPT và Canva AI.</p>
+                        <div class="proj-detail">
+                            <i class="fas fa-robot"></i> <strong>Quy trình:</strong><br/>
+                            <span style="font-size:.79rem;">Gemini viết nội dung → ChatGPT tạo logo → Canva AI thiết kế</span>
+                        </div>
+                        <ul class="result-list">
+                            <li><i class="fas fa-circle"></i> Gemini cung cấp nội dung 4 lợi ích AI</li>
+                            <li><i class="fas fa-circle"></i> ChatGPT tạo hình ảnh logo</li>
+                            <li><i class="fas fa-circle"></i> Canva AI xuất 4 mẫu infographic</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag tag-tool">Gemini</span>
+                            <span class="tag tag-tool">ChatGPT</span>
+                            <span class="tag tag-tool">Canva AI</span>
+                            <span class="tag tag-result">Infographic</span>
+                        </div>
+                        <button class="btn-pdf" onclick="openPDF('cnsbai5.pdf','Bài tập 5 – AI tạo sinh nội dung')">
+                            <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+                        </button>
+                    </div>
+
+                    <!-- BÀI 6 -->
+                    <div class="proj-card">
+                        <div class="proj-icon i6"><i class="fas fa-balance-scale"></i></div>
+                        <span class="proj-num">Bài 6 · Mục 6.4</span>
+                        <h4>Sử dụng AI có trách nhiệm trong học thuật</h4>
+                        <p>Nghiên cứu chính sách AI của ULIS; thực hành với bài luận học thuật tiếng Anh; xây dựng 7 nguyên tắc cá nhân và infographic.</p>
+                        <div class="proj-detail">
+                            <i class="fas fa-shield-alt"></i> <strong>7 Nguyên tắc vàng:</strong><br/>
+                            <span style="font-size:.79rem;">Con người là chủ thể · Kiểm chứng · Minh bạch · Không sao chép · Giữ bản sắc · Tôn trọng bản quyền · Bảo mật</span>
+                        </div>
+                        <ul class="result-list">
+                            <li><i class="fas fa-circle"></i> Nghiên cứu chính sách ULIS</li>
+                            <li><i class="fas fa-circle"></i> Bài luận "Impact of AI on Foreign Language Learning"</li>
+                            <li><i class="fas fa-circle"></i> Thiết kế infographic "Sử dụng AI có trách nhiệm"</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag tag-topic">Đạo đức AI</span>
+                            <span class="tag tag-tool">ULIS Policy</span>
+                            <span class="tag tag-result">7 Nguyên tắc</span>
+                            <span class="tag tag-result">Infographic</span>
+                        </div>
+                        <button class="btn-pdf" onclick="openPDF('cnsbai6.pdf','Bài tập 6 – Sử dụng AI có trách nhiệm')">
+                            <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Cột phải: Summary -->
+                <div class="summary-side">
+
+                    <!-- Thống kê nhanh -->
+                    <div class="sum-card">
+                        <h3><i class="fas fa-chart-simple"></i> Thống kê</h3>
+                        <div class="stat-box">
+                            <div class="stat-icon-sm i-rose"><i class="fas fa-book-open"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-num-sm">6</span>
+                                <div class="stat-label-sm">Dự án hoàn thành</div>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon-sm i-lilac"><i class="fas fa-file-alt"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-num-sm">10+</span>
+                                <div class="stat-label-sm">Tài liệu tham khảo</div>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon-sm i-sky"><i class="fas fa-award"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-num-sm">C1</span>
+                                <div class="stat-label-sm">Trình độ tiếng Anh</div>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon-sm i-mint"><i class="fas fa-users"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-num-sm">3+</span>
+                                <div class="stat-label-sm">Dự án nhóm</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trải nghiệm & Cảm nhận -->
+                    <div class="sum-card">
+                        <h3><i class="fas fa-heart"></i> Trải nghiệm</h3>
+                        <div class="reflection-block">
+                            <p>Qua 6 bài thực hành, tôi nhận ra các công cụ AI không thay thế tư duy mà là người đồng hành giúp khai thác tiềm năng tốt hơn. Tôi đã học được cách sử dụng AI chủ động thay vì thụ động.</p>
+                        </div>
+                        <div class="reflection-block" style="border-left-color:var(--lilac);background:linear-gradient(130deg,rgba(196,181,232,.08),rgba(142,202,230,.08));">
+                            <p>Sự khác biệt giữa <em>sử dụng AI thụ động</em> và <em>sử dụng AI chủ động</em> là bài học quan trọng nhất tôi mang theo sau khoá học này.</p>
+                        </div>
+                    </div>
+
+                    <!-- Kiến thức & Kỹ năng -->
+                    <div class="sum-card">
+                        <h3><i class="fas fa-graduation-cap"></i> Kỹ năng đạt được</h3>
+                        <ul class="highlight-list">
+                            <li><i class="fas fa-check-circle"></i> Quản lý tệp tin & thư mục Windows</li>
+                            <li><i class="fas fa-check-circle"></i> Tìm kiếm học thuật & đánh giá nguồn</li>
+                            <li><i class="fas fa-check-circle"></i> Viết Prompt theo CLEAR Model</li>
+                            <li><i class="fas fa-check-circle"></i> Hợp tác nhóm qua Google Workspace</li>
+                            <li><i class="fas fa-check-circle"></i> Tạo nội dung với AI (Gemini, ChatGPT, Canva)</li>
+                            <li><i class="fas fa-check-circle"></i> Sử dụng AI có trách nhiệm</li>
+                            <li><i class="fas fa-check-circle"></i> Xây dựng Portfolio kỹ thuật số</li>
+                            <li><i class="fas fa-check-circle"></i> Tư duy phản biện với thông tin AI</li>
+                        </ul>
+                    </div>
+
+                    <!-- Điểm tâm đắc & Thách thức -->
+                    <div class="sum-card">
+                        <h3><i class="fas fa-star"></i> Tâm đắc & Thách thức</h3>
+                        <ul class="challenge-list">
+                            <li>
+                                <div class="ch-icon"><i class="fas fa-gem"></i></div>
+                                <div class="ch-text">
+                                    <strong>Bài 3 – CLEAR Model</strong>
+                                    Sự khác biệt giữa prompt mơ hồ và prompt được thiết kế kỹ lưỡng là rất rõ ràng.
+                                </div>
+                            </li>
+                            <li>
+                                <div class="ch-icon"><i class="fas fa-gem"></i></div>
+                                <div class="ch-text">
+                                    <strong>Bài 6 – 7 Nguyên tắc AI</strong>
+                                    Nhận thức rõ ranh giới giữa hỗ trợ học tập và gian lận học thuật.
+                                </div>
+                            </li>
+                            <li>
+                                <div class="ch-icon"><i class="fas fa-mountain"></i></div>
+                                <div class="ch-text">
+                                    <strong>Đánh giá độ tin cậy</strong>
+                                    Khó khăn trong phân biệt nguồn học thuật chất lượng cao.
+                                </div>
+                            </li>
+                            <li>
+                                <div class="ch-icon"><i class="fas fa-mountain"></i></div>
+                                <div class="ch-text">
+                                    <strong>Thiết kế Portfolio HTML</strong>
+                                    Lần đầu tự xây dựng trang web từ đầu, đòi hỏi nhiều thời gian tìm hiểu.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
-      </div>
+    </section>
+
+    <!-- ── Footer ──────────────────────────────────────── -->
+    <footer>
+        <span>© 2026 Nguyễn Minh Anh</span>
+        <span style="font-family:var(--mono);font-size:0.72rem;">Made with 🌸</span>
+    </footer>
+
+    <!-- ── PDF Modal ───────────────────────────────────── -->
+    <div class="modal-overlay" id="pdfModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="modalTitle"><i class="fas fa-file-pdf"></i> Bài tập</h3>
+                <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="pdf-toolbar">
+                    <span id="pdfFileName"><i class="fas fa-file-pdf" style="color:var(--rose);margin-right:.3rem;"></i> Đang tải...</span>
+                    <a id="pdfDownload" href="#" target="_blank" class="btn-sm"><i class="fas fa-external-link-alt"></i> Mở tab mới</a>
+                </div>
+                <div class="pdf-frame-wrap">
+                    <iframe id="pdfFrame" src="" title="PDF Viewer"></iframe>
+                </div>
+                <div class="pdf-note">
+                    <i class="fas fa-info-circle" style="color:var(--lilac);"></i>
+                    Nếu PDF không hiển thị, hãy nhấn <strong>Mở tab mới</strong> để xem trực tiếp.
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- PROJECTS -->
-  <div>
-    <div class="section-title"><i class="fas fa-folder-open"></i> Dự án tiêu biểu</div>
-    <p class="section-sub">Những công việc ngôn ngữ và nghiên cứu tôi đã thực hiện trong quá trình học tập.</p>
-  </div>
+    <script>
+        // ── Scroll fade ───────────────────────────────────
+        const obs = new IntersectionObserver(e => e.forEach(x => {
+            if (x.isIntersecting) {
+                x.target.classList.add('visible');
+                obs.unobserve(x.target);
+            }
+        }), { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-  <div class="projects-grid">
-    <div class="project-item">
-      <i class="fas fa-book-open"></i>
-      <h4>Dịch thơ Anh – Việt</h4>
-      <p>Tuyển tập 10 bài thơ hiện đại, chú trọng giữ nguyên vần điệu và sắc thái văn hóa.</p>
-      <span class="project-tag">Dịch thuật</span>
-    </div>
-    <div class="project-item">
-      <i class="fas fa-pen-fancy"></i>
-      <h4>Blog song ngữ</h4>
-      <p>Viết và biên tập nội dung về du lịch, ẩm thực & học ngôn ngữ cho trang cá nhân.</p>
-      <span class="project-tag">Content</span>
-    </div>
-    <div class="project-item">
-      <i class="fas fa-users"></i>
-      <h4>Phiên dịch sự kiện</h4>
-      <p>Hỗ trợ phiên dịch tiếng Anh – Việt tại triển lãm văn hóa quốc tế (2025).</p>
-      <span class="project-tag">Phiên dịch</span>
-    </div>
-    <div class="project-item">
-      <i class="fas fa-language"></i>
-      <h4>Ngữ liệu học</h4>
-      <p>Phân tích đối chiếu các cấu trúc câu trong tiếng Anh và tiếng Việt.</p>
-      <span class="project-tag">Nghiên cứu</span>
-    </div>
-  </div>
+        // ── Dark mode ────────────────────────────────────
+        const themeToggle = document.getElementById('themeToggle');
+        let darkMode = localStorage.getItem('theme') === 'dark';
 
-  <!-- CONTACT -->
-  <div class="contact-wrapper">
-    <div class="contact-info">
-      <h3><i class="fas fa-envelope-open-text" style="margin-right: 8px;"></i>Kết nối</h3>
-      <p>Tôi luôn sẵn sàng cho các cơ hội hợp tác và học hỏi.</p>
-      <div class="contact-item"><i class="fas fa-envelope"></i> minh.nguyen@email.com</div>
-      <div class="contact-item"><i class="fas fa-phone-alt"></i> +84 912 345 678</div>
-      <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Hà Nội, Việt Nam</div>
-    </div>
-    <div>
-      <span class="btn-secondary"><i class="fas fa-comment-dots"></i> Nhắn tin</span>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p><i class="fas fa-code"></i> với <i class="fas fa-heart" style="background: none; padding: 0; color: #FADADD;"></i> bởi Minh · Sinh viên Ngôn ngữ Anh</p>
-    <p style="font-size:0.85rem; margin-top: 0.3rem;">&copy; 2026 · Portfolio pastel</p>
-  </footer>
-
-</div>
-
-<script>
-  // === HIỆU ỨNG HẠT TRÊN NỀN ===
-  (function() {
-    const canvas = document.getElementById('particles-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height;
-    let particles = [];
-    const particleCount = 60;
-
-    function resize() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 5 + 2;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
-        this.opacity = Math.random() * 0.5 + 0.2;
-        // màu pastel ngẫu nhiên
-        const colors = [
-          'rgba(250, 218, 221, ',  // hồng phấn
-          'rgba(184, 232, 242, ',  // xanh baby
-          'rgba(216, 207, 240, ',  // tím lavender
-          'rgba(167, 199, 231, '   // xanh bạc
-        ];
-        this.color = colors[Math.floor(Math.random() * colors.length)];
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x < 0 || this.x > width) this.speedX *= -1;
-        if (this.y < 0 || this.y > height) this.speedY *= -1;
-      }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color + this.opacity + ')';
-        ctx.fill();
-
-        // hiệu ứng glow nhẹ
-        ctx.shadowColor = this.color + '0.3)';
-        ctx.shadowBlur = 12;
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      }
-    }
-
-    // tạo hạt
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-
-    // kết nối các hạt gần nhau
-    function drawLines() {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < 150) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            const opacity = (1 - distance / 150) * 0.25;
-            ctx.strokeStyle = 'rgba(216, 207, 240, ' + opacity + ')';
-            ctx.lineWidth = 0.8;
-            ctx.stroke();
-          }
+        function applyTheme(dark) {
+            document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+            themeToggle.textContent = dark ? '☀️' : '🌙';
+            localStorage.setItem('theme', dark ? 'dark' : 'light');
         }
-      }
-    }
 
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
+        applyTheme(darkMode);
 
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      drawLines();
+        themeToggle.addEventListener('click', () => {
+            darkMode = !darkMode;
+            applyTheme(darkMode);
+        });
 
-      requestAnimationFrame(animate);
-    }
+        // ── PDF Modal ──────────────────────────────────────
+        let pdfFrame = document.getElementById('pdfFrame');
+        let pdfModal = document.getElementById('pdfModal');
+        let modalTitle = document.getElementById('modalTitle');
+        let pdfFileName = document.getElementById('pdfFileName');
+        let pdfDownload = document.getElementById('pdfDownload');
 
-    animate();
-  })();
-</script>
+        function openPDF(filename, title) {
+            modalTitle.innerHTML = '<i class="fas fa-file-pdf"></i> ' + title;
+            pdfFileName.innerHTML = '<i class="fas fa-file-pdf" style="color:var(--rose);margin-right:.35rem;"></i>' + filename;
+            const src = filename;
+            pdfFrame.src = src;
+            pdfDownload.href = src;
+            pdfModal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
 
+        function closeModal() {
+            pdfModal.classList.remove('open');
+            pdfFrame.src = '';
+            document.body.style.overflow = '';
+        }
+
+        pdfModal.addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // ── Sparkles ──────────────────────────────────────
+        const canvas = document.getElementById('sparkle-canvas');
+        const ctx = canvas.getContext('2d');
+        let W, H, particles = [];
+        const COLORS = ['#FADADD', '#B8E8F2', '#D8CFF0', '#A7C7E7', '#f5c5d4'];
+        const SHAPES = ['✦', '✧', '·', '*', '•', '❋', '✿'];
+
+        function resize() {
+            W = canvas.width = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        function rand(a, b) {
+            return Math.random() * (b - a) + a;
+        }
+
+        function spawn() {
+            return {
+                x: rand(0, W),
+                y: rand(H + 10, H + 60),
+                size: rand(9, 17),
+                speed: rand(0.4, 1.0),
+                opacity: rand(0.3, 0.75),
+                color: COLORS[Math.floor(rand(0, COLORS.length))],
+                shape: SHAPES[Math.floor(rand(0, SHAPES.length))],
+                drift: rand(-0.3, 0.3),
+                wobble: rand(0, Math.PI * 2),
+                wobbleSpeed: rand(0.015, 0.04),
+                life: 1,
+                fadeRate: rand(0.003, 0.007)
+            };
+        }
+
+        for (let i = 0; i < 28; i++) {
+            const p = spawn();
+            p.y = rand(0, H);
+            particles.push(p);
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+            for (let p of particles) {
+                ctx.save();
+                ctx.globalAlpha = p.opacity * p.life;
+                ctx.fillStyle = p.color;
+                ctx.font = `${p.size}px serif`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(p.shape, p.x, p.y);
+                ctx.restore();
+                p.y -= p.speed;
+                p.x += p.drift + Math.sin(p.wobble) * 0.4;
+                p.wobble += p.wobbleSpeed;
+                p.life -= p.fadeRate;
+                if (p.life <= 0 || p.y < -20) Object.assign(p, spawn());
+            }
+            requestAnimationFrame(draw);
+        }
+        draw();
+
+        // ── Click sparkles ──────────────────────────────
+        const MAX_PARTICLES = 80;
+        window.addEventListener('click', e => {
+            for (let i = 0; i < 6; i++) {
+                const p = spawn();
+                p.x = e.clientX + rand(-24, 24);
+                p.y = e.clientY + rand(-24, 24);
+                p.size = rand(10, 22);
+                p.speed = rand(1.2, 2.8);
+                p.life = 1;
+                p.fadeRate = 0.028;
+                particles.push(p);
+            }
+            if (particles.length > MAX_PARTICLES) particles.splice(0, 6);
+        });
+    </script>
 </body>
 </html>
