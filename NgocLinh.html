@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio · Ngôn ngữ Anh · Pastel</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      color: #3c3c4a;
+      line-height: 1.6;
+      padding: 2rem 0;
+      overflow-x: hidden;
+    }
+
+    /* === NỀN ĐỘNG VỚI HIỆU ỨNG HẠT === */
+    #particles-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .background-gradient {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(135deg, #FDFCFB 0%, #FADADD 25%, #D8CFF0 50%, #B8E8F2 75%, #A7C7E7 100%);
+      background-size: 400% 400%;
+      animation: gradientMove 12s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* === LỚP PHỦ SƯƠNG MỜ === */
+    .overlay-blur {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 50%, rgba(184, 232, 242, 0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* --- NAV --- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      background: rgba(253, 252, 251, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 0.8rem 2rem;
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 32px rgba(184, 232, 242, 0.12);
+      transition: all 0.3s;
+    }
+
+    .navbar:hover {
+      background: rgba(253, 252, 251, 0.75);
+      box-shadow: 0 12px 40px rgba(184, 232, 242, 0.2);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #5a4b6b;
+    }
+
+    .logo span {
+      background: linear-gradient(135deg, #B8E8F2, #D8CFF0);
+      padding: 0.1rem 0.8rem;
+      border-radius: 40px;
+      font-weight: 700;
+      color: #4a3b5a;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-weight: 500;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #5a4b6b;
+      transition: all 0.3s;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.3rem 0;
+      border-bottom: 2px solid transparent;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #B8E8F2, #D8CFF0);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: #7a5a8a;
+    }
+
+    .btn-outline {
+      border: 2px solid rgba(216, 207, 240, 0.5);
+      background: rgba(255, 255, 255, 0.3);
+      padding: 0.4rem 1.4rem;
+      border-radius: 30px;
+      font-weight: 600;
+      color: #7a6a8a;
+      transition: all 0.3s;
+      cursor: default;
+      backdrop-filter: blur(4px);
+    }
+
+    .btn-outline i {
+      margin-right: 6px;
+      color: #B8E8F2;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.6);
+      border-color: #B8E8F2;
+    }
+
+    /* --- HERO --- */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+      background: rgba(253, 252, 251, 0.5);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 2.8rem 3rem;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 20px 60px rgba(184, 232, 242, 0.15);
+      transition: all 0.4s;
+      animation: floatIn 1s ease-out;
+    }
+
+    @keyframes floatIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .hero:hover {
+      background: rgba(253, 252, 251, 0.7);
+      box-shadow: 0 24px 70px rgba(184, 232, 242, 0.25);
+    }
+
+    .hero-content {
+      flex: 1 1 300px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(250, 218, 221, 0.7), rgba(255, 228, 230, 0.7));
+      backdrop-filter: blur(8px);
+      color: #7a4a5a;
+      font-weight: 600;
+      padding: 0.3rem 1.6rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      animation: pulseBadge 3s ease-in-out infinite;
+    }
+
+    @keyframes pulseBadge {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    .hero-content h1 {
+      font-size: 3.4rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 0.8rem;
+      color: #4a3b5a;
+    }
+
+    .hero-content h1 i {
+      background: linear-gradient(135deg, #FADADD, #D8CFF0);
+      padding: 0.2rem 0.4rem;
+      border-radius: 20px;
+      font-size: 2.8rem;
+      display: inline-block;
+      animation: sparkle 4s ease-in-out infinite;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.05) rotate(-3deg); }
+    }
+
+    .hero-content p {
+      font-size: 1.15rem;
+      color: #5f4f6f;
+      margin-bottom: 1.8rem;
+      max-width: 500px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #B8E8F2, #A7C7E7);
+      border: none;
+      padding: 0.8rem 2.4rem;
+      border-radius: 40px;
+      color: #3b3b4a;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s;
+      cursor: default;
+      box-shadow: 0 8px 24px rgba(184, 232, 242, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+      animation: shimmer 4s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    .btn-primary i {
+      margin-right: 8px;
+      color: #7a6a8a;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 32px rgba(184, 232, 242, 0.5);
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 0.8rem;
+      font-size: 1.2rem;
+    }
+
+    .social-icons a {
+      color: #A7C7E7;
+      transition: all 0.3s;
+      background: rgba(255, 255, 255, 0.3);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(4px);
+    }
+
+    .social-icons a:hover {
+      color: #5a4a6a;
+      background: rgba(216, 207, 240, 0.6);
+      transform: translateY(-4px) scale(1.1);
+      border-color: #D8CFF0;
+      box-shadow: 0 8px 24px rgba(216, 207, 240, 0.3);
+    }
+
+    .hero-image {
+      flex: 1 1 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .avatar-placeholder {
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(145deg, #FADADD, #D8CFF0, #B8E8F2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      font-weight: 300;
+      color: #7a5a7a;
+      box-shadow: 0 16px 40px rgba(184, 232, 242, 0.3);
+      border: 3px solid rgba(255, 255, 255, 0.6);
+      animation: floatAvatar 6s ease-in-out infinite;
+      transition: all 0.3s;
+    }
+
+    @keyframes floatAvatar {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .avatar-placeholder:hover {
+      transform: scale(1.05) rotate(-3deg);
+      box-shadow: 0 20px 50px rgba(184, 232, 242, 0.4);
+    }
+
+    /* --- SECTION TITLE --- */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #4a3b5a;
+    }
+
+    .section-title i {
+      background: linear-gradient(135deg, #B8E8F2, #D8CFF0);
+      padding: 0.4rem;
+      border-radius: 16px;
+      font-size: 1.8rem;
+      color: #4a3b5a;
+    }
+
+    .section-sub {
+      color: #7a6a8a;
+      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
+    }
+
+    /* --- ABOUT + SKILLS --- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr;
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .card {
+      background: rgba(253, 252, 251, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 2rem 2.2rem;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 32px rgba(184, 232, 242, 0.08);
+      transition: all 0.4s;
+      animation: cardFade 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+
+    @keyframes cardFade {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card:hover {
+      background: rgba(253, 252, 251, 0.8);
+      box-shadow: 0 12px 40px rgba(216, 207, 240, 0.2);
+      transform: translateY(-4px);
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      color: #4a3b5a;
+    }
+
+    .card h3 i {
+      margin-right: 10px;
+      color: #B8E8F2;
+    }
+
+    .about-text p {
+      margin-bottom: 1rem;
+      color: #5a4a6a;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .skill-tag {
+      background: linear-gradient(135deg, rgba(250, 218, 221, 0.6), rgba(255, 228, 230, 0.6));
+      backdrop-filter: blur(4px);
+      padding: 0.4rem 1.4rem;
+      border-radius: 30px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: #4a3a4a;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s;
+    }
+
+    .skill-tag:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, rgba(250, 218, 221, 0.8), rgba(255, 228, 230, 0.8));
+    }
+
+    .lang-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(216, 207, 240, 0.2);
+    }
+
+    .lang-item:last-child {
+      border-bottom: none;
+    }
+
+    .lang-name {
+      font-weight: 500;
+      color: #4a3b5a;
+    }
+
+    .lang-level {
+      color: #5a4a6a;
+      background: linear-gradient(135deg, rgba(216, 207, 240, 0.5), rgba(200, 191, 224, 0.5));
+      backdrop-filter: blur(4px);
+      padding: 0.1rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* --- PROJECTS --- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 2.5rem 0 3.5rem;
+    }
+
+    .project-item {
+      background: rgba(253, 252, 251, 0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 1.8rem 1.8rem 2rem;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 20px rgba(184, 232, 242, 0.06);
+      transition: all 0.4s ease;
+      animation: cardFade 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    .project-item:nth-child(1) { animation-delay: 0.3s; }
+    .project-item:nth-child(2) { animation-delay: 0.4s; }
+    .project-item:nth-child(3) { animation-delay: 0.5s; }
+    .project-item:nth-child(4) { animation-delay: 0.6s; }
+
+    .project-item:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 16px 48px rgba(216, 207, 240, 0.2);
+      border-color: #B8E8F2;
+      background: rgba(253, 252, 251, 0.8);
+    }
+
+    .project-item i {
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, #B8E8F2, #D8CFF0);
+      padding: 0.6rem;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      color: #4a3b5a;
+      display: inline-block;
+      transition: all 0.3s;
+    }
+
+    .project-item:hover i {
+      transform: rotate(-8deg) scale(1.1);
+    }
+
+    .project-item h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #4a3b5a;
+    }
+
+    .project-item p {
+      color: #6a5a7a;
+      margin-bottom: 1.2rem;
+      font-size: 0.98rem;
+    }
+
+    .project-tag {
+      background: linear-gradient(135deg, rgba(250, 218, 221, 0.6), rgba(255, 228, 230, 0.6));
+      backdrop-filter: blur(4px);
+      padding: 0.2rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #5a4a5a;
+      display: inline-block;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* --- CONTACT --- */
+    .contact-wrapper {
+      background: rgba(253, 252, 251, 0.5);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 40px;
+      padding: 2.5rem 2.8rem;
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 32px rgba(184, 232, 242, 0.08);
+      transition: all 0.4s;
+    }
+
+    .contact-wrapper:hover {
+      background: rgba(253, 252, 251, 0.7);
+      box-shadow: 0 12px 48px rgba(184, 232, 242, 0.15);
+    }
+
+    .contact-info h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #4a3b5a;
+    }
+
+    .contact-info p {
+      color: #6a5a7a;
+      margin: 0.3rem 0 0.8rem;
+    }
+
+    .contact-info i {
+      background: linear-gradient(135deg, #B8E8F2, #D8CFF0);
+      padding: 0.4rem;
+      border-radius: 12px;
+      width: 36px;
+      text-align: center;
+      color: #4a3b5a;
+      margin-right: 8px;
+    }
+
+    .contact-item {
+      margin: 0.5rem 0;
+      color: #5a4a6a;
+      display: flex;
+      align-items: center;
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #D8CFF0, #C8BFE0);
+      border: none;
+      padding: 0.8rem 2.8rem;
+      border-radius: 40px;
+      color: #4a3b5a;
+      font-weight: 600;
+      transition: all 0.3s;
+      cursor: default;
+      box-shadow: 0 8px 24px rgba(216, 207, 240, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-secondary::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+      animation: shimmer 5s ease-in-out infinite;
+    }
+
+    .btn-secondary i {
+      margin-right: 8px;
+      color: #7a6a8a;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 36px rgba(216, 207, 240, 0.4);
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+      text-align: center;
+      margin-top: 4.5rem;
+      color: #7a6a8a;
+      border-top: 1px solid rgba(216, 207, 240, 0.2);
+      padding-top: 2.5rem;
+      font-size: 0.95rem;
+    }
+
+    .footer i {
+      background: linear-gradient(135deg, #B8E8F2, #D8CFF0);
+      padding: 0.2rem 0.4rem;
+      border-radius: 8px;
+      color: #4a3b5a;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 760px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 2rem 1.5rem;
+      }
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        padding: 1rem 1.5rem;
+        border-radius: 30px;
+      }
+      .nav-links {
+        justify-content: center;
+        gap: 1rem;
+      }
+      .contact-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .section-title {
+        font-size: 1.7rem;
+      }
+      .hero-content h1 {
+        font-size: 2.6rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      .avatar-placeholder {
+        width: 150px;
+        height: 150px;
+        font-size: 3.8rem;
+      }
+      .hero {
+        padding: 1.5rem 1rem;
+      }
+      .card {
+        padding: 1.5rem;
+      }
+      .contact-wrapper {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NỀN ĐỘNG -->
+  <div class="background-gradient"></div>
+  <div class="overlay-blur"></div>
+  <canvas id="particles-canvas"></canvas>
+
+<div class="container">
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="logo">Lingua<span>Port</span></div>
+    <div class="nav-links">
+      <a href="#">Giới thiệu</a>
+      <a href="#">Kỹ năng</a>
+      <a href="#">Dự án</a>
+      <a href="#">Liên hệ</a>
+      <span class="btn-outline"><i class="fas fa-file-alt"></i> CV</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-graduation-cap"></i> Sinh viên Ngôn ngữ Anh</div>
+      <h1>Xin chào, tôi là <br />Minh <i class="fas fa-feather-alt"></i></h1>
+      <p>Đam mê ngôn ngữ, dịch thuật và giao tiếp đa văn hóa. Tôi xây dựng cầu nối giữa các nền văn hóa qua từng câu chữ.</p>
+      <div class="hero-actions">
+        <span class="btn-primary"><i class="fas fa-paper-plane"></i> Dự án của tôi</span>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="avatar-placeholder"><i class="fas fa-user-graduate"></i></div>
+    </div>
+  </header>
+
+  <!-- ABOUT + SKILLS -->
+  <div class="about-grid">
+    <div class="card about-text">
+      <h3><i class="fas fa-user-edit"></i> Về tôi</h3>
+      <p>Tôi là sinh viên năm 3 chuyên ngành Ngôn ngữ Anh tại Đại học Ngoại ngữ. Yêu thích văn học, biên dịch và ngôn ngữ học ứng dụng.</p>
+      <p>Đã tham gia các câu lạc bộ tiếng Anh, phiên dịch tình nguyện tại sự kiện văn hóa và có kinh nghiệm viết nội dung song ngữ.</p>
+      <p><i class="fas fa-quote-left" style="color:#D8CFF0; opacity:0.7; background: none; padding: 0; width: auto;"></i> Ngôn ngữ là tấm vé để hiểu thế giới.</p>
+    </div>
+
+    <div class="card">
+      <h3><i class="fas fa-cogs"></i> Năng lực</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Tiếng Anh (C1)</span>
+        <span class="skill-tag">Tiếng Pháp (B1)</span>
+        <span class="skill-tag">Dịch thuật</span>
+        <span class="skill-tag">Biên tập</span>
+        <span class="skill-tag">Viết sáng tạo</span>
+        <span class="skill-tag">Giao tiếp</span>
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">MS Office</span>
+      </div>
+      <div style="margin-top: 1.8rem;">
+        <div class="lang-item">
+          <span class="lang-name">Tiếng Anh · Nghe / Nói</span>
+          <span class="lang-level">Thông thạo</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">Tiếng Anh · Viết / Đọc</span>
+          <span class="lang-level">C1</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">Tiếng Pháp</span>
+          <span class="lang-level">B1</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">Tiếng Việt</span>
+          <span class="lang-level">Bản ngữ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div>
+    <div class="section-title"><i class="fas fa-folder-open"></i> Dự án tiêu biểu</div>
+    <p class="section-sub">Những công việc ngôn ngữ và nghiên cứu tôi đã thực hiện trong quá trình học tập.</p>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-item">
+      <i class="fas fa-book-open"></i>
+      <h4>Dịch thơ Anh – Việt</h4>
+      <p>Tuyển tập 10 bài thơ hiện đại, chú trọng giữ nguyên vần điệu và sắc thái văn hóa.</p>
+      <span class="project-tag">Dịch thuật</span>
+    </div>
+    <div class="project-item">
+      <i class="fas fa-pen-fancy"></i>
+      <h4>Blog song ngữ</h4>
+      <p>Viết và biên tập nội dung về du lịch, ẩm thực & học ngôn ngữ cho trang cá nhân.</p>
+      <span class="project-tag">Content</span>
+    </div>
+    <div class="project-item">
+      <i class="fas fa-users"></i>
+      <h4>Phiên dịch sự kiện</h4>
+      <p>Hỗ trợ phiên dịch tiếng Anh – Việt tại triển lãm văn hóa quốc tế (2025).</p>
+      <span class="project-tag">Phiên dịch</span>
+    </div>
+    <div class="project-item">
+      <i class="fas fa-language"></i>
+      <h4>Ngữ liệu học</h4>
+      <p>Phân tích đối chiếu các cấu trúc câu trong tiếng Anh và tiếng Việt.</p>
+      <span class="project-tag">Nghiên cứu</span>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <h3><i class="fas fa-envelope-open-text" style="margin-right: 8px;"></i>Kết nối</h3>
+      <p>Tôi luôn sẵn sàng cho các cơ hội hợp tác và học hỏi.</p>
+      <div class="contact-item"><i class="fas fa-envelope"></i> minh.nguyen@email.com</div>
+      <div class="contact-item"><i class="fas fa-phone-alt"></i> +84 912 345 678</div>
+      <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Hà Nội, Việt Nam</div>
+    </div>
+    <div>
+      <span class="btn-secondary"><i class="fas fa-comment-dots"></i> Nhắn tin</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p><i class="fas fa-code"></i> với <i class="fas fa-heart" style="background: none; padding: 0; color: #FADADD;"></i> bởi Minh · Sinh viên Ngôn ngữ Anh</p>
+    <p style="font-size:0.85rem; margin-top: 0.3rem;">&copy; 2026 · Portfolio pastel</p>
+  </footer>
+
+</div>
+
+<script>
+  // === HIỆU ỨNG HẠT TRÊN NỀN ===
+  (function() {
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+    const particleCount = 60;
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 5 + 2;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.opacity = Math.random() * 0.5 + 0.2;
+        // màu pastel ngẫu nhiên
+        const colors = [
+          'rgba(250, 218, 221, ',  // hồng phấn
+          'rgba(184, 232, 242, ',  // xanh baby
+          'rgba(216, 207, 240, ',  // tím lavender
+          'rgba(167, 199, 231, '   // xanh bạc
+        ];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > width) this.speedX *= -1;
+        if (this.y < 0 || this.y > height) this.speedY *= -1;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color + this.opacity + ')';
+        ctx.fill();
+
+        // hiệu ứng glow nhẹ
+        ctx.shadowColor = this.color + '0.3)';
+        ctx.shadowBlur = 12;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    // tạo hạt
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    // kết nối các hạt gần nhau
+    function drawLines() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 150) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            const opacity = (1 - distance / 150) * 0.25;
+            ctx.strokeStyle = 'rgba(216, 207, 240, ' + opacity + ')';
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      drawLines();
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  })();
+</script>
+
+</body>
+</html>
