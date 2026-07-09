@@ -1,316 +1,858 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio – Pastel Dream</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --pink-bg:#FFF0F5;--pink-light:#FFD6E4;--pink-mid:#FFB7CC;--pink-accent:#E8829F;--pink-deep:#C45874;
-  --pink-card:#FFF7FA;--pink-border:#F5C6D8;--text-dark:#3A2030;--text-mid:#7A4A5E;--text-soft:#B07088;
-}
-html{scroll-behavior:smooth}
-body{background:var(--pink-bg);font-family:'DM Sans',sans-serif;color:var(--text-dark);overflow-x:hidden;cursor:none}
+  /* ── Reset & Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
 
-/* Custom cursor */
-.cursor{position:fixed;pointer-events:none;z-index:9999;mix-blend-mode:multiply;transition:transform .15s ease}
-.cursor-dot{width:10px;height:10px;background:var(--pink-accent);border-radius:50%;position:fixed;pointer-events:none;z-index:10000;transition:transform .1s ease}
-.cursor-ring{width:36px;height:36px;border:1.5px solid var(--pink-accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:all .25s ease;transform:translate(-50%,-50%)}
+  :root {
+    --pink:    #FADADD;
+    --blue:    #B8E8F2;
+    --cream:   #FDFCFB;
+    --lavender:#D8CFF0;
+    --silver:  #A7C7E7;
+    --text:    #5a4a6a;
+    --sub:     #8a7a9a;
+  }
 
-/* Blobs */
-.blobs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.35;animation:float linear infinite}
-.blob1{width:400px;height:400px;background:radial-gradient(circle,#FFB7CC,#FFD6E4);top:-100px;left:-100px;animation-duration:20s}
-.blob2{width:300px;height:300px;background:radial-gradient(circle,#F9D0E0,#FFE8F0);top:40%;right:-80px;animation-duration:25s;animation-delay:-8s}
-.blob3{width:250px;height:250px;background:radial-gradient(circle,#FFD6E4,#FFF0F5);bottom:10%;left:20%;animation-duration:18s;animation-delay:-4s}
-@keyframes float{0%{transform:translate(0,0) rotate(0deg)}33%{transform:translate(30px,-40px) rotate(120deg)}66%{transform:translate(-20px,20px) rotate(240deg)}100%{transform:translate(0,0) rotate(360deg)}}
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
 
-/* Nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(12px);background:rgba(255,240,245,.7);border-bottom:1px solid rgba(245,198,216,.4)}
-.logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--pink-deep);letter-spacing:.08em}
-.nav-links{display:flex;gap:2rem}
-.nav-links a{text-decoration:none;font-size:.85rem;font-weight:400;color:var(--text-mid);letter-spacing:.06em;transition:color .3s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--pink-accent);transition:width .3s}
-.nav-links a:hover{color:var(--pink-deep)}
-.nav-links a:hover::after{width:100%}
+  /* ── Animated Background Canvas ── */
+  #bg-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
 
-/* Hero */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;padding:6rem 3rem 4rem}
-.hero-inner{text-align:center;max-width:760px}
+  /* ── Floating Blobs (CSS) ── */
+  .blobs {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.55;
+    animation: floatBlob linear infinite;
+  }
+  .blob:nth-child(1){ width:420px;height:420px;background:var(--pink);   top:-100px;left:-80px; animation-duration:18s;animation-delay:0s; }
+  .blob:nth-child(2){ width:350px;height:350px;background:var(--blue);   top:30%;right:-60px;  animation-duration:22s;animation-delay:-5s; }
+  .blob:nth-child(3){ width:300px;height:300px;background:var(--lavender);bottom:5%;left:20%;  animation-duration:26s;animation-delay:-10s; }
+  .blob:nth-child(4){ width:260px;height:260px;background:var(--silver); top:60%;left:55%;    animation-duration:20s;animation-delay:-8s; }
+  .blob:nth-child(5){ width:200px;height:200px;background:var(--pink);   bottom:-60px;right:15%;animation-duration:15s;animation-delay:-3s; }
+  .blob:nth-child(6){ width:180px;height:180px;background:var(--blue);   top:18%;left:38%;    animation-duration:30s;animation-delay:-15s; }
 
-/* Rotating ring */
-.ring-wrap{position:absolute;width:480px;height:480px;left:50%;top:50%;transform:translate(-50%,-50%)}
-.ring{width:100%;height:100%;border-radius:50%;border:1px solid rgba(232,130,159,.25);position:absolute;animation:spin 30s linear infinite}
-.ring2{border:1px dashed rgba(232,130,159,.15);animation:spin 20s linear infinite reverse;width:85%;height:85%;left:7.5%;top:7.5%}
-@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  @keyframes floatBlob {
+    0%   { transform: translate(0,0) scale(1); }
+    25%  { transform: translate(30px,-40px) scale(1.05); }
+    50%  { transform: translate(-20px,30px) scale(0.95); }
+    75%  { transform: translate(40px,20px) scale(1.03); }
+    100% { transform: translate(0,0) scale(1); }
+  }
 
-.hero-tag{font-size:.75rem;letter-spacing:.18em;color:var(--pink-accent);font-weight:500;text-transform:uppercase;margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s .3s forwards}
-.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,8vw,6rem);font-weight:300;line-height:1.05;color:var(--text-dark);margin-bottom:1rem;opacity:0;animation:fadeUp .9s .5s forwards}
-.hero-name em{font-style:italic;color:var(--pink-deep)}
-.hero-sub{font-size:1rem;color:var(--text-mid);font-weight:300;line-height:1.7;max-width:500px;margin:0 auto 2.5rem;opacity:0;animation:fadeUp .9s .7s forwards}
-.hero-cta{display:inline-flex;align-items:center;gap:.6rem;background:var(--pink-deep);color:#fff;padding:.85rem 2rem;border-radius:100px;font-size:.85rem;font-weight:500;text-decoration:none;letter-spacing:.04em;transition:all .3s;opacity:0;animation:fadeUp .9s .9s forwards;border:none;cursor:none}
-.hero-cta:hover{background:var(--pink-accent);transform:translateY(-2px);box-shadow:0 12px 32px rgba(196,88,116,.25)}
-.hero-cta .arrow{transition:transform .3s}
-.hero-cta:hover .arrow{transform:translateX(4px)}
+  /* ── Sparkling Particles ── */
+  .particle-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .spark {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    animation: sparkle ease-in-out infinite;
+  }
+  @keyframes sparkle {
+    0%,100% { opacity:0; transform: scale(0.3) translateY(0); }
+    50%      { opacity:0.9; transform: scale(1) translateY(-18px); }
+  }
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  /* ── Navbar ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 64px;
+    background: rgba(253,252,251,0.62);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(216,207,240,0.3);
+    box-shadow: 0 2px 24px rgba(168,155,200,0.08);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    background: linear-gradient(135deg, #c9a0c9, var(--silver));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.04em;
+  }
+  .nav-links { display: flex; gap: 0.25rem; }
+  .nav-links a {
+    position: relative;
+    padding: 0.45rem 1.1rem;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--sub);
+    text-decoration: none;
+    border-radius: 50px;
+    transition: color 0.3s, background 0.3s;
+    letter-spacing: 0.02em;
+  }
+  .nav-links a::after {
+    content:'';
+    position:absolute;
+    bottom:6px; left:50%;
+    transform:translateX(-50%) scaleX(0);
+    width:60%; height:2px;
+    border-radius:2px;
+    background: linear-gradient(90deg, var(--pink), var(--lavender));
+    transition: transform 0.3s;
+  }
+  .nav-links a:hover { color: var(--text); background: rgba(216,207,240,0.2); }
+  .nav-links a:hover::after { transform: translateX(-50%) scaleX(1); }
+  .nav-links a.active { color: #8b6faa; background: rgba(216,207,240,0.25); }
 
-/* Scroll hint */
-.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:fadeUp .9s 1.2s forwards}
-.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--pink-accent),transparent);animation:scrollPulse 2s ease-in-out infinite}
-@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
-.scroll-hint span{font-size:.65rem;letter-spacing:.15em;color:var(--text-soft);text-transform:uppercase}
+  /* ── Sections ── */
+  section {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 2rem 4rem;
+  }
 
-/* Sections */
-section{position:relative;z-index:1;padding:6rem 3rem}
-.section-tag{font-size:.72rem;letter-spacing:.18em;color:var(--pink-accent);text-transform:uppercase;font-weight:500;margin-bottom:.8rem}
-.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:300;color:var(--text-dark);line-height:1.2;margin-bottom:1.5rem}
-.section-title em{font-style:italic;color:var(--pink-deep)}
+  /* ── Section Label ── */
+  .section-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #b09ac8;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s forwards;
+  }
 
-/* About */
-.about{max-width:1000px;margin:0 auto}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.about-img-wrap{position:relative}
-.about-img{width:100%;aspect-ratio:3/4;border-radius:24px;background:linear-gradient(135deg,var(--pink-light),var(--pink-mid));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;color:var(--pink-deep);overflow:hidden}
-.about-img-deco{position:absolute;width:80%;height:80%;border:1px solid var(--pink-border);border-radius:24px;top:16px;left:16px;z-index:-1}
-.about-text p{color:var(--text-mid);line-height:1.8;font-weight:300;margin-bottom:1rem;font-size:.95rem}
-.skills-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
-.skill-tag{padding:.35rem .9rem;border-radius:100px;font-size:.75rem;font-weight:500;background:var(--pink-card);border:1px solid var(--pink-border);color:var(--text-mid);transition:all .25s;letter-spacing:.02em}
-.skill-tag:hover{background:var(--pink-mid);color:var(--pink-deep);border-color:var(--pink-mid)}
+  /* ── Hero / Giới thiệu ── */
+  #gioithieu { gap: 0; }
 
-/* Work */
-.work{background:rgba(255,214,228,.08)}
-.work-inner{max-width:1000px;margin:0 auto}
-.work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2.5rem}
-.project-card{background:var(--pink-card);border:1px solid var(--pink-border);border-radius:20px;overflow:hidden;transition:all .35s;position:relative}
-.project-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(196,88,116,.12);border-color:var(--pink-mid)}
-.card-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;position:relative;overflow:hidden}
-.card-img::after{content:'';position:absolute;inset:0;opacity:0;background:rgba(255,255,255,.15);transition:opacity .3s}
-.project-card:hover .card-img::after{opacity:1}
-.c1{background:linear-gradient(135deg,#FFD6E4,#FFB7CC)}
-.c2{background:linear-gradient(135deg,#FFE4EE,#F9C0D4)}
-.c3{background:linear-gradient(135deg,#FFC8DA,#E8829F)}
-.card-body{padding:1.4rem}
-.card-label{font-size:.7rem;letter-spacing:.12em;color:var(--pink-accent);text-transform:uppercase;font-weight:500;margin-bottom:.5rem}
-.card-title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;color:var(--text-dark);margin-bottom:.5rem}
-.card-desc{font-size:.83rem;color:var(--text-soft);line-height:1.6;font-weight:300}
-.card-link{display:inline-flex;align-items:center;gap:.3rem;margin-top:1rem;font-size:.78rem;color:var(--pink-accent);text-decoration:none;font-weight:500;transition:gap .25s}
-.card-link:hover{gap:.6rem;color:var(--pink-deep)}
+  .hero-wrapper {
+    max-width: 780px;
+    text-align: center;
+  }
 
-/* Divider */
-.divider{max-width:1000px;margin:0 auto;height:1px;background:linear-gradient(to right,transparent,var(--pink-border),transparent)}
+  .avatar-ring {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    margin: 0 auto 2rem;
+    background: linear-gradient(135deg, var(--pink), var(--lavender), var(--blue));
+    padding: 4px;
+    animation: spinRing 8s linear infinite;
+    box-shadow: 0 0 32px rgba(216,207,240,0.6), 0 0 60px rgba(184,232,242,0.3);
+  }
+  @keyframes spinRing {
+    to { filter: hue-rotate(360deg); }
+  }
+  .avatar-inner {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem;
+    overflow: hidden;
+  }
 
-/* Contact */
-.contact{max-width:700px;margin:0 auto;text-align:center}
-.contact-sub{color:var(--text-mid);font-size:.95rem;line-height:1.7;font-weight:300;margin-bottom:2.5rem}
-.contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
-.contact-link{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.8rem;border-radius:100px;font-size:.85rem;font-weight:500;text-decoration:none;letter-spacing:.03em;transition:all .3s;cursor:none}
-.contact-link.primary{background:var(--pink-deep);color:#fff}
-.contact-link.primary:hover{background:var(--pink-accent);transform:translateY(-2px);box-shadow:0 12px 28px rgba(196,88,116,.25)}
-.contact-link.ghost{border:1px solid var(--pink-border);color:var(--text-mid);background:transparent}
-.contact-link.ghost:hover{border-color:var(--pink-accent);color:var(--pink-deep);background:var(--pink-card)}
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, #c9a0c9 0%, #8fbfe0 50%, #b8d4a8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.9s 0.1s forwards;
+    opacity: 0;
+  }
 
-/* Footer */
-footer{text-align:center;padding:2rem;font-size:.78rem;color:var(--text-soft);position:relative;z-index:1;border-top:1px solid var(--pink-border)}
+  .hero-role {
+    font-size: 1.05rem;
+    color: var(--sub);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.9s 0.2s forwards;
+    opacity: 0;
+  }
 
-/* Reveal animation */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-.reveal.show{opacity:1;transform:translateY(0)}
-.reveal-delay-1{transition-delay:.1s}
-.reveal-delay-2{transition-delay:.2s}
-.reveal-delay-3{transition-delay:.3s}
+  .hero-desc {
+    font-size: 1rem;
+    color: #7a6a8a;
+    line-height: 1.85;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    animation: fadeUp 0.9s 0.3s forwards;
+    opacity: 0;
+  }
 
-/* Hover ripple */
-@keyframes ripple{from{transform:scale(0);opacity:.4}to{transform:scale(2.5);opacity:0}}
-.ripple-effect{position:absolute;border-radius:50%;background:rgba(232,130,159,.2);animation:ripple .6s ease-out forwards;pointer-events:none;width:60px;height:60px;margin-left:-30px;margin-top:-30px}
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.9s 0.4s forwards;
+    opacity: 0;
+  }
+  .tag {
+    padding: 0.35rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1.5px solid transparent;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+  }
+  .tag:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .tag-pink    { background: rgba(250,218,221,0.5); border-color: #f0c0c4; color: #a0606a; }
+  .tag-blue    { background: rgba(184,232,242,0.5); border-color: #90ccde; color: #3a8aa0; }
+  .tag-lavender{ background: rgba(216,207,240,0.5); border-color: #b8a8d8; color: #6a5a90; }
+  .tag-silver  { background: rgba(167,199,231,0.5); border-color: #88aed4; color: #3a6090; }
+
+  .btn-group {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 0.9s 0.5s forwards;
+    opacity: 0;
+  }
+  .btn {
+    padding: 0.7rem 2rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.03em;
+    display: inline-block;
+  }
+  .btn:hover { transform: translateY(-3px); }
+  .btn-primary {
+    background: linear-gradient(135deg, #d8aad8, #a7c7e7);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 20px rgba(168,155,210,0.4);
+  }
+  .btn-primary:hover { box-shadow: 0 8px 28px rgba(168,155,210,0.55); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--sub);
+    border: 1.5px solid rgba(216,207,240,0.8);
+  }
+  .btn-ghost:hover { background: rgba(216,207,240,0.2); }
+
+  /* ── Stats Row ── */
+  .stats-row {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    animation: fadeUp 0.9s 0.6s forwards;
+    opacity: 0;
+  }
+  .stat-card {
+    background: rgba(253,252,251,0.7);
+    backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(216,207,240,0.4);
+    border-radius: 20px;
+    padding: 1.2rem 1.8rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    min-width: 110px;
+    transition: transform 0.25s;
+  }
+  .stat-card:hover { transform: translateY(-4px); }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #c9a0c9, var(--silver));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+  }
+  .stat-label { font-size: 0.75rem; color: var(--sub); margin-top: 0.2rem; }
+
+  /* ── Section Title ── */
+  .sec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    text-align: center;
+    background: linear-gradient(135deg, #c9a0c9, var(--silver));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.6rem;
+  }
+  .sec-sub {
+    text-align: center;
+    color: var(--sub);
+    font-size: 0.95rem;
+    margin-bottom: 3.5rem;
+    font-weight: 300;
+  }
+
+  /* ── Project Cards ── */
+  #duanSection { background: transparent; }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    width: 100%;
+  }
+  .card {
+    background: rgba(253,252,251,0.72);
+    backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(216,207,240,0.4);
+    border-radius: 24px;
+    padding: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+  .card::before {
+    content:'';
+    position:absolute;
+    top:0; left:0; right:0;
+    height:4px;
+    border-radius:24px 24px 0 0;
+    transition: opacity 0.3s;
+  }
+  .card-pink::before    { background: linear-gradient(90deg, var(--pink), var(--lavender)); }
+  .card-blue::before    { background: linear-gradient(90deg, var(--blue), var(--silver)); }
+  .card-lavender::before{ background: linear-gradient(90deg, var(--lavender), var(--pink)); }
+  .card-silver::before  { background: linear-gradient(90deg, var(--silver), var(--blue)); }
+  .card-green::before   { background: linear-gradient(90deg, #b8d4a8, var(--blue)); }
+  .card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(0,0,0,0.10); }
+
+  .card-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .card-desc {
+    font-size: 0.88rem;
+    color: var(--sub);
+    line-height: 1.75;
+    margin-bottom: 1.2rem;
+  }
+  .card-chips {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+  .chip {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 50px;
+    background: rgba(216,207,240,0.35);
+    color: #7a6a8a;
+    border: 1px solid rgba(216,207,240,0.5);
+    font-weight: 500;
+  }
+
+  /* ── Timeline (Tổng kết) ── */
+  #tongket { background: transparent; }
+  .timeline-wrap {
+    max-width: 720px;
+    width: 100%;
+  }
+  .timeline-item {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    transform: translateX(-24px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .timeline-item.visible {
+    opacity: 1; transform: translateX(0);
+  }
+  .tl-dot-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    padding-top: 4px;
+  }
+  .tl-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    box-shadow: 0 0 10px rgba(216,207,240,0.7);
+    flex-shrink: 0;
+  }
+  .tl-line {
+    flex: 1;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(216,207,240,0.8), rgba(184,232,242,0.2));
+    margin-top: 6px;
+  }
+  .tl-body {
+    background: rgba(253,252,251,0.72);
+    backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(216,207,240,0.35);
+    border-radius: 20px;
+    padding: 1.4rem 1.6rem;
+    flex: 1;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    transition: transform 0.25s;
+  }
+  .tl-body:hover { transform: translateX(6px); }
+  .tl-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #b09ac8;
+    margin-bottom: 0.4rem;
+  }
+  .tl-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+  .tl-desc {
+    font-size: 0.86rem;
+    color: var(--sub);
+    line-height: 1.7;
+  }
+
+  /* ── Skills bubbles ── */
+  .skills-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    max-width: 640px;
+    margin: 2.5rem auto 0;
+  }
+  .skill-bubble {
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1.5px solid transparent;
+    cursor: default;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: floatBubble ease-in-out infinite;
+  }
+  .skill-bubble:hover { transform: translateY(-4px) scale(1.05); }
+  .sb1 { background: rgba(250,218,221,0.5); border-color: #f0c0c4; color: #a0606a; animation-duration: 4s; }
+  .sb2 { background: rgba(184,232,242,0.5); border-color: #90ccde; color: #3a8aa0; animation-duration: 5s; animation-delay: 0.5s; }
+  .sb3 { background: rgba(216,207,240,0.5); border-color: #b8a8d8; color: #6a5a90; animation-duration: 3.5s; animation-delay: 1s; }
+  .sb4 { background: rgba(167,199,231,0.5); border-color: #88aed4; color: #3a6090; animation-duration: 4.5s; animation-delay: 0.25s; }
+  @keyframes floatBubble {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-5px); }
+  }
+
+  /* ── Quote box ── */
+  .quote-box {
+    margin: 3.5rem auto 0;
+    max-width: 520px;
+    background: linear-gradient(135deg, rgba(250,218,221,0.4), rgba(216,207,240,0.4));
+    border: 1.5px solid rgba(216,207,240,0.5);
+    border-radius: 24px;
+    padding: 2rem 2.4rem;
+    text-align: center;
+    backdrop-filter: blur(12px);
+  }
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+  .quote-author { font-size: 0.8rem; color: var(--sub); }
+
+  /* ── Footer ── */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    color: var(--sub);
+    border-top: 1px solid rgba(216,207,240,0.25);
+  }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s, transform 0.8s;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Cursor trail ── */
+  .cursor-dot {
+    position: fixed;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: multiply;
+    transition: transform 0.1s;
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(216,207,240,0.6); border-radius: 3px; }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-logo { font-size: 1rem; }
+    .nav-links a { padding: 0.35rem 0.65rem; font-size: 0.8rem; }
+    section { padding: 90px 1rem 3rem; }
+  }
 </style>
 </head>
 <body>
 
-<div class="cursor-ring" id="ring"></div>
-<div class="cursor-dot" id="dot"></div>
-
+<!-- Animated Blobs -->
 <div class="blobs">
-  <div class="blob blob1"></div>
-  <div class="blob blob2"></div>
-  <div class="blob blob3"></div>
+  <div class="blob"></div>
+  <div class="blob"></div>
+  <div class="blob"></div>
+  <div class="blob"></div>
+  <div class="blob"></div>
+  <div class="blob"></div>
 </div>
 
+<!-- Sparkling Particles -->
+<div class="particle-layer" id="particles"></div>
+
+<!-- Cursor trail dots -->
+<div id="trail-container"></div>
+
+<!-- ── Navigation ── -->
 <nav>
-  <div class="logo">& Linh</div>
+  <span class="nav-logo">✦ Portfolio</span>
   <div class="nav-links">
-    <a href="#about">Giới thiệu</a>
-    <a href="#work">Dự án</a>
-    <a href="#contact">Liên hệ</a>
+    <a href="#gioithieu" class="active">Giới thiệu</a>
+    <a href="#duan">Dự án</a>
+    <a href="#tongket">Tổng kết</a>
   </div>
 </nav>
 
-<!-- Hero -->
-<section class="hero" id="home">
-  <div class="ring-wrap">
-    <div class="ring"></div>
-    <div class="ring ring2"></div>
-  </div>
-  <div class="hero-inner">
-    <p class="hero-tag">✦ Designer & Developer</p>
-    <h1 class="hero-name">Tạo ra những điều<br><em>đẹp & có ý nghĩa</em></h1>
-    <p class="hero-sub">Tôi là Nguyễn Thị Linh — thiết kế giao diện và xây dựng trải nghiệm số nhẹ nhàng, tinh tế, đầy cảm xúc.</p>
-    <a href="#work" class="hero-cta">Xem dự án <span class="arrow">→</span></a>
-  </div>
-  <div class="scroll-hint">
-    <span>Cuộn xuống</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
+<!-- ══ SECTION 1: Giới thiệu ══ -->
+<section id="gioithieu">
+  <div class="hero-wrapper">
+    <div class="avatar-ring">
+      <div class="avatar-inner">🌸</div>
+    </div>
 
-<!-- About -->
-<section id="about">
-  <div class="about">
-    <div class="about-grid">
-      <div class="about-img-wrap reveal">
-        <div class="about-img">✿</div>
-        <div class="about-img-deco"></div>
+    <p class="section-eyebrow">Chào mừng đến với thế giới của tôi</p>
+    <h1 class="hero-name"></h1>
+    <p class="hero-role">Sinh viên Kỹ thuật — Yêu thiết kế & Công nghệ ✨</p>
+
+    <p class="hero-desc">
+      Tôi là sinh viên năm nhất đam mê sáng tạo, yêu thích sự giao thoa giữa công nghệ và nghệ thuật.
+      Luôn tìm kiếm những cách mới để biến ý tưởng thành hiện thực — từ dòng code đến những thiết kế dịu dàng.
+    </p>
+
+    <div class="hero-tags">
+      <span class="tag tag-pink">🌸 Sáng tạo</span>
+      <span class="tag tag-blue">💙 Công nghệ</span>
+      <span class="tag tag-lavender">✦ Thiết kế</span>
+      <span class="tag tag-silver">🤖 Robotics</span>
+      <span class="tag tag-pink">📚 Học tập</span>
+      <span class="tag tag-blue">🎵 Âm nhạc</span>
+    </div>
+
+    <div class="btn-group">
+      <a href="#duan" class="btn btn-primary">Xem dự án →</a>
+      <a href="#tongket" class="btn btn-ghost">Tổng kết học kỳ</a>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="stat-num">6</span>
+        <span class="stat-label">Dự án</span>
       </div>
-      <div class="about-text">
-        <p class="section-tag reveal reveal-delay-1">Về tôi</p>
-        <h2 class="section-title reveal reveal-delay-1">Đam mê <em>sáng tạo</em><br>trong từng pixel</h2>
-        <p class="reveal reveal-delay-2">Tôi là sinh viên năm cuối chuyên ngành Thiết kế đồ họa & Lập trình Frontend, với niềm yêu thích đặc biệt đối với những giao diện mềm mại, dễ chịu — nơi thẩm mỹ và chức năng cùng song hành.</p>
-        <p class="reveal reveal-delay-2">Mỗi dự án với tôi là một câu chuyện — từ wireframe đầu tiên đến từng animation nhỏ, tôi luôn muốn người dùng cảm nhận được sự ấm áp qua màn hình.</p>
-        <div class="skills-row reveal reveal-delay-3">
-          <span class="skill-tag">UI / UX Design</span>
-          <span class="skill-tag">Figma</span>
-          <span class="skill-tag">React</span>
-          <span class="skill-tag">CSS Animation</span>
-          <span class="skill-tag">Branding</span>
-          <span class="skill-tag">Illustration</span>
-          <span class="skill-tag">Motion Design</span>
-        </div>
+      <div class="stat-card">
+        <span class="stat-num">4.0</span>
+        <span class="stat-label">GPA</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Kỹ năng mới</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">∞</span>
+        <span class="stat-label">Đam mê</span>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- ══ SECTION 2: Dự án ══ -->
+<section id="duan" style="padding-top:5rem;">
+  <p class="section-eyebrow reveal">Hành trình sáng tạo</p>
+  <h2 class="sec-title reveal">Dự án của tôi</h2>
+  <p class="sec-sub reveal">Những gì tôi đã xây dựng và học hỏi trong học kỳ này</p>
 
-<!-- Work -->
-<section id="work" class="work">
-  <div class="work-inner">
-    <p class="section-tag reveal">Dự án</p>
-    <h2 class="section-title reveal reveal-delay-1">Những gì tôi<br>đã <em>tạo ra</em></h2>
-    <div class="work-grid">
-      <div class="project-card reveal reveal-delay-1">
-        <div class="card-img c1">🌸</div>
-        <div class="card-body">
-          <p class="card-label">Mobile App</p>
-          <h3 class="card-title">Bloom — Wellness Journal</h3>
-          <p class="card-desc">Ứng dụng nhật ký sức khỏe tâm thần với giao diện dịu nhẹ, giúp người dùng theo dõi cảm xúc hàng ngày.</p>
-          <a href="#" class="card-link">Xem dự án →</a>
-        </div>
+  <div class="cards-grid">
+    <!-- Card 1 -->
+    <div class="card card-pink reveal">
+      <span class="card-icon">📁</span>
+      <h3 class="card-title">Quản lý tệp & Tổ chức dữ liệu</h3>
+      <p class="card-desc">Tìm hiểu cách tổ chức hệ thống tệp hiệu quả, tạo thói quen làm việc khoa học với dữ liệu số trong học tập và nghiên cứu.</p>
+      <div class="card-chips">
+        <span class="chip">Windows</span>
+        <span class="chip">Google Drive</span>
+        <span class="chip">Tổ chức</span>
       </div>
-      <div class="project-card reveal reveal-delay-2">
-        <div class="card-img c2">☁️</div>
-        <div class="card-body">
-          <p class="card-label">Web Design</p>
-          <h3 class="card-title">Petal — Flower Studio</h3>
-          <p class="card-desc">Website cho studio cắm hoa với phong cách tối giản, ảnh động tinh tế và hệ thống đặt hàng trực tuyến.</p>
-          <a href="#" class="card-link">Xem dự án →</a>
-        </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card card-blue reveal" style="transition-delay:0.1s">
+      <span class="card-icon">🔍</span>
+      <h3 class="card-title">Tra cứu học thuật</h3>
+      <p class="card-desc">Kỹ năng tìm kiếm, đánh giá nguồn tài liệu khoa học trên Google Scholar, Scopus và các cơ sở dữ liệu uy tín quốc tế.</p>
+      <div class="card-chips">
+        <span class="chip">Google Scholar</span>
+        <span class="chip">Research</span>
+        <span class="chip">APA Citation</span>
       </div>
-      <div class="project-card reveal reveal-delay-3">
-        <div class="card-img c3">🎀</div>
-        <div class="card-body">
-          <p class="card-label">Brand Identity</p>
-          <h3 class="card-title">Rosée — Skincare Brand</h3>
-          <p class="card-desc">Bộ nhận diện thương hiệu toàn diện cho nhãn hàng mỹ phẩm thiên nhiên, từ logo đến bao bì sản phẩm.</p>
-          <a href="#" class="card-link">Xem dự án →</a>
-        </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card card-lavender reveal" style="transition-delay:0.2s">
+      <span class="card-icon">🤖</span>
+      <h3 class="card-title">Prompt Engineering</h3>
+      <p class="card-desc">Khám phá nghệ thuật giao tiếp với AI — thiết kế prompt hiệu quả để tạo ra nội dung chất lượng cao cho học tập và sáng tạo.</p>
+      <div class="card-chips">
+        <span class="chip">ChatGPT</span>
+        <span class="chip">Claude</span>
+        <span class="chip">Gemini</span>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card card-silver reveal" style="transition-delay:0.3s">
+      <span class="card-icon">🗑️</span>
+      <h3 class="card-title">Smart Bin IoT</h3>
+      <p class="card-desc">Dự án nhóm: thùng rác thông minh sử dụng cảm biến, ESP32 và AI để tự động phân loại và triệu tập rác thải.</p>
+      <div class="card-chips">
+        <span class="chip">ESP32</span>
+        <span class="chip">IoT</span>
+        <span class="chip">Arduino</span>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card card-pink reveal" style="transition-delay:0.4s">
+      <span class="card-icon">🎨</span>
+      <h3 class="card-title">AI Content Creation</h3>
+      <p class="card-desc">Ứng dụng các công cụ AI tạo sinh để sản xuất nội dung sáng tạo: hình ảnh, văn bản và thiết kế cho mạng xã hội.</p>
+      <div class="card-chips">
+        <span class="chip">DALL-E</span>
+        <span class="chip">Canva AI</span>
+        <span class="chip">Midjourney</span>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="card card-green reveal" style="transition-delay:0.5s">
+      <span class="card-icon">⚖️</span>
+      <h3 class="card-title">AI có Trách nhiệm</h3>
+      <p class="card-desc">Nghiên cứu về đạo đức AI, quyền riêng tư dữ liệu và tác động xã hội của trí tuệ nhân tạo trong thế giới hiện đại.</p>
+      <div class="card-chips">
+        <span class="chip">Ethics</span>
+        <span class="chip">Privacy</span>
+        <span class="chip">Policy</span>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- ══ SECTION 3: Tổng kết ══ -->
+<section id="tongket" style="padding-top:5rem;">
+  <p class="section-eyebrow reveal">Nhìn lại hành trình</p>
+  <h2 class="sec-title reveal">Tổng kết học kỳ</h2>
+  <p class="sec-sub reveal">Những gì tôi đã học, trải nghiệm và trưởng thành trong kỳ học này</p>
 
-<!-- Contact -->
-<section id="contact">
-  <div class="contact">
-    <p class="section-tag reveal">Liên hệ</p>
-    <h2 class="section-title reveal reveal-delay-1">Hãy cùng nhau<br>tạo ra điều <em>đặc biệt</em></h2>
-    <p class="contact-sub reveal reveal-delay-2">Tôi luôn mở lòng với những dự án mới, cơ hội hợp tác hay chỉ đơn giản là một cuộc trò chuyện về thiết kế. Đừng ngại nhắn cho tôi nhé!</p>
-    <div class="contact-links reveal reveal-delay-3">
-      <a href="mailto:linh@example.com" class="contact-link primary">✉ Gửi email</a>
-      <a href="#" class="contact-link ghost">Behance</a>
-      <a href="#" class="contact-link ghost">LinkedIn</a>
-      <a href="#" class="contact-link ghost">Instagram</a>
+  <div class="timeline-wrap">
+    <div class="timeline-item">
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-body">
+        <p class="tl-tag">Tháng 9 · Bắt đầu</p>
+        <h4 class="tl-title">Làm quen với môi trường đại học</h4>
+        <p class="tl-desc">Bước vào ngôi trường mới với bao bỡ ngỡ và hào hứng. Học cách tổ chức tài liệu, quản lý thời gian và xây dựng thói quen học tập tích cực.</p>
+      </div>
     </div>
+
+    <div class="timeline-item">
+      <div class="tl-dot-col"><div class="tl-dot" style="background:linear-gradient(135deg,var(--blue),var(--silver))"></div><div class="tl-line"></div></div>
+      <div class="tl-body">
+        <p class="tl-tag">Tháng 10 · Khám phá</p>
+        <h4 class="tl-title">Tiếp cận công cụ AI và nghiên cứu</h4>
+        <p class="tl-desc">Lần đầu tiên khám phá sức mạnh của các công cụ AI như ChatGPT, Claude. Học cách viết prompt hiệu quả và tìm kiếm tài liệu học thuật chuyên sâu.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-dot-col"><div class="tl-dot" style="background:linear-gradient(135deg,var(--lavender),#b8d4a8)"></div><div class="tl-line"></div></div>
+      <div class="tl-body">
+        <p class="tl-tag">Tháng 11 · Thực hành</p>
+        <h4 class="tl-title">Dự án nhóm Smart Bin IoT</h4>
+        <p class="tl-desc">Cùng nhóm bạn xây dựng thùng rác thông minh tích hợp AI. Học được cách làm việc nhóm, phân công nhiệm vụ và giải quyết vấn đề kỹ thuật thực tế.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-dot-col"><div class="tl-dot" style="background:linear-gradient(135deg,var(--silver),var(--blue))"></div><div class="tl-line"></div></div>
+      <div class="tl-body">
+        <p class="tl-tag">Tháng 12 · Hoàn thiện</p>
+        <h4 class="tl-title">Portfolio & Trình bày kết quả</h4>
+        <p class="tl-desc">Tổng hợp toàn bộ hành trình học tập vào một portfolio số. Học cách trình bày kết quả, phản ánh về những gì đã đạt được và những điều cần cải thiện.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skills Cloud -->
+  <div class="reveal" style="width:100%; max-width:720px; margin-top:1rem;">
+    <p style="text-align:center; color:var(--sub); font-size:0.85rem; margin-bottom:1.2rem; letter-spacing:0.05em;">✦ Kỹ năng đã tích lũy ✦</p>
+    <div class="skills-cloud">
+      <span class="skill-bubble sb1">HTML & CSS</span>
+      <span class="skill-bubble sb2">Prompt Engineering</span>
+      <span class="skill-bubble sb3">Nghiên cứu học thuật</span>
+      <span class="skill-bubble sb4">IoT / ESP32</span>
+      <span class="skill-bubble sb1">Canva & Thiết kế</span>
+      <span class="skill-bubble sb2">AI Content Creation</span>
+      <span class="skill-bubble sb3">Quản lý tệp</span>
+      <span class="skill-bubble sb4">Làm việc nhóm</span>
+      <span class="skill-bubble sb1">Tư duy phản biện</span>
+      <span class="skill-bubble sb2">Đạo đức AI</span>
+    </div>
+  </div>
+
+  <!-- Quote -->
+  <div class="quote-box reveal" style="margin-top:3.5rem;">
+    <p class="quote-text">
+      "Học tập không phải là đích đến — đó là một hành trình đầy màu sắc,<br/>mỗi ngày là một trang mới đang chờ được viết."
+    </p>
+    <p class="quote-author">— Cảm nhận sau một học kỳ đại học đầu tiên 🌸</p>
   </div>
 </section>
 
 <footer>
-  <p>© 2024 Nguyễn Thị Linh &nbsp;·&nbsp; Crafted with <span style="color:var(--pink-accent)">♡</span> &nbsp;·&nbsp; Hà Nội, Việt Nam</p>
+  <p>Made with 💜 · 2025 · Tất cả các dự án thuộc về tác giả</p>
 </footer>
 
 <script>
-const ring = document.getElementById('ring');
-const dot = document.getElementById('dot');
-let mx = -100, my = -100, rx = -100, ry = -100;
+  /* ── Sparkle particles ── */
+  const pl = document.getElementById('particles');
+  const colors = ['#FADADD','#B8E8F2','#D8CFF0','#A7C7E7','#fff'];
+  for(let i = 0; i < 55; i++){
+    const s = document.createElement('div');
+    s.className = 'spark';
+    const size = Math.random()*5+2;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${Math.random()*4+3}s;
+      animation-delay:${Math.random()*6}s;
+      opacity:0;
+      box-shadow: 0 0 ${size*2}px ${colors[Math.floor(Math.random()*colors.length)]};
+    `;
+    pl.appendChild(s);
+  }
 
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  dot.style.left = mx - 5 + 'px';
-  dot.style.top = my - 5 + 'px';
-});
+  /* ── Cursor trail ── */
+  const tc = document.getElementById('trail-container');
+  const trailColors = ['#FADADD','#B8E8F2','#D8CFF0','#A7C7E7'];
+  let mx=0,my=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+  setInterval(()=>{
+    const dot = document.createElement('div');
+    dot.className = 'cursor-dot';
+    dot.style.cssText = `left:${mx}px;top:${my}px;background:${trailColors[Math.floor(Math.random()*trailColors.length)]};width:${Math.random()*8+4}px;height:${Math.random()*8+4}px;opacity:0.7;border-radius:50%;position:fixed;pointer-events:none;z-index:9999;`;
+    tc.appendChild(dot);
+    dot.animate([{opacity:0.7,transform:'scale(1)'},{opacity:0,transform:'scale(0)'}],{duration:700,easing:'ease-out'}).onfinish = ()=>dot.remove();
+  }, 40);
 
-function animRing() {
-  rx += (mx - rx) * .12;
-  ry += (my - ry) * .12;
-  ring.style.left = rx + 'px';
-  ring.style.top = ry + 'px';
-  requestAnimationFrame(animRing);
-}
-animRing();
+  /* ── Scroll reveal ── */
+  const reveals = document.querySelectorAll('.reveal');
+  const tl_items = document.querySelectorAll('.timeline-item');
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) e.target.classList.add('visible');
+    });
+  },{threshold:0.12});
+  reveals.forEach(el=>obs.observe(el));
+  tl_items.forEach(el=>obs.observe(el));
 
-document.querySelectorAll('a, button').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    ring.style.transform = 'translate(-50%,-50%) scale(1.5)';
-    ring.style.opacity = '.5';
-    ring.style.background = 'rgba(232,130,159,.06)';
-  });
-  el.addEventListener('mouseleave', () => {
-    ring.style.transform = 'translate(-50%,-50%) scale(1)';
-    ring.style.opacity = '1';
-    ring.style.background = 'transparent';
-  });
-});
-
-// Scroll reveal
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('show'); obs.unobserve(e.target); }
-  });
-}, { threshold: .12 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-// Ripple on cards
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('click', e => {
-    const r = document.createElement('div');
-    r.className = 'ripple-effect';
-    const rect = card.getBoundingClientRect();
-    r.style.left = (e.clientX - rect.left) + 'px';
-    r.style.top = (e.clientY - rect.top) + 'px';
-    card.appendChild(r);
-    setTimeout(() => r.remove(), 700);
-  });
-});
-
-// Parallax blobs subtle on scroll
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  document.querySelector('.blob1').style.transform = `translate(${y*.03}px,${y*.05}px)`;
-  document.querySelector('.blob2').style.transform = `translate(${-y*.02}px,${y*.04}px)`;
-});
+  /* ── Nav active on scroll ── */
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll',()=>{
+    let cur='';
+    sections.forEach(s=>{
+      if(window.scrollY>=s.offsetTop-160) cur=s.id;
+    });
+    navLinks.forEach(a=>{
+      a.classList.remove('active');
+      if(a.getAttribute('href')==='#'+cur) a.classList.add('active');
+    });
+  },{passive:true});
 </script>
 </body>
 </html>
