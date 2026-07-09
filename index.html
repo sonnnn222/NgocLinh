@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Portfolio – Pastel Dream</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 <style>
   /* ── Reset & Base ── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -332,13 +333,13 @@
     font-weight: 300;
   }
 
-  /* ── Project Cards ── */
+  /* ── Project Cards (ĐÃ THAY ĐỔI) ── */
   #duanSection { background: transparent; }
   .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 1.5rem;
-    max-width: 1000px;
+    max-width: 1100px;
     width: 100%;
   }
   .card {
@@ -346,11 +347,13 @@
     backdrop-filter: blur(16px);
     border: 2px solid rgba(200,176,232,0.5);
     border-radius: 24px;
-    padding: 2rem;
+    padding: 1.8rem;
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
     overflow: hidden;
     cursor: default;
+    display: flex;
+    flex-direction: column;
   }
   .card::before {
     content:'';
@@ -368,9 +371,35 @@
   .card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(200,176,232,0.2); }
 
   .card-icon {
-    font-size: 2.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    font-size: 1.6rem;
     margin-bottom: 1rem;
-    display: block;
+    transition: transform 0.3s;
+  }
+  .card:hover .card-icon { transform: rotate(-8deg) scale(1.1); }
+  .i1{ background: linear-gradient(135deg, #fde6ed, #fcc8d6); color: #c0507a; }
+  .i2{ background: linear-gradient(135deg, #e8e0fa, #d4c8f4); color: #7a4aa8; }
+  .i3{ background: linear-gradient(135deg, #fff0c8, #ffe4a0); color: #a87820; }
+  .i4{ background: linear-gradient(135deg, #d4f0e0, #b8e8cc); color: #2a8a5a; }
+  .i5{ background: linear-gradient(135deg, #d4eef9, #b8dff0); color: #2a7aa8; }
+  .i6{ background: linear-gradient(135deg, #fde6ed, #e8e0fa); color: #8a4a9a; }
+
+  .card-number {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    background: linear-gradient(130deg, #fde6ed, #ffe4f0);
+    color: #b0507a;
+    padding: 0.12rem 0.7rem;
+    border-radius: 20px;
+    margin-bottom: 0.4rem;
+    border: 1px solid rgba(255,255,255,0.5);
+    align-self: flex-start;
   }
   .card-title {
     font-family: 'Playfair Display', serif;
@@ -383,19 +412,162 @@
     font-size: 0.88rem;
     color: var(--sub);
     line-height: 1.75;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.8rem;
   }
+  .card-detail {
+    font-size: 0.82rem;
+    color: var(--text);
+    background: rgba(200,176,232,0.12);
+    padding: 0.6rem 0.9rem;
+    border-radius: 14px;
+    border-left: 3px solid var(--blue);
+    margin-bottom: 0.9rem;
+  }
+  .card-detail i { color: var(--blue); margin-right: 0.4rem; }
+  .card-detail strong { color: var(--text); }
+
+  .result-list {
+    list-style: none;
+    margin: 0.4rem 0 0.7rem;
+  }
+  .result-list li {
+    font-size: 0.83rem;
+    color: var(--sub);
+    padding: 0.25rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .result-list li i {
+    color: var(--pink);
+    margin-top: 0.15rem;
+    font-size: 0.78rem;
+    flex-shrink: 0;
+  }
+
   .card-chips {
-    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
   }
   .chip {
     font-size: 0.72rem;
-    padding: 0.2rem 0.7rem;
-    border-radius: 50px;
-    background: rgba(200,176,232,0.5);
-    color: #5a4a6a;
-    border: 1.5px solid rgba(200,176,232,0.6);
-    font-weight: 500;
+    padding: 0.18rem 0.85rem;
+    border-radius: 20px;
+    font-weight: 700;
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+  .chip-tool { background: rgba(122,200,221,0.25); color: #1a6a80; }
+  .chip-topic { background: rgba(240,176,184,0.25); color: #7a3848; }
+  .chip-result { background: rgba(168,218,186,0.3); color: #2a6a4a; }
+
+  .btn-pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.8rem;
+    padding: 0.42rem 1.1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    background: linear-gradient(130deg, rgba(200,176,232,0.3), rgba(122,200,221,0.3));
+    border: 1.5px solid rgba(255,255,255,0.55);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Be Vietnam Pro', sans-serif;
+  }
+  .btn-pdf:hover {
+    background: linear-gradient(130deg, rgba(200,176,232,0.55), rgba(122,200,221,0.55));
+    transform: translateY(-2px);
+  }
+  .btn-pdf i { color: var(--pink); }
+
+  /* ── PDF MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(40,30,60,0.55);
+    backdrop-filter: blur(10px);
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem;
+  }
+  .modal-overlay.open { display: flex; animation: fadeM 0.25s ease; }
+  @keyframes fadeM { from { opacity: 0; } to { opacity: 1; } }
+  .modal-box {
+    background: rgba(255,255,255,0.94);
+    border-radius: 24px;
+    border: 1.5px solid rgba(200,176,232,0.5);
+    box-shadow: 0 24px 80px rgba(80,40,130,0.28);
+    width: 100%;
+    max-width: 880px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: scaleM 0.3s ease;
+  }
+  @keyframes scaleM { from { transform: scale(0.94); } to { transform: scale(1); } }
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 1.6rem;
+    border-bottom: 1.5px solid rgba(200,176,232,0.25);
+    background: linear-gradient(130deg, rgba(240,176,184,0.08), rgba(200,176,232,0.08));
+  }
+  .modal-header h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .modal-header h3 i { color: var(--pink); }
+  .modal-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: rgba(240,176,184,0.2);
+    color: var(--sub);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s;
+  }
+  .modal-close:hover { background: rgba(240,176,184,0.5); transform: rotate(90deg); }
+  .modal-body { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+  .pdf-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.7rem 1.2rem;
+    background: rgba(248,246,255,0.8);
+    border-bottom: 1px solid rgba(200,176,232,0.2);
+    flex-wrap: wrap;
+  }
+  .pdf-toolbar .btn-sm {
+    padding: 0.32rem 1rem;
+    font-size: 0.78rem;
+  }
+  .pdf-toolbar span { font-size: 0.82rem; color: var(--sub); }
+  .pdf-frame-wrap { flex: 1; overflow: hidden; min-height: 480px; }
+  .pdf-frame-wrap iframe { width: 100%; height: 100%; min-height: 480px; border: none; }
+  .pdf-note {
+    padding: 0.7rem 1.4rem;
+    font-size: 0.78rem;
+    color: var(--sub);
+    text-align: center;
+    background: rgba(248,246,255,0.7);
   }
 
   /* ── Timeline (Tổng kết) ── */
@@ -541,6 +713,10 @@
   @keyframes fadeUp {
     to { opacity: 1; transform: translateY(0); }
   }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
   /* ── Cursor trail ── */
   .cursor-dot {
@@ -563,6 +739,10 @@
     .nav-logo { font-size: 1rem; }
     .nav-links a { padding: 0.35rem 0.65rem; font-size: 0.8rem; }
     section { padding: 90px 1rem 3rem; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .modal-box { max-width: 100%; margin: 0.5rem; }
+    .pdf-frame-wrap { min-height: 300px; }
+    .pdf-frame-wrap iframe { min-height: 300px; }
   }
 </style>
 </head>
@@ -584,6 +764,31 @@
 
 <!-- Cursor trail dots -->
 <div id="trail-container"></div>
+
+<!-- PDF MODAL -->
+<div class="modal-overlay" id="pdfModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="modalTitle"><i class="fas fa-file-pdf"></i> Bài tập</h3>
+      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="pdf-toolbar">
+        <span id="pdfFileName"><i class="fas fa-file-pdf" style="color:var(--pink);margin-right:.3rem;"></i> Đang tải...</span>
+        <a id="pdfDownload" href="#" target="_blank" class="btn btn-sm" style="padding:0.32rem 1rem;font-size:0.78rem;border-radius:50px;font-weight:600;background:rgba(255,255,255,0.5);border:1.5px solid rgba(200,176,232,0.5);color:var(--sub);text-decoration:none;transition:all .3s;">
+          <i class="fas fa-external-link-alt"></i> Mở tab mới
+        </a>
+      </div>
+      <div class="pdf-frame-wrap">
+        <iframe id="pdfFrame" src="" title="PDF Viewer"></iframe>
+      </div>
+      <div class="pdf-note">
+        <i class="fas fa-info-circle" style="color:var(--lavender);"></i>
+        Nếu PDF không hiển thị, hãy nhấn <strong>Mở tab mới</strong> để xem trực tiếp.
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ── Navigation ── -->
 <nav>
@@ -646,83 +851,169 @@
   </div>
 </section>
 
-<!-- ══ SECTION 2: Dự án ══ -->
+<!-- ══ SECTION 2: Dự án (ĐÃ THAY ĐỔI) ══ -->
 <section id="duan" style="padding-top:5rem;">
-  <p class="section-eyebrow reveal">Hành trình sáng tạo</p>
   <h2 class="sec-title reveal">Dự án của tôi</h2>
-  <p class="sec-sub reveal">Những gì tôi đã xây dựng và học hỏi trong học kỳ này</p>
+  <p class="sec-sub reveal">6 bài thực hành CNS&AI: quản lý dữ liệu, tìm kiếm học thuật, viết prompt, hợp tác trực tuyến, AI sáng tạo và đạo đức AI.</p>
 
   <div class="cards-grid">
-    <!-- Card 1 -->
-    <div class="card card-pink reveal">
-      <span class="card-icon">📁</span>
-      <h3 class="card-title">Quản lý tệp & Tổ chức dữ liệu</h3>
-      <p class="card-desc">Tìm hiểu cách tổ chức hệ thống tệp hiệu quả, tạo thói quen làm việc khoa học với dữ liệu số trong học tập và nghiên cứu.</p>
-      <div class="card-chips">
-        <span class="chip">Windows</span>
-        <span class="chip">Google Drive</span>
-        <span class="chip">Tổ chức</span>
+    <!-- BÀI 1 -->
+    <div class="card card-pink reveal" style="animation:cardIn .7s ease-out forwards;opacity:0;animation-delay:0.05s;">
+      <div class="card-icon i1"><i class="fas fa-folder-tree"></i></div>
+      <span class="card-number">Bài 1 · Mục 1.4</span>
+      <h3 class="card-title">Thao tác cơ bản với tệp tin & thư mục</h3>
+      <p class="card-desc">Thực hành quản lý hệ thống tệp trên Windows: tạo, đổi tên, sao chép, di chuyển, xóa và khôi phục từ Recycle Bin.</p>
+      <div class="card-detail">
+        <i class="fas fa-folder"></i> <strong>Cấu trúc tạo:</strong><br/>
+        <span style="font-size:.79rem;">ThucHanh_HaThiNgocLinh/<br/>
+        ├─ TaiLieu/<br/>
+        │&nbsp;&nbsp;├─ GhiChuQuanTrong.txt (Copy)<br/>
+        │&nbsp;&nbsp;└─ DiChuyen.txt (Cut&Paste)<br/>
+        └─ GhiChuQuanTrong.txt</span>
       </div>
+      <ul class="result-list">
+        <li><i class="fas fa-circle"></i> Tạo thư mục ThucHanh_HaThiNgocLinh, tạo file GhiChu.txt → đổi tên thành GhiChuQuanTrong.txt</li>
+        <li><i class="fas fa-circle"></i> Tạo thư mục con TaiLieu; Copy & Cut tệp vào đó</li>
+        <li><i class="fas fa-circle"></i> Xóa bằng Delete → Recycle Bin; xóa vĩnh viễn bằng Shift+Delete; khôi phục bằng Restore</li>
+      </ul>
+      <div class="card-chips">
+        <span class="chip chip-tool">File Explorer</span>
+        <span class="chip chip-tool">Windows 11</span>
+        <span class="chip chip-result">✔ Hoàn thành</span>
+      </div>
+      <button class="btn-pdf" onclick="openPDF('cnsbai1.pdf','Bài tập 1 – Thao tác tệp tin & thư mục')">
+        <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+      </button>
     </div>
 
-    <!-- Card 2 -->
-    <div class="card card-blue reveal" style="transition-delay:0.1s">
-      <span class="card-icon">🔍</span>
-      <h3 class="card-title">Tra cứu học thuật</h3>
-      <p class="card-desc">Kỹ năng tìm kiếm, đánh giá nguồn tài liệu khoa học trên Google Scholar, Scopus và các cơ sở dữ liệu uy tín quốc tế.</p>
-      <div class="card-chips">
-        <span class="chip">Google Scholar</span>
-        <span class="chip">Research</span>
-        <span class="chip">APA Citation</span>
+    <!-- BÀI 2 -->
+    <div class="card card-blue reveal" style="animation:cardIn .7s ease-out forwards;opacity:0;animation-delay:0.1s;">
+      <div class="card-icon i2"><i class="fas fa-search"></i></div>
+      <span class="card-number">Bài 2 · Mục 2.4</span>
+      <h3 class="card-title">Tìm kiếm & đánh giá thông tin học thuật</h3>
+      <p class="card-desc">Chủ đề "Ngoại ngữ trong giáo dục" – sử dụng toán tử nâng cao trên 4 loại nguồn; đánh giá độ tin cậy theo 5 tiêu chí.</p>
+      <div class="card-detail">
+        <i class="fas fa-quote-right"></i> <strong>Toán tử đã dùng:</strong><br/>
+        <span style="font-size:.79rem;">"Foreign Language Education", site:edu, filetype:pdf,<br/>"AI AND Foreign Language", intitle:research</span>
       </div>
+      <ul class="result-list">
+        <li><i class="fas fa-circle"></i> Thu thập 10 tài liệu: Google Scholar, ResearchGate, Springer, Tạp chí GD, VNU-JFS, Báo Nhân Dân</li>
+        <li><i class="fas fa-circle"></i> Đánh giá 5 tiêu chí: Tác giả – Cơ quan – Phương pháp – Trích dẫn – Tính cập nhật</li>
+        <li><i class="fas fa-circle"></i> Xếp hạng: 6 nguồn Rất cao, 2 nguồn Cao, 1 nguồn Khá cao, 1 nguồn Trung bình</li>
+      </ul>
+      <div class="card-chips">
+        <span class="chip chip-tool">Google Scholar</span>
+        <span class="chip chip-tool">Springer</span>
+        <span class="chip chip-topic">Ngoại ngữ GD</span>
+        <span class="chip chip-result">10 tài liệu</span>
+      </div>
+      <button class="btn-pdf" onclick="openPDF('cnsbai2.pdf','Bài tập 2 – Tìm kiếm học thuật')">
+        <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+      </button>
     </div>
 
-    <!-- Card 3 -->
-    <div class="card card-lavender reveal" style="transition-delay:0.2s">
-      <span class="card-icon">🤖</span>
-      <h3 class="card-title">Prompt Engineering</h3>
-      <p class="card-desc">Khám phá nghệ thuật giao tiếp với AI — thiết kế prompt hiệu quả để tạo ra nội dung chất lượng cao cho học tập và sáng tạo.</p>
-      <div class="card-chips">
-        <span class="chip">ChatGPT</span>
-        <span class="chip">Claude</span>
-        <span class="chip">Gemini</span>
+    <!-- BÀI 3 -->
+    <div class="card card-lavender reveal" style="animation:cardIn .7s ease-out forwards;opacity:0;animation-delay:0.15s;">
+      <div class="card-icon i3"><i class="fas fa-pen-fancy"></i></div>
+      <span class="card-number">Bài 3 · Mục 3.4</span>
+      <h3 class="card-title">Viết Prompt hiệu quả cho tác vụ học tập</h3>
+      <p class="card-desc">So sánh 3 cấp độ prompt (cơ bản → cải tiến → nâng cao) trên 3 tác vụ học thuật về Triết học Mác–Lênin với ChatGPT & Gemini.</p>
+      <div class="card-detail">
+        <i class="fas fa-lightbulb"></i> <strong>Kỹ thuật nâng cao:</strong><br/>
+        <span style="font-size:.79rem;">CLEAR Model + Few-shot Prompting + Chain-of-Thought + Định dạng yêu cầu → Kết quả đầy đủ nhất</span>
       </div>
+      <ul class="result-list">
+        <li><i class="fas fa-circle"></i> Tác vụ 1: Tóm tắt "Chủ nghĩa duy vật biện chứng" → sơ đồ tư duy dạng văn bản</li>
+        <li><i class="fas fa-circle"></i> Tác vụ 2: Giải thích "Phép biện chứng duy vật" → bảng so sánh tư duy biện chứng vs phiến diện</li>
+        <li><i class="fas fa-circle"></i> Tác vụ 3: Tạo 15 câu hỏi ôn tập (5 nhận biết + 5 thông hiểu + 5 vận dụng) kèm đáp án & giải thích</li>
+      </ul>
+      <div class="card-chips">
+        <span class="chip chip-tool">ChatGPT</span>
+        <span class="chip chip-tool">Gemini</span>
+        <span class="chip chip-topic">Prompt Engineering</span>
+        <span class="chip chip-result">CLEAR Model</span>
+      </div>
+      <button class="btn-pdf" onclick="openPDF('cnsbai3.pdf','Bài tập 3 – Viết Prompt hiệu quả')">
+        <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+      </button>
     </div>
 
-    <!-- Card 4 -->
-    <div class="card card-silver reveal" style="transition-delay:0.3s">
-      <span class="card-icon">🗑️</span>
-      <h3 class="card-title">Smart Bin IoT</h3>
-      <p class="card-desc">Dự án nhóm: thùng rác thông minh sử dụng cảm biến, ESP32 và AI để tự động phân loại và triệu tập rác thải.</p>
-      <div class="card-chips">
-        <span class="chip">ESP32</span>
-        <span class="chip">IoT</span>
-        <span class="chip">Arduino</span>
+    <!-- BÀI 4 -->
+    <div class="card card-green reveal" style="animation:cardIn .7s ease-out forwards;opacity:0;animation-delay:0.2s;">
+      <div class="card-icon i4"><i class="fas fa-users-cog"></i></div>
+      <span class="card-number">Bài 4 · Mục 4.4</span>
+      <h3 class="card-title">Hợp tác trực tuyến cho dự án nhóm</h3>
+      <p class="card-desc">Dự án nhóm "Ứng dụng AI trong học ngoại ngữ" – vai trò Trưởng nhóm, điều phối 5 thành viên qua Google Workspace & Zalo.</p>
+      <div class="card-detail">
+        <i class="fas fa-tasks"></i> <strong>Bộ công cụ:</strong><br/>
+        <span style="font-size:.79rem;">Google Sheets (quản lý nhiệm vụ) · Google Docs (cộng tác văn bản) · Google Drive (lưu trữ) · Zalo (giao tiếp)</span>
       </div>
+      <ul class="result-list">
+        <li><i class="fas fa-circle"></i> Tạo bảng phân công nhiệm vụ với deadline, người phụ trách và trạng thái hoàn thành</li>
+        <li><i class="fas fa-circle"></i> Theo dõi lịch sử chỉnh sửa Google Docs; tương tác thảo luận nhóm qua Zalo</li>
+        <li><i class="fas fa-circle"></i> Phân tích 3 AI nổi bật: ELSA Speak, ChatGPT, Gemini; làm slide & video thuyết trình</li>
+      </ul>
+      <div class="card-chips">
+        <span class="chip chip-tool">Google Docs</span>
+        <span class="chip chip-tool">Google Sheets</span>
+        <span class="chip chip-tool">Zalo</span>
+        <span class="chip chip-result">Trưởng nhóm</span>
+      </div>
+      <button class="btn-pdf" onclick="openPDF('cnsbai4.pdf','Bài tập 4 – Hợp tác trực tuyến')">
+        <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+      </button>
     </div>
 
-    <!-- Card 5 -->
-    <div class="card card-pink reveal" style="transition-delay:0.4s">
-      <span class="card-icon">🎨</span>
-      <h3 class="card-title">AI Content Creation</h3>
-      <p class="card-desc">Ứng dụng các công cụ AI tạo sinh để sản xuất nội dung sáng tạo: hình ảnh, văn bản và thiết kế cho mạng xã hội.</p>
-      <div class="card-chips">
-        <span class="chip">DALL-E</span>
-        <span class="chip">Canva AI</span>
-        <span class="chip">Midjourney</span>
+    <!-- BÀI 5 -->
+    <div class="card card-silver reveal" style="animation:cardIn .7s ease-out forwards;opacity:0;animation-delay:0.25s;">
+      <div class="card-icon i5"><i class="fas fa-paint-brush"></i></div>
+      <span class="card-number">Bài 5 · Mục 5.4</span>
+      <h3 class="card-title">AI tạo sinh hỗ trợ sáng tạo nội dung</h3>
+      <p class="card-desc">Thiết kế Infographic "AI trong Giáo dục: Trợ lý đắc lực của sinh viên" với quy trình 3 bước dùng Gemini, ChatGPT và Canva AI.</p>
+      <div class="card-detail">
+        <i class="fas fa-robot"></i> <strong>Quy trình:</strong><br/>
+        <span style="font-size:.79rem;">Gemini viết nội dung → ChatGPT tạo logo/ảnh AI tools → Canva AI thiết kế layout → Hoàn thiện thủ công</span>
       </div>
+      <ul class="result-list">
+        <li><i class="fas fa-circle"></i> Gemini cung cấp nội dung bullet-point về 4 lợi ích AI (cá nhân hóa, sửa bài, sáng tạo, tóm tắt tài liệu)</li>
+        <li><i class="fas fa-circle"></i> ChatGPT tạo hình ảnh logo ChatGPT/Gemini/DeepSeek và icon minh họa</li>
+        <li><i class="fas fa-circle"></i> Canva AI xuất 4 mẫu infographic; lựa chọn & chỉnh sửa màu sắc, font, bố cục</li>
+      </ul>
+      <div class="card-chips">
+        <span class="chip chip-tool">Gemini</span>
+        <span class="chip chip-tool">ChatGPT</span>
+        <span class="chip chip-tool">Canva AI</span>
+        <span class="chip chip-result">Infographic</span>
+      </div>
+      <button class="btn-pdf" onclick="openPDF('cnsbai5.pdf','Bài tập 5 – AI tạo sinh nội dung')">
+        <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+      </button>
     </div>
 
-    <!-- Card 6 -->
-    <div class="card card-green reveal" style="transition-delay:0.5s">
-      <span class="card-icon">⚖️</span>
-      <h3 class="card-title">AI có Trách nhiệm</h3>
-      <p class="card-desc">Nghiên cứu về đạo đức AI, quyền riêng tư dữ liệu và tác động xã hội của trí tuệ nhân tạo trong thế giới hiện đại.</p>
-      <div class="card-chips">
-        <span class="chip">Ethics</span>
-        <span class="chip">Privacy</span>
-        <span class="chip">Policy</span>
+    <!-- BÀI 6 -->
+    <div class="card card-pink reveal" style="animation:cardIn .7s ease-out forwards;opacity:0;animation-delay:0.3s;">
+      <div class="card-icon i6"><i class="fas fa-balance-scale"></i></div>
+      <span class="card-number">Bài 6 · Mục 6.4</span>
+      <h3 class="card-title">Sử dụng AI có trách nhiệm trong học thuật</h3>
+      <p class="card-desc">Nghiên cứu chính sách AI của ULIS; thực hành với bài luận học thuật tiếng Anh; xây dựng 7 nguyên tắc cá nhân và infographic.</p>
+      <div class="card-detail">
+        <i class="fas fa-shield-alt"></i> <strong>7 Nguyên tắc vàng:</strong><br/>
+        <span style="font-size:.79rem;">Con người là chủ thể · Kiểm chứng thông tin · Minh bạch · Không sao chép nguyên văn · Giữ bản sắc cá nhân · Tôn trọng bản quyền · Bảo mật dữ liệu</span>
       </div>
+      <ul class="result-list">
+        <li><i class="fas fa-circle"></i> Nghiên cứu chính sách ULIS: Chấp nhận AI, Minh bạch trong học thuật, Chống gian lận</li>
+        <li><i class="fas fa-circle"></i> Bài luận "Impact of AI on Foreign Language Learning" – sử dụng AI để tạo dàn ý, kiểm chứng và bổ sung quan điểm cá nhân</li>
+        <li><i class="fas fa-circle"></i> Thiết kế infographic "Sử dụng AI có trách nhiệm" với phần NÊN / KHÔNG NÊN / NGUYÊN TẮC VÀNG</li>
+      </ul>
+      <div class="card-chips">
+        <span class="chip chip-topic">Đạo đức AI</span>
+        <span class="chip chip-tool">ULIS Policy</span>
+        <span class="chip chip-result">7 Nguyên tắc</span>
+        <span class="chip chip-result">Infographic</span>
+      </div>
+      <button class="btn-pdf" onclick="openPDF('cnsbai6.pdf','Bài tập 6 – Sử dụng AI có trách nhiệm')">
+        <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+      </button>
     </div>
   </div>
 </section>
@@ -859,6 +1150,83 @@
       if(a.getAttribute('href')==='#'+cur) a.classList.add('active');
     });
   },{passive:true});
+
+  /* ── PDF MODAL ── */
+  const pdfBase = '';
+  function openPDF(filename, title){
+    document.getElementById('modalTitle').innerHTML = '<i class="fas fa-file-pdf"></i> '+title;
+    document.getElementById('pdfFileName').innerHTML = '<i class="fas fa-file-pdf" style="color:#f0b0b8;margin-right:.35rem;"></i>'+filename;
+    const src = filename;
+    const frame = document.getElementById('pdfFrame');
+    frame.src = src;
+    document.getElementById('pdfDownload').href = src;
+    document.getElementById('pdfModal').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeModal(){
+    document.getElementById('pdfModal').classList.remove('open');
+    document.getElementById('pdfFrame').src='';
+    document.body.style.overflow='';
+  }
+  document.getElementById('pdfModal').addEventListener('click',function(e){
+    if(e.target===this) closeModal();
+  });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+  /* ── Background Canvas ── */
+  (function(){
+    const cv=document.getElementById('bg-canvas');
+    if(!cv) return;
+    const cx=cv.getContext('2d');
+    let W,H,pts=[];
+    const N=55;
+    const cols=['rgba(240,176,184,','rgba(200,176,232,','rgba(122,200,221,','rgba(168,218,186,'];
+
+    function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
+    window.addEventListener('resize',resize);resize();
+
+    class Dot{
+      constructor(){
+        this.x=Math.random()*W; this.y=Math.random()*H;
+        this.r=Math.random()*4+1.5;
+        this.vx=(Math.random()-.5)*.45; this.vy=(Math.random()-.5)*.45;
+        this.op=Math.random()*.45+.15;
+        this.c=cols[Math.floor(Math.random()*cols.length)];
+      }
+      step(){
+        this.x+=this.vx; this.y+=this.vy;
+        if(this.x<0||this.x>W) this.vx*=-1;
+        if(this.y<0||this.y>H) this.vy*=-1;
+      }
+      draw(){
+        cx.beginPath();cx.arc(this.x,this.y,this.r,0,Math.PI*2);
+        cx.fillStyle=this.c+this.op+')';
+        cx.shadowColor=this.c+'.3)';cx.shadowBlur=10;
+        cx.fill();cx.shadowBlur=0;
+      }
+    }
+    for(let i=0;i<N;i++) pts.push(new Dot());
+
+    function lines(){
+      for(let i=0;i<pts.length;i++)
+        for(let j=i+1;j<pts.length;j++){
+          const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
+          const d=Math.sqrt(dx*dx+dy*dy);
+          if(d<140){
+            cx.beginPath();cx.moveTo(pts[i].x,pts[i].y);cx.lineTo(pts[j].x,pts[j].y);
+            cx.strokeStyle='rgba(200,176,232,'+(1-d/140)*.18+')';
+            cx.lineWidth=.8;cx.stroke();
+          }
+        }
+    }
+
+    (function loop(){
+      cx.clearRect(0,0,W,H);
+      pts.forEach(p=>{p.step();p.draw();});
+      lines();
+      requestAnimationFrame(loop);
+    })();
+  })();
 </script>
 </body>
 </html>
