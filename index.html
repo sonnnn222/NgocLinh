@@ -32,7 +32,7 @@
     overflow-x: hidden;
   }
 
-  /* ── Animated Background Canvas ── */
+  /* ── Animated Background ── */
   #bg-canvas {
     position: fixed;
     inset: 0;
@@ -40,7 +40,7 @@
     pointer-events: none;
   }
 
-  /* ── Floating Blobs (CSS) ── */
+  /* ── Floating Blobs ── */
   .blobs {
     position: fixed;
     inset: 0;
@@ -113,6 +113,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: 0.04em;
+    cursor: pointer;
   }
   .nav-links { display: flex; gap: 0.25rem; }
   .nav-links a {
@@ -125,6 +126,7 @@
     border-radius: 50px;
     transition: color 0.3s, background 0.3s;
     letter-spacing: 0.02em;
+    cursor: pointer;
   }
   .nav-links a::after {
     content:'';
@@ -139,6 +141,17 @@
   .nav-links a:hover { color: var(--text); background: rgba(200,176,232,0.3); }
   .nav-links a:hover::after { transform: translateX(-50%) scaleX(1); }
   .nav-links a.active { color: #7a4a8a; background: rgba(200,176,232,0.35); }
+
+  /* ── Pages ── */
+  .page {
+    display: none;
+    animation: fadeIn 0.5s ease;
+  }
+  .page.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
   /* ── Sections ── */
   section {
@@ -160,9 +173,6 @@
     text-transform: uppercase;
     color: #b088c0;
     margin-bottom: 1rem;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.8s forwards;
   }
 
   /* ── Hero / Giới thiệu ── */
@@ -203,8 +213,6 @@
     -webkit-text-fill-color: transparent;
     line-height: 1.15;
     margin-bottom: 1rem;
-    animation: fadeUp 0.9s 0.1s forwards;
-    opacity: 0;
   }
 
   .hero-role {
@@ -213,8 +221,6 @@
     font-weight: 300;
     letter-spacing: 0.06em;
     margin-bottom: 2rem;
-    animation: fadeUp 0.9s 0.2s forwards;
-    opacity: 0;
   }
 
   .hero-desc {
@@ -223,8 +229,6 @@
     line-height: 1.85;
     max-width: 600px;
     margin: 0 auto 2.5rem;
-    animation: fadeUp 0.9s 0.3s forwards;
-    opacity: 0;
   }
 
   .hero-tags {
@@ -233,8 +237,6 @@
     gap: 0.6rem;
     justify-content: center;
     margin-bottom: 2.5rem;
-    animation: fadeUp 0.9s 0.4s forwards;
-    opacity: 0;
   }
   .tag {
     padding: 0.35rem 1rem;
@@ -253,8 +255,6 @@
 
   .btn-group {
     display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-    animation: fadeUp 0.9s 0.5s forwards;
-    opacity: 0;
   }
   .btn {
     padding: 0.7rem 2rem;
@@ -266,12 +266,12 @@
     transition: transform 0.2s, box-shadow 0.2s;
     letter-spacing: 0.03em;
     display: inline-block;
+    border: none;
   }
   .btn:hover { transform: translateY(-3px); }
   .btn-primary {
     background: linear-gradient(135deg, #d08088, #c8b0e8);
     color: white;
-    border: none;
     box-shadow: 0 4px 24px rgba(200,176,232,0.6);
   }
   .btn-primary:hover { box-shadow: 0 8px 32px rgba(200,176,232,0.8); }
@@ -289,8 +289,6 @@
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 3rem;
-    animation: fadeUp 0.9s 0.6s forwards;
-    opacity: 0;
   }
   .stat-card {
     background: rgba(255, 255, 255, 0.15);
@@ -335,8 +333,7 @@
     font-weight: 300;
   }
 
-  /* ── Project Cards (GLASS MỜ NHƯ KẾT LUẬN) ── */
-  #duanSection { background: transparent; }
+  /* ── Project Cards ── */
   .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -587,9 +584,7 @@
     background: rgba(248,246,255,0.7);
   }
 
-  /* ── Summary (GLASS MỜ NHƯ KẾT LUẬN) ── */
-  #tongket { background: transparent; }
-  
+  /* ── Summary ── */
   .summary-wrap {
     max-width: 900px;
     width: 100%;
@@ -605,18 +600,12 @@
     margin-bottom: 1.8rem;
     box-shadow: 0 4px 20px rgba(200,176,232,0.06);
     transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-    animation: cardIn 0.7s ease-out forwards;
-    opacity: 0;
   }
   .sum-card:hover {
     transform: translateY(-4px);
     background: rgba(255, 255, 255, 0.30);
     box-shadow: 0 12px 40px rgba(200,176,232,0.12);
   }
-  .sum-card:nth-child(1){ animation-delay: 0.05s; }
-  .sum-card:nth-child(2){ animation-delay: 0.1s; }
-  .sum-card:nth-child(3){ animation-delay: 0.15s; }
-  .sum-card:nth-child(4){ animation-delay: 0.2s; }
 
   .sum-card h3 {
     font-family: 'Playfair Display', serif;
@@ -643,7 +632,6 @@
     margin-bottom: 0.8rem;
   }
 
-  /* GLASS BLOCK CON - MỜ NHƯ KẾT LUẬN */
   .glass-block {
     background: rgba(255, 255, 255, 0.10);
     backdrop-filter: blur(8px);
@@ -740,7 +728,6 @@
     line-height: 1.6;
   }
 
-  /* KẾT LUẬN - GIỮ NGUYÊN THÔNG SỐ NÀY */
   .conclusion-box {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(12px);
@@ -751,8 +738,6 @@
     text-align: center;
     margin-top: 1rem;
     box-shadow: 0 4px 20px rgba(200,176,232,0.06);
-    animation: cardIn 0.7s ease-out 0.25s forwards;
-    opacity: 0;
     transition: background 0.3s, box-shadow 0.3s;
   }
   .conclusion-box:hover {
@@ -817,24 +802,13 @@
     font-size: 0.8rem;
     color: var(--sub);
     border-top: 2px solid rgba(200,176,232,0.35);
+    margin-top: 2rem;
   }
 
-  /* ── Scroll reveal ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.8s, transform 0.8s;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── Animations ── */
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes cardIn {
-    from { opacity: 0; transform: translateY(22px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(200,176,232,0.8); border-radius: 3px; }
 
   /* ── Cursor trail ── */
   .cursor-dot {
@@ -847,21 +821,16 @@
     transition: transform 0.1s;
   }
 
-  /* ── Scrollbar ── */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(200,176,232,0.8); border-radius: 3px; }
-
   @media (max-width: 768px) {
     .highlight-list {
       grid-template-columns: 1fr;
     }
   }
   @media (max-width: 600px) {
-    nav { padding: 0 1rem; }
+    nav { padding: 0 1rem; flex-direction: column; height: auto; padding: 0.5rem 1rem; gap: 0.3rem; }
     .nav-logo { font-size: 1rem; }
     .nav-links a { padding: 0.35rem 0.65rem; font-size: 0.8rem; }
-    section { padding: 90px 1rem 3rem; }
+    section { padding: 120px 1rem 3rem; }
     .cards-grid { grid-template-columns: 1fr; }
     .modal-box { max-width: 100%; margin: 0.5rem; }
     .pdf-frame-wrap { min-height: 300px; }
@@ -869,12 +838,14 @@
     .sum-card { padding: 1.5rem; }
     .conclusion-box { padding: 1.5rem; }
     .glass-block { padding: 1rem; }
+    .stats-row { gap: 0.8rem; }
+    .stat-card { padding: 0.8rem 1rem; min-width: 80px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Animated Blobs -->
+<!-- Animated Background -->
 <div class="blobs">
   <div class="blob"></div>
   <div class="blob"></div>
@@ -884,11 +855,7 @@
   <div class="blob"></div>
   <div class="blob"></div>
 </div>
-
-<!-- Sparkling Particles -->
 <div class="particle-layer" id="particles"></div>
-
-<!-- Cursor trail dots -->
 <div id="trail-container"></div>
 
 <!-- PDF MODAL -->
@@ -918,344 +885,373 @@
 
 <!-- ── Navigation ── -->
 <nav>
-  <span class="nav-logo">✦ Portfolio</span>
+  <span class="nav-logo" onclick="showPage('home')">✦ Portfolio</span>
   <div class="nav-links">
-    <a href="#gioithieu" class="active">Giới thiệu</a>
-    <a href="#duan">Dự án</a>
-    <a href="#tongket">Tổng kết</a>
+    <a onclick="showPage('home')" class="active" data-page="home">Giới thiệu</a>
+    <a onclick="showPage('projects')" data-page="projects">Dự án</a>
+    <a onclick="showPage('summary')" data-page="summary">Tổng kết</a>
   </div>
 </nav>
 
-<!-- ══ SECTION 1: Giới thiệu ══ -->
-<section id="gioithieu">
-  <div class="hero-wrapper">
-    <div class="avatar-ring">
-      <div class="avatar-inner">🌸</div>
-    </div>
+<div class="container" style="max-width:1160px;margin:0 auto;padding:0 1.4rem;position:relative;z-index:1;">
 
-    <p class="section-eyebrow">Chào mừng đến với thế giới của tôi</p>
-    <h1 class="hero-name"></h1>
-    <p class="hero-role">Sinh viên Kỹ thuật — Yêu thiết kế & Công nghệ ✨</p>
+  <!-- ══ PAGE 1: GIỚI THIỆU ══ -->
+  <div id="page-home" class="page active">
+    <section id="gioithieu">
+      <div class="hero-wrapper">
+        <div class="avatar-ring">
+          <div class="avatar-inner">🌸</div>
+        </div>
 
-    <p class="hero-desc">
-      Tôi là sinh viên năm nhất đam mê sáng tạo, yêu thích sự giao thoa giữa công nghệ và nghệ thuật.
-      Luôn tìm kiếm những cách mới để biến ý tưởng thành hiện thực — từ dòng code đến những thiết kế dịu dàng.
-    </p>
+        <p class="section-eyebrow">Chào mừng đến với thế giới của tôi</p>
+        <h1 class="hero-name">Hà Thị Ngọc Linh</h1>
+        <p class="hero-role">Sinh viên Kỹ thuật — Yêu thiết kế & Công nghệ ✨</p>
 
-    <div class="hero-tags">
-      <span class="tag tag-pink">🌸 Sáng tạo</span>
-      <span class="tag tag-blue">💙 Công nghệ</span>
-      <span class="tag tag-lavender">✦ Thiết kế</span>
-      <span class="tag tag-silver">🤖 Robotics</span>
-      <span class="tag tag-pink">📚 Học tập</span>
-      <span class="tag tag-blue">🎵 Âm nhạc</span>
-    </div>
-
-    <div class="btn-group">
-      <a href="#duan" class="btn btn-primary">Xem dự án →</a>
-      <a href="#tongket" class="btn btn-ghost">Tổng kết học kỳ</a>
-    </div>
-
-    <div class="stats-row">
-      <div class="stat-card">
-        <span class="stat-num">6</span>
-        <span class="stat-label">Dự án</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-num">4.0</span>
-        <span class="stat-label">GPA</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-num">3</span>
-        <span class="stat-label">Kỹ năng mới</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-num">∞</span>
-        <span class="stat-label">Đam mê</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ SECTION 2: Dự án ══ -->
-<section id="duan" style="padding-top:5rem;">
-  <p class="section-eyebrow reveal">Hành trình sáng tạo</p>
-  <h2 class="sec-title reveal">Dự án của tôi</h2>
-  <p class="sec-sub reveal">6 bài thực hành CNS&AI: quản lý dữ liệu, tìm kiếm học thuật, viết prompt, hợp tác trực tuyến, AI sáng tạo và đạo đức AI.</p>
-
-  <div class="cards-grid">
-    <!-- BÀI 1 -->
-    <div class="card card-pink reveal" style="animation:cardIn .7s ease-out forwards;opacity:0;animation-delay:0.05s;">
-      <div class="card-icon i1"><i class="fas fa-folder-tree"></i></div>
-      <span class="card-number">Bài 1 · Mục 1.4</span>
-      <h3 class="card-title">Thao tác cơ bản với tệp tin & thư mục</h3>
-      <p class="card-desc">Thực hành quản lý hệ thống tệp trên Windows: tạo, đổi tên, sao chép, di chuyển, xóa và khôi phục từ Recycle Bin.</p>
-      <div class="card-detail">
-        <i class="fas fa-folder"></i> <strong>Cấu trúc tạo:</strong><br/>
-        <span style="font-size:.79rem;">ThucHanh_HaThiNgocLinh/<br/>
-        ├─ TaiLieu/<br/>
-        │&nbsp;&nbsp;├─ GhiChuQuanTrong.txt (Copy)<br/>
-        │&nbsp;&nbsp;└─ DiChuyen.txt (Cut&Paste)<br/>
-        └─ GhiChuQuanTrong.txt</span>
-      </div>
-      <ul class="result-list">
-        <li><i class="fas fa-circle"></i> Tạo thư mục ThucHanh_HaThiNgocLinh, tạo file GhiChu.txt → đổi tên thành GhiChuQuanTrong.txt</li>
-        <li><i class="fas fa-circle"></i> Tạo thư mục con TaiLieu; Copy & Cut tệp vào đó</li>
-        <li><i class="fas fa-circle"></i> Xóa bằng Delete → Recycle Bin; xóa vĩnh viễn bằng Shift+Delete; khôi phục bằng Restore</li>
-      </ul>
-      <div class="card-chips">
-        <span class="chip chip-tool">File Explorer</span>
-        <span class="chip chip-tool">Windows 11</span>
-        <span class="chip chip-result">✔ Hoàn thành</span>
-      </div>
-      <button class="btn-pdf" onclick="openPDF('cnsbai1.pdf','Bài tập 1 – Thao tác tệp tin & thư mục')">
-        <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
-      </button>
-    </div>
-
-    <!-- BÀI 2 -->
-    <div class="card card-blue reveal" style="animation:cardIn .7s ease-out forwards;opacity:0;animation-delay:0.1s;">
-      <div class="card-icon i2"><i class="fas fa-search"></i></div>
-      <span class="card-number">Bài 2 · Mục 2.4</span>
-      <h3 class="card-title">Tìm kiếm & đánh giá thông tin học thuật</h3>
-      <p class="card-desc">Chủ đề "Ngoại ngữ trong giáo dục" – sử dụng toán tử nâng cao trên 4 loại nguồn; đánh giá độ tin cậy theo 5 tiêu chí.</p>
-      <div class="card-detail">
-        <i class="fas fa-quote-right"></i> <strong>Toán tử đã dùng:</strong><br/>
-        <span style="font-size:.79rem;">"Foreign Language Education", site:edu, filetype:pdf,<br/>"AI AND Foreign Language", intitle:research</span>
-      </div>
-      <ul class="result-list">
-        <li><i class="fas fa-circle"></i> Thu thập 10 tài liệu: Google Scholar, ResearchGate, Springer, Tạp chí GD, VNU-JFS, Báo Nhân Dân</li>
-        <li><i class="fas fa-circle"></i> Đánh giá 5 tiêu chí: Tác giả – Cơ quan – Phương pháp – Trích dẫn – Tính cập nhật</li>
-        <li><i class="fas fa-circle"></i> Xếp hạng: 6 nguồn Rất cao, 2 nguồn Cao, 1 nguồn Khá cao, 1 nguồn Trung bình</li>
-      </ul>
-      <div class="card-chips">
-        <span class="chip chip-tool">Google Scholar</span>
-        <span class="chip chip-tool">Springer</span>
-        <span class="chip chip-topic">Ngoại ngữ GD</span>
-        <span class="chip chip-result">10 tài liệu</span>
-      </div>
-      <button class="btn-pdf" onclick="openPDF('cnsbai2.pdf','Bài tập 2 – Tìm kiếm học thuật')">
-        <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
-      </button>
-    </div>
-
-    <!-- BÀI 3 -->
-    <div class="card card-lavender reveal" style="animation:cardIn .7s ease-out forwards;opacity:0;animation-delay:0.15s;">
-      <div class="card-icon i3"><i class="fas fa-pen-fancy"></i></div>
-      <span class="card-number">Bài 3 · Mục 3.4</span>
-      <h3 class="card-title">Viết Prompt hiệu quả cho tác vụ học tập</h3>
-      <p class="card-desc">So sánh 3 cấp độ prompt (cơ bản → cải tiến → nâng cao) trên 3 tác vụ học thuật về Triết học Mác–Lênin với ChatGPT & Gemini.</p>
-      <div class="card-detail">
-        <i class="fas fa-lightbulb"></i> <strong>Kỹ thuật nâng cao:</strong><br/>
-        <span style="font-size:.79rem;">CLEAR Model + Few-shot Prompting + Chain-of-Thought + Định dạng yêu cầu → Kết quả đầy đủ nhất</span>
-      </div>
-      <ul class="result-list">
-        <li><i class="fas fa-circle"></i> Tác vụ 1: Tóm tắt "Chủ nghĩa duy vật biện chứng" → sơ đồ tư duy dạng văn bản</li>
-        <li><i class="fas fa-circle"></i> Tác vụ 2: Giải thích "Phép biện chứng duy vật" → bảng so sánh tư duy biện chứng vs phiến diện</li>
-        <li><i class="fas fa-circle"></i> Tác vụ 3: Tạo 15 câu hỏi ôn tập (5 nhận biết + 5 thông hiểu + 5 vận dụng) kèm đáp án & giải thích</li>
-      </ul>
-      <div class="card-chips">
-        <span class="chip chip-tool">ChatGPT</span>
-        <span class="chip chip-tool">Gemini</span>
-        <span class="chip chip-topic">Prompt Engineering</span>
-        <span class="chip chip-result">CLEAR Model</span>
-      </div>
-      <button class="btn-pdf" onclick="openPDF('cnsbai3.pdf','Bài tập 3 – Viết Prompt hiệu quả')">
-        <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
-      </button>
-    </div>
-
-    <!-- BÀI 4 -->
-    <div class="card card-green reveal" style="animation:cardIn .7s ease-out forwards;opacity:0;animation-delay:0.2s;">
-      <div class="card-icon i4"><i class="fas fa-users-cog"></i></div>
-      <span class="card-number">Bài 4 · Mục 4.4</span>
-      <h3 class="card-title">Hợp tác trực tuyến cho dự án nhóm</h3>
-      <p class="card-desc">Dự án nhóm "Ứng dụng AI trong học ngoại ngữ" – vai trò Trưởng nhóm, điều phối 5 thành viên qua Google Workspace & Zalo.</p>
-      <div class="card-detail">
-        <i class="fas fa-tasks"></i> <strong>Bộ công cụ:</strong><br/>
-        <span style="font-size:.79rem;">Google Sheets (quản lý nhiệm vụ) · Google Docs (cộng tác văn bản) · Google Drive (lưu trữ) · Zalo (giao tiếp)</span>
-      </div>
-      <ul class="result-list">
-        <li><i class="fas fa-circle"></i> Tạo bảng phân công nhiệm vụ với deadline, người phụ trách và trạng thái hoàn thành</li>
-        <li><i class="fas fa-circle"></i> Theo dõi lịch sử chỉnh sửa Google Docs; tương tác thảo luận nhóm qua Zalo</li>
-        <li><i class="fas fa-circle"></i> Phân tích 3 AI nổi bật: ELSA Speak, ChatGPT, Gemini; làm slide & video thuyết trình</li>
-      </ul>
-      <div class="card-chips">
-        <span class="chip chip-tool">Google Docs</span>
-        <span class="chip chip-tool">Google Sheets</span>
-        <span class="chip chip-tool">Zalo</span>
-        <span class="chip chip-result">Trưởng nhóm</span>
-      </div>
-      <button class="btn-pdf" onclick="openPDF('cnsbai4.pdf','Bài tập 4 – Hợp tác trực tuyến')">
-        <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
-      </button>
-    </div>
-
-    <!-- BÀI 5 -->
-    <div class="card card-silver reveal" style="animation:cardIn .7s ease-out forwards;opacity:0;animation-delay:0.25s;">
-      <div class="card-icon i5"><i class="fas fa-paint-brush"></i></div>
-      <span class="card-number">Bài 5 · Mục 5.4</span>
-      <h3 class="card-title">AI tạo sinh hỗ trợ sáng tạo nội dung</h3>
-      <p class="card-desc">Thiết kế Infographic "AI trong Giáo dục: Trợ lý đắc lực của sinh viên" với quy trình 3 bước dùng Gemini, ChatGPT và Canva AI.</p>
-      <div class="card-detail">
-        <i class="fas fa-robot"></i> <strong>Quy trình:</strong><br/>
-        <span style="font-size:.79rem;">Gemini viết nội dung → ChatGPT tạo logo/ảnh AI tools → Canva AI thiết kế layout → Hoàn thiện thủ công</span>
-      </div>
-      <ul class="result-list">
-        <li><i class="fas fa-circle"></i> Gemini cung cấp nội dung bullet-point về 4 lợi ích AI (cá nhân hóa, sửa bài, sáng tạo, tóm tắt tài liệu)</li>
-        <li><i class="fas fa-circle"></i> ChatGPT tạo hình ảnh logo ChatGPT/Gemini/DeepSeek và icon minh họa</li>
-        <li><i class="fas fa-circle"></i> Canva AI xuất 4 mẫu infographic; lựa chọn & chỉnh sửa màu sắc, font, bố cục</li>
-      </ul>
-      <div class="card-chips">
-        <span class="chip chip-tool">Gemini</span>
-        <span class="chip chip-tool">ChatGPT</span>
-        <span class="chip chip-tool">Canva AI</span>
-        <span class="chip chip-result">Infographic</span>
-      </div>
-      <button class="btn-pdf" onclick="openPDF('cnsbai5.pdf','Bài tập 5 – AI tạo sinh nội dung')">
-        <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
-      </button>
-    </div>
-
-    <!-- BÀI 6 -->
-    <div class="card card-pink reveal" style="animation:cardIn .7s ease-out forwards;opacity:0;animation-delay:0.3s;">
-      <div class="card-icon i6"><i class="fas fa-balance-scale"></i></div>
-      <span class="card-number">Bài 6 · Mục 6.4</span>
-      <h3 class="card-title">Sử dụng AI có trách nhiệm trong học thuật</h3>
-      <p class="card-desc">Nghiên cứu chính sách AI của ULIS; thực hành với bài luận học thuật tiếng Anh; xây dựng 7 nguyên tắc cá nhân và infographic.</p>
-      <div class="card-detail">
-        <i class="fas fa-shield-alt"></i> <strong>7 Nguyên tắc vàng:</strong><br/>
-        <span style="font-size:.79rem;">Con người là chủ thể · Kiểm chứng thông tin · Minh bạch · Không sao chép nguyên văn · Giữ bản sắc cá nhân · Tôn trọng bản quyền · Bảo mật dữ liệu</span>
-      </div>
-      <ul class="result-list">
-        <li><i class="fas fa-circle"></i> Nghiên cứu chính sách ULIS: Chấp nhận AI, Minh bạch trong học thuật, Chống gian lận</li>
-        <li><i class="fas fa-circle"></i> Bài luận "Impact of AI on Foreign Language Learning" – sử dụng AI để tạo dàn ý, kiểm chứng và bổ sung quan điểm cá nhân</li>
-        <li><i class="fas fa-circle"></i> Thiết kế infographic "Sử dụng AI có trách nhiệm" với phần NÊN / KHÔNG NÊN / NGUYÊN TẮC VÀNG</li>
-      </ul>
-      <div class="card-chips">
-        <span class="chip chip-topic">Đạo đức AI</span>
-        <span class="chip chip-tool">ULIS Policy</span>
-        <span class="chip chip-result">7 Nguyên tắc</span>
-        <span class="chip chip-result">Infographic</span>
-      </div>
-      <button class="btn-pdf" onclick="openPDF('cnsbai6.pdf','Bài tập 6 – Sử dụng AI có trách nhiệm')">
-        <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- ══ SECTION 3: Tổng kết ══ -->
-<section id="tongket" style="padding-top:5rem;">
-  <p class="section-eyebrow reveal">Nhìn lại hành trình</p>
-  <h2 class="sec-title reveal">Tổng kết</h2>
-  <p class="sec-sub reveal">Những trải nghiệm, kiến thức và kỹ năng đạt được sau 6 bài thực hành CNS&AI</p>
-
-  <div class="summary-wrap">
-
-    <!-- 1. Trải nghiệm & Cảm nhận cá nhân -->
-    <div class="sum-card">
-      <h3><i class="fas fa-heart"></i> Trải nghiệm & Cảm nhận cá nhân</h3>
-      <div class="glass-block pink-border">
-        <p>Trong quá trình thực hiện Portfolio, em đã có cơ hội hệ thống lại toàn bộ những kiến thức và kỹ năng đã học trong môn Công nghệ số. Ban đầu, em gặp một số khó khăn trong việc tổng hợp tài liệu, sắp xếp nội dung và trình bày sản phẩm một cách khoa học. Tuy nhiên, nhờ thực hiện từng bài tập theo từng bước và tận dụng các công cụ số cũng như AI hỗ trợ, em đã hoàn thành Portfolio đầy đủ và rõ ràng hơn.</p>
-      </div>
-      <div class="glass-block lavender-border">
-        <p>Quá trình này giúp em nhận thấy việc lập kế hoạch, quản lý tài liệu và trình bày kết quả là những kỹ năng rất quan trọng trong học tập. Em cũng hiểu rõ hơn về giá trị của việc xây dựng một hồ sơ năng lực số để theo dõi sự tiến bộ của bản thân.</p>
-      </div>
-    </div>
-
-    <!-- 2. Kiến thức & Kỹ năng quan trọng -->
-    <div class="sum-card">
-      <h3><i class="fas fa-graduation-cap"></i> Kiến thức & Kỹ năng quan trọng đã học được</h3>
-      
-      <div class="glass-block pink-border">
-        <p style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">Thông qua 6 bài tập thành phần, em đã học được nhiều kiến thức và kỹ năng thiết thực, bao gồm:</p>
-        <ul class="highlight-list">
-          <li><i class="fas fa-check-circle"></i> Tổ chức và quản lý tệp tin, thư mục một cách khoa học</li>
-          <li><i class="fas fa-check-circle"></i> Tìm kiếm, đánh giá và lựa chọn nguồn thông tin học thuật đáng tin cậy</li>
-          <li><i class="fas fa-check-circle"></i> Xây dựng Prompt hiệu quả để khai thác AI phục vụ học tập</li>
-          <li><i class="fas fa-check-circle"></i> Sử dụng công cụ cộng tác trực tuyến (Google Docs, Drive, Sheets, Zalo)</li>
-          <li><i class="fas fa-check-circle"></i> Kết hợp AI (ChatGPT, Gemini, Canva AI) để sáng tạo nội dung</li>
-          <li><i class="fas fa-check-circle"></i> Hiểu và áp dụng các nguyên tắc sử dụng AI có trách nhiệm</li>
-        </ul>
-      </div>
-
-      <div class="glass-block lavender-border">
-        <p style="font-style:italic;color:var(--sub);font-size:0.92rem;margin:0;">
-          <i class="fas fa-quote-left" style="color:var(--pink);margin-right:0.5rem;"></i>
-          Những kiến thức và kỹ năng này không chỉ hữu ích trong môn học mà còn có thể áp dụng trong quá trình học tập và làm việc sau này.
+        <p class="hero-desc">
+          Tôi là sinh viên năm nhất đam mê sáng tạo, yêu thích sự giao thoa giữa công nghệ và nghệ thuật.
+          Luôn tìm kiếm những cách mới để biến ý tưởng thành hiện thực — từ dòng code đến những thiết kế dịu dàng.
         </p>
-      </div>
-    </div>
 
-    <!-- 3. Điểm tâm đắc & Thách thức -->
-    <div class="sum-card">
-      <h3><i class="fas fa-star"></i> Điểm tâm đắc nhất & Thách thức khi xây dựng Portfolio</h3>
-      
-      <div class="glass-block pink-border">
-        <p style="font-weight:600;color:var(--text);margin-bottom:0.3rem;"><i class="fas fa-gem" style="color:var(--pink-dark);margin-right:0.5rem;"></i>Điều em tâm đắc nhất:</p>
-        <p style="font-size:0.93rem;color:var(--text-b);line-height:1.7;">Được tiếp cận và ứng dụng AI như một công cụ hỗ trợ học tập hiệu quả. Thay vì chỉ sử dụng AI để tìm câu trả lời, em đã học được cách đặt Prompt rõ ràng, kiểm chứng thông tin và chỉnh sửa nội dung để tạo ra sản phẩm mang dấu ấn của bản thân. Điều này giúp em nâng cao khả năng tư duy, làm việc độc lập và sử dụng công nghệ một cách có trách nhiệm.</p>
-      </div>
+        <div class="hero-tags">
+          <span class="tag tag-pink">🌸 Sáng tạo</span>
+          <span class="tag tag-blue">💙 Công nghệ</span>
+          <span class="tag tag-lavender">✦ Thiết kế</span>
+          <span class="tag tag-silver">🤖 Robotics</span>
+          <span class="tag tag-pink">📚 Học tập</span>
+          <span class="tag tag-blue">🎵 Âm nhạc</span>
+        </div>
 
-      <p style="font-weight:600;color:var(--text);margin-bottom:0.5rem;"><i class="fas fa-mountain" style="color:var(--blue);margin-right:0.5rem;"></i>Những thách thức đã gặp phải:</p>
-      <ul class="challenge-list">
-        <li>
-          <div class="ch-icon"><i class="fas fa-search"></i></div>
-          <div class="ch-text">
-            <strong>Lựa chọn nguồn tài liệu đáng tin cậy</strong>
-            <span>Việc đánh giá và chọn lọc thông tin từ nhiều nguồn khác nhau đòi hỏi sự kiên nhẫn và kỹ năng phân tích. Em đã học được cách sử dụng các tiêu chí đánh giá để chọn ra những tài liệu chất lượng nhất.</span>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="showPage('projects')"><i class="fas fa-paper-plane"></i> Xem dự án</button>
+          <button class="btn btn-ghost" onclick="showPage('summary')"><i class="fas fa-chart-bar"></i> Tổng kết</button>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <span class="stat-num">6</span>
+            <span class="stat-label">Dự án</span>
           </div>
-        </li>
-        <li>
-          <div class="ch-icon"><i class="fas fa-layer-group"></i></div>
-          <div class="ch-text">
-            <strong>Tổng hợp nội dung từ nhiều bài tập</strong>
-            <span>Việc tổng hợp và liên kết nội dung từ 6 bài tập khác nhau thành một Portfolio thống nhất, logic và trực quan là một thử thách lớn. Em đã vượt qua bằng cách xây dựng cấu trúc rõ ràng và sắp xếp nội dung một cách có hệ thống.</span>
+          <div class="stat-card">
+            <span class="stat-num">4.0</span>
+            <span class="stat-label">GPA</span>
           </div>
-        </li>
-      </ul>
-      <div class="glass-block lavender-border" style="margin-top:0.8rem;">
-        <p style="font-size:0.9rem;color:var(--sub);font-style:italic;margin:0;">
-          <i class="fas fa-quote-left" style="color:var(--lavender);margin-right:0.4rem;"></i>
-          Nhờ kiên trì hoàn thiện từng phần và nhận được sự hỗ trợ từ các công cụ số, em đã khắc phục được những khó khăn này và hoàn thành Portfolio đúng yêu cầu.
-        </p>
+          <div class="stat-card">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Kỹ năng mới</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">∞</span>
+            <span class="stat-label">Đam mê</span>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <!-- Kết luận - GIỮ NGUYÊN NHƯ ẢNH -->
-    <div class="conclusion-box">
-      <i class="fas fa-flag-checkered"></i>
-      <p>
-        <strong style="color:var(--text);font-size:1.05rem;">Kết luận</strong><br/>
-        Qua quá trình xây dựng Portfolio, em không chỉ củng cố kiến thức về công nghệ số mà còn rèn luyện được kỹ năng học tập chủ động, làm việc nhóm, tư duy phản biện và sử dụng AI một cách hiệu quả, có trách nhiệm. Đây sẽ là nền tảng quan trọng giúp em tiếp tục học tập và phát triển trong môi trường số hiện nay.
-      </p>
-    </div>
-
-    <!-- Skills Cloud -->
-    <div class="reveal" style="width:100%; max-width:720px; margin-top:2rem;">
-      <p style="text-align:center; color:var(--sub); font-size:0.85rem; margin-bottom:1.2rem; letter-spacing:0.05em;">✦ Kỹ năng đã tích lũy ✦</p>
-      <div class="skills-cloud">
-        <span class="skill-bubble sb1">Quản lý tệp tin</span>
-        <span class="skill-bubble sb2">Tìm kiếm học thuật</span>
-        <span class="skill-bubble sb3">Prompt Engineering</span>
-        <span class="skill-bubble sb4">Hợp tác trực tuyến</span>
-        <span class="skill-bubble sb1">AI sáng tạo nội dung</span>
-        <span class="skill-bubble sb2">Canva & Thiết kế</span>
-        <span class="skill-bubble sb3">Đạo đức AI</span>
-        <span class="skill-bubble sb4">Tư duy phản biện</span>
-        <span class="skill-bubble sb1">Làm việc nhóm</span>
-        <span class="skill-bubble sb2">Học tập chủ động</span>
-      </div>
-    </div>
-
+    </section>
   </div>
-</section>
 
-<footer>
-  <p>Made with 💜 · 2025 · Tất cả các dự án thuộc về tác giả</p>
-</footer>
+  <!-- ══ PAGE 2: DỰ ÁN ══ -->
+  <div id="page-projects" class="page">
+    <section id="duan" style="padding-top:5rem;">
+      <p class="section-eyebrow">Hành trình sáng tạo</p>
+      <h2 class="sec-title">Dự án của tôi</h2>
+      <p class="sec-sub">6 bài thực hành CNS&AI: quản lý dữ liệu, tìm kiếm học thuật, viết prompt, hợp tác trực tuyến, AI sáng tạo và đạo đức AI.</p>
+
+      <div class="cards-grid">
+        <!-- BÀI 1 -->
+        <div class="card card-pink">
+          <div class="card-icon i1"><i class="fas fa-folder-tree"></i></div>
+          <span class="card-number">Bài 1 · Mục 1.4</span>
+          <h3 class="card-title">Thao tác cơ bản với tệp tin & thư mục</h3>
+          <p class="card-desc">Thực hành quản lý hệ thống tệp trên Windows: tạo, đổi tên, sao chép, di chuyển, xóa và khôi phục từ Recycle Bin.</p>
+          <div class="card-detail">
+            <i class="fas fa-folder"></i> <strong>Cấu trúc tạo:</strong><br/>
+            <span style="font-size:.79rem;">ThucHanh_HaThiNgocLinh/<br/>
+            ├─ TaiLieu/<br/>
+            │&nbsp;&nbsp;├─ GhiChuQuanTrong.txt (Copy)<br/>
+            │&nbsp;&nbsp;└─ DiChuyen.txt (Cut&Paste)<br/>
+            └─ GhiChuQuanTrong.txt</span>
+          </div>
+          <ul class="result-list">
+            <li><i class="fas fa-circle"></i> Tạo thư mục ThucHanh_HaThiNgocLinh, tạo file GhiChu.txt → đổi tên thành GhiChuQuanTrong.txt</li>
+            <li><i class="fas fa-circle"></i> Tạo thư mục con TaiLieu; Copy & Cut tệp vào đó</li>
+            <li><i class="fas fa-circle"></i> Xóa bằng Delete → Recycle Bin; xóa vĩnh viễn bằng Shift+Delete; khôi phục bằng Restore</li>
+          </ul>
+          <div class="card-chips">
+            <span class="chip chip-tool">File Explorer</span>
+            <span class="chip chip-tool">Windows 11</span>
+            <span class="chip chip-result">✔ Hoàn thành</span>
+          </div>
+          <button class="btn-pdf" onclick="openPDF('cnsbai1.pdf','Bài tập 1 – Thao tác tệp tin & thư mục')">
+            <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+          </button>
+        </div>
+
+        <!-- BÀI 2 -->
+        <div class="card card-blue">
+          <div class="card-icon i2"><i class="fas fa-search"></i></div>
+          <span class="card-number">Bài 2 · Mục 2.4</span>
+          <h3 class="card-title">Tìm kiếm & đánh giá thông tin học thuật</h3>
+          <p class="card-desc">Chủ đề "Ngoại ngữ trong giáo dục" – sử dụng toán tử nâng cao trên 4 loại nguồn; đánh giá độ tin cậy theo 5 tiêu chí.</p>
+          <div class="card-detail">
+            <i class="fas fa-quote-right"></i> <strong>Toán tử đã dùng:</strong><br/>
+            <span style="font-size:.79rem;">"Foreign Language Education", site:edu, filetype:pdf,<br/>"AI AND Foreign Language", intitle:research</span>
+          </div>
+          <ul class="result-list">
+            <li><i class="fas fa-circle"></i> Thu thập 10 tài liệu: Google Scholar, ResearchGate, Springer, Tạp chí GD, VNU-JFS, Báo Nhân Dân</li>
+            <li><i class="fas fa-circle"></i> Đánh giá 5 tiêu chí: Tác giả – Cơ quan – Phương pháp – Trích dẫn – Tính cập nhật</li>
+            <li><i class="fas fa-circle"></i> Xếp hạng: 6 nguồn Rất cao, 2 nguồn Cao, 1 nguồn Khá cao, 1 nguồn Trung bình</li>
+          </ul>
+          <div class="card-chips">
+            <span class="chip chip-tool">Google Scholar</span>
+            <span class="chip chip-tool">Springer</span>
+            <span class="chip chip-topic">Ngoại ngữ GD</span>
+            <span class="chip chip-result">10 tài liệu</span>
+          </div>
+          <button class="btn-pdf" onclick="openPDF('cnsbai2.pdf','Bài tập 2 – Tìm kiếm học thuật')">
+            <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+          </button>
+        </div>
+
+        <!-- BÀI 3 -->
+        <div class="card card-lavender">
+          <div class="card-icon i3"><i class="fas fa-pen-fancy"></i></div>
+          <span class="card-number">Bài 3 · Mục 3.4</span>
+          <h3 class="card-title">Viết Prompt hiệu quả cho tác vụ học tập</h3>
+          <p class="card-desc">So sánh 3 cấp độ prompt (cơ bản → cải tiến → nâng cao) trên 3 tác vụ học thuật về Triết học Mác–Lênin với ChatGPT & Gemini.</p>
+          <div class="card-detail">
+            <i class="fas fa-lightbulb"></i> <strong>Kỹ thuật nâng cao:</strong><br/>
+            <span style="font-size:.79rem;">CLEAR Model + Few-shot Prompting + Chain-of-Thought + Định dạng yêu cầu → Kết quả đầy đủ nhất</span>
+          </div>
+          <ul class="result-list">
+            <li><i class="fas fa-circle"></i> Tác vụ 1: Tóm tắt "Chủ nghĩa duy vật biện chứng" → sơ đồ tư duy dạng văn bản</li>
+            <li><i class="fas fa-circle"></i> Tác vụ 2: Giải thích "Phép biện chứng duy vật" → bảng so sánh tư duy biện chứng vs phiến diện</li>
+            <li><i class="fas fa-circle"></i> Tác vụ 3: Tạo 15 câu hỏi ôn tập (5 nhận biết + 5 thông hiểu + 5 vận dụng) kèm đáp án & giải thích</li>
+          </ul>
+          <div class="card-chips">
+            <span class="chip chip-tool">ChatGPT</span>
+            <span class="chip chip-tool">Gemini</span>
+            <span class="chip chip-topic">Prompt Engineering</span>
+            <span class="chip chip-result">CLEAR Model</span>
+          </div>
+          <button class="btn-pdf" onclick="openPDF('cnsbai3.pdf','Bài tập 3 – Viết Prompt hiệu quả')">
+            <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+          </button>
+        </div>
+
+        <!-- BÀI 4 -->
+        <div class="card card-green">
+          <div class="card-icon i4"><i class="fas fa-users-cog"></i></div>
+          <span class="card-number">Bài 4 · Mục 4.4</span>
+          <h3 class="card-title">Hợp tác trực tuyến cho dự án nhóm</h3>
+          <p class="card-desc">Dự án nhóm "Ứng dụng AI trong học ngoại ngữ" – vai trò Trưởng nhóm, điều phối 5 thành viên qua Google Workspace & Zalo.</p>
+          <div class="card-detail">
+            <i class="fas fa-tasks"></i> <strong>Bộ công cụ:</strong><br/>
+            <span style="font-size:.79rem;">Google Sheets (quản lý nhiệm vụ) · Google Docs (cộng tác văn bản) · Google Drive (lưu trữ) · Zalo (giao tiếp)</span>
+          </div>
+          <ul class="result-list">
+            <li><i class="fas fa-circle"></i> Tạo bảng phân công nhiệm vụ với deadline, người phụ trách và trạng thái hoàn thành</li>
+            <li><i class="fas fa-circle"></i> Theo dõi lịch sử chỉnh sửa Google Docs; tương tác thảo luận nhóm qua Zalo</li>
+            <li><i class="fas fa-circle"></i> Phân tích 3 AI nổi bật: ELSA Speak, ChatGPT, Gemini; làm slide & video thuyết trình</li>
+          </ul>
+          <div class="card-chips">
+            <span class="chip chip-tool">Google Docs</span>
+            <span class="chip chip-tool">Google Sheets</span>
+            <span class="chip chip-tool">Zalo</span>
+            <span class="chip chip-result">Trưởng nhóm</span>
+          </div>
+          <button class="btn-pdf" onclick="openPDF('cnsbai4.pdf','Bài tập 4 – Hợp tác trực tuyến')">
+            <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+          </button>
+        </div>
+
+        <!-- BÀI 5 -->
+        <div class="card card-silver">
+          <div class="card-icon i5"><i class="fas fa-paint-brush"></i></div>
+          <span class="card-number">Bài 5 · Mục 5.4</span>
+          <h3 class="card-title">AI tạo sinh hỗ trợ sáng tạo nội dung</h3>
+          <p class="card-desc">Thiết kế Infographic "AI trong Giáo dục: Trợ lý đắc lực của sinh viên" với quy trình 3 bước dùng Gemini, ChatGPT và Canva AI.</p>
+          <div class="card-detail">
+            <i class="fas fa-robot"></i> <strong>Quy trình:</strong><br/>
+            <span style="font-size:.79rem;">Gemini viết nội dung → ChatGPT tạo logo/ảnh AI tools → Canva AI thiết kế layout → Hoàn thiện thủ công</span>
+          </div>
+          <ul class="result-list">
+            <li><i class="fas fa-circle"></i> Gemini cung cấp nội dung bullet-point về 4 lợi ích AI (cá nhân hóa, sửa bài, sáng tạo, tóm tắt tài liệu)</li>
+            <li><i class="fas fa-circle"></i> ChatGPT tạo hình ảnh logo ChatGPT/Gemini/DeepSeek và icon minh họa</li>
+            <li><i class="fas fa-circle"></i> Canva AI xuất 4 mẫu infographic; lựa chọn & chỉnh sửa màu sắc, font, bố cục</li>
+          </ul>
+          <div class="card-chips">
+            <span class="chip chip-tool">Gemini</span>
+            <span class="chip chip-tool">ChatGPT</span>
+            <span class="chip chip-tool">Canva AI</span>
+            <span class="chip chip-result">Infographic</span>
+          </div>
+          <button class="btn-pdf" onclick="openPDF('cnsbai5.pdf','Bài tập 5 – AI tạo sinh nội dung')">
+            <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+          </button>
+        </div>
+
+        <!-- BÀI 6 -->
+        <div class="card card-pink">
+          <div class="card-icon i6"><i class="fas fa-balance-scale"></i></div>
+          <span class="card-number">Bài 6 · Mục 6.4</span>
+          <h3 class="card-title">Sử dụng AI có trách nhiệm trong học thuật</h3>
+          <p class="card-desc">Nghiên cứu chính sách AI của ULIS; thực hành với bài luận học thuật tiếng Anh; xây dựng 7 nguyên tắc cá nhân và infographic.</p>
+          <div class="card-detail">
+            <i class="fas fa-shield-alt"></i> <strong>7 Nguyên tắc vàng:</strong><br/>
+            <span style="font-size:.79rem;">Con người là chủ thể · Kiểm chứng thông tin · Minh bạch · Không sao chép nguyên văn · Giữ bản sắc cá nhân · Tôn trọng bản quyền · Bảo mật dữ liệu</span>
+          </div>
+          <ul class="result-list">
+            <li><i class="fas fa-circle"></i> Nghiên cứu chính sách ULIS: Chấp nhận AI, Minh bạch trong học thuật, Chống gian lận</li>
+            <li><i class="fas fa-circle"></i> Bài luận "Impact of AI on Foreign Language Learning" – sử dụng AI để tạo dàn ý, kiểm chứng và bổ sung quan điểm cá nhân</li>
+            <li><i class="fas fa-circle"></i> Thiết kế infographic "Sử dụng AI có trách nhiệm" với phần NÊN / KHÔNG NÊN / NGUYÊN TẮC VÀNG</li>
+          </ul>
+          <div class="card-chips">
+            <span class="chip chip-topic">Đạo đức AI</span>
+            <span class="chip chip-tool">ULIS Policy</span>
+            <span class="chip chip-result">7 Nguyên tắc</span>
+            <span class="chip chip-result">Infographic</span>
+          </div>
+          <button class="btn-pdf" onclick="openPDF('cnsbai6.pdf','Bài tập 6 – Sử dụng AI có trách nhiệm')">
+            <i class="fas fa-file-pdf"></i> Xem báo cáo PDF
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ══ PAGE 3: TỔNG KẾT ══ -->
+  <div id="page-summary" class="page">
+    <section id="tongket" style="padding-top:5rem;">
+      <h2 class="sec-title">Tổng kết</h2>
+      <p class="sec-sub">Những trải nghiệm, kiến thức và kỹ năng đạt được sau 6 bài thực hành CNS&AI</p>
+
+      <div class="summary-wrap">
+
+        <div class="sum-card">
+          <h3><i class="fas fa-heart"></i> Trải nghiệm và Cảm nhận cá nhân</h3>
+          <div class="glass-block pink-border">
+            <p>Trong quá trình thực hiện Portfolio, em đã có cơ hội hệ thống lại toàn bộ những kiến thức và kỹ năng đã học trong môn Công nghệ số. Ban đầu, em gặp một số khó khăn trong việc tổng hợp tài liệu, sắp xếp nội dung và trình bày sản phẩm một cách khoa học. Tuy nhiên, nhờ thực hiện từng bài tập theo từng bước và tận dụng các công cụ số cũng như AI hỗ trợ, em đã hoàn thành Portfolio đầy đủ và rõ ràng hơn.</p>
+          </div>
+          <div class="glass-block lavender-border">
+            <p>Quá trình này giúp em nhận thấy việc lập kế hoạch, quản lý tài liệu và trình bày kết quả là những kỹ năng rất quan trọng trong học tập. Em cũng hiểu rõ hơn về giá trị của việc xây dựng một hồ sơ năng lực số để theo dõi sự tiến bộ của bản thân.</p>
+          </div>
+        </div>
+
+        <div class="sum-card">
+          <h3><i class="fas fa-graduation-cap"></i> Kiến thức và Kỹ năng quan trọng đã học được</h3>
+          
+          <div class="glass-block pink-border">
+            <p style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">Thông qua 6 bài tập thành phần, em đã học được nhiều kiến thức và kỹ năng thiết thực, bao gồm:</p>
+            <ul class="highlight-list">
+              <li><i class="fas fa-check-circle"></i> Tổ chức và quản lý tệp tin, thư mục một cách khoa học</li>
+              <li><i class="fas fa-check-circle"></i> Tìm kiếm, đánh giá và lựa chọn nguồn thông tin học thuật đáng tin cậy</li>
+              <li><i class="fas fa-check-circle"></i> Xây dựng Prompt hiệu quả để khai thác AI phục vụ học tập</li>
+              <li><i class="fas fa-check-circle"></i> Sử dụng công cụ cộng tác trực tuyến (Google Docs, Drive, Sheets, Zalo)</li>
+              <li><i class="fas fa-check-circle"></i> Kết hợp AI (ChatGPT, Gemini, Canva AI) để sáng tạo nội dung</li>
+              <li><i class="fas fa-check-circle"></i> Hiểu và áp dụng các nguyên tắc sử dụng AI có trách nhiệm</li>
+            </ul>
+          </div>
+
+          <div class="glass-block lavender-border">
+            <p style="font-style:italic;color:var(--sub);font-size:0.92rem;margin:0;">
+              <i class="fas fa-quote-left" style="color:var(--pink);margin-right:0.5rem;"></i>
+              Những kiến thức và kỹ năng này không chỉ hữu ích trong môn học mà còn có thể áp dụng trong quá trình học tập và làm việc sau này.
+            </p>
+          </div>
+        </div>
+
+        <div class="sum-card">
+          <h3><i class="fas fa-star"></i> Điểm tâm đắc nhất và Thách thức khi xây dựng Portfolio</h3>
+          
+          <div class="glass-block pink-border">
+            <p style="font-weight:600;color:var(--text);margin-bottom:0.3rem;"><i class="fas fa-gem" style="color:var(--pink-dark);margin-right:0.5rem;"></i>Điều em tâm đắc nhất:</p>
+            <p style="font-size:0.93rem;color:var(--text-b);line-height:1.7;">Được tiếp cận và ứng dụng AI như một công cụ hỗ trợ học tập hiệu quả. Thay vì chỉ sử dụng AI để tìm câu trả lời, em đã học được cách đặt Prompt rõ ràng, kiểm chứng thông tin và chỉnh sửa nội dung để tạo ra sản phẩm mang dấu ấn của bản thân. Điều này giúp em nâng cao khả năng tư duy, làm việc độc lập và sử dụng công nghệ một cách có trách nhiệm.</p>
+          </div>
+
+          <p style="font-weight:600;color:var(--text);margin-bottom:0.5rem;"><i class="fas fa-mountain" style="color:var(--blue);margin-right:0.5rem;"></i>Những thách thức đã gặp phải:</p>
+          <ul class="challenge-list">
+            <li>
+              <div class="ch-icon"><i class="fas fa-search"></i></div>
+              <div class="ch-text">
+                <strong>Lựa chọn nguồn tài liệu đáng tin cậy</strong>
+                <span>Việc đánh giá và chọn lọc thông tin từ nhiều nguồn khác nhau đòi hỏi sự kiên nhẫn và kỹ năng phân tích. Em đã học được cách sử dụng các tiêu chí đánh giá để chọn ra những tài liệu chất lượng nhất.</span>
+              </div>
+            </li>
+            <li>
+              <div class="ch-icon"><i class="fas fa-layer-group"></i></div>
+              <div class="ch-text">
+                <strong>Tổng hợp nội dung từ nhiều bài tập</strong>
+                <span>Việc tổng hợp và liên kết nội dung từ 6 bài tập khác nhau thành một Portfolio thống nhất, logic và trực quan là một thử thách lớn. Em đã vượt qua bằng cách xây dựng cấu trúc rõ ràng và sắp xếp nội dung một cách có hệ thống.</span>
+              </div>
+            </li>
+          </ul>
+          <div class="glass-block lavender-border" style="margin-top:0.8rem;">
+            <p style="font-size:0.9rem;color:var(--sub);font-style:italic;margin:0;">
+              <i class="fas fa-quote-left" style="color:var(--lavender);margin-right:0.4rem;"></i>
+              Nhờ kiên trì hoàn thiện từng phần và nhận được sự hỗ trợ từ các công cụ số, em đã khắc phục được những khó khăn này và hoàn thành Portfolio đúng yêu cầu.
+            </p>
+          </div>
+        </div>
+
+        <div class="conclusion-box">
+          <i class="fas fa-flag-checkered"></i>
+          <p>
+            <strong style="color:var(--text);font-size:1.05rem;">Kết luận</strong><br/>
+            Qua quá trình xây dựng Portfolio, em không chỉ củng cố kiến thức về công nghệ số mà còn rèn luyện được kỹ năng học tập chủ động, làm việc nhóm, tư duy phản biện và sử dụng AI một cách hiệu quả, có trách nhiệm. Đây sẽ là nền tảng quan trọng giúp em tiếp tục học tập và phát triển trong môi trường số hiện nay.
+          </p>
+        </div>
+
+        <div style="width:100%; max-width:720px; margin-top:2rem;">
+          <p style="text-align:center; color:var(--sub); font-size:0.85rem; margin-bottom:1.2rem; letter-spacing:0.05em;">✦ Kỹ năng đã tích lũy ✦</p>
+          <div class="skills-cloud">
+            <span class="skill-bubble sb1">Quản lý tệp tin</span>
+            <span class="skill-bubble sb2">Tìm kiếm học thuật</span>
+            <span class="skill-bubble sb3">Prompt Engineering</span>
+            <span class="skill-bubble sb4">Hợp tác trực tuyến</span>
+            <span class="skill-bubble sb1">AI sáng tạo nội dung</span>
+            <span class="skill-bubble sb2">Canva & Thiết kế</span>
+            <span class="skill-bubble sb3">Đạo đức AI</span>
+            <span class="skill-bubble sb4">Tư duy phản biện</span>
+            <span class="skill-bubble sb1">Làm việc nhóm</span>
+            <span class="skill-bubble sb2">Học tập chủ động</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>Made with 💜 · 2025 · Tất cả các dự án thuộc về tác giả</p>
+  </footer>
+
+</div>
 
 <script>
+  /* ── PAGE NAVIGATION ── */
+  function showPage(pageId) {
+    // Ẩn tất cả các page
+    document.querySelectorAll('.page').forEach(p => {
+      p.classList.remove('active');
+    });
+    
+    // Hiện page được chọn
+    const target = document.getElementById('page-' + pageId);
+    if (target) {
+      target.classList.add('active');
+    }
+    
+    // Cập nhật active cho nav links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.classList.remove('active');
+      if (link.dataset.page === pageId) {
+        link.classList.add('active');
+      }
+    });
+    
+    // Scroll lên đầu trang
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   /* ── Sparkle particles ── */
   const pl = document.getElementById('particles');
   const colors = ['#f0b0b8','#7ac8dd','#c8b0e8','#7aa8d0','#f8d0d4'];
@@ -1288,29 +1284,6 @@
     tc.appendChild(dot);
     dot.animate([{opacity:0.8,transform:'scale(1)'},{opacity:0,transform:'scale(0)'}],{duration:700,easing:'ease-out'}).onfinish = ()=>dot.remove();
   }, 40);
-
-  /* ── Scroll reveal ── */
-  const reveals = document.querySelectorAll('.reveal');
-  const obs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting) e.target.classList.add('visible');
-    });
-  },{threshold:0.12});
-  reveals.forEach(el=>obs.observe(el));
-
-  /* ── Nav active on scroll ── */
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll',()=>{
-    let cur='';
-    sections.forEach(s=>{
-      if(window.scrollY>=s.offsetTop-160) cur=s.id;
-    });
-    navLinks.forEach(a=>{
-      a.classList.remove('active');
-      if(a.getAttribute('href')==='#'+cur) a.classList.add('active');
-    });
-  },{passive:true});
 
   /* ── PDF MODAL ── */
   function openPDF(filename, title){
