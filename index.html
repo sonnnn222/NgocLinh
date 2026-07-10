@@ -22,6 +22,7 @@
     --silver:  #7aa8d0;
     --text:    #3d2a4a;
     --sub:     #6a5580;
+    --text-b:  #5a4f68;
   }
 
   body {
@@ -292,17 +293,18 @@
     opacity: 0;
   }
   .stat-card {
-    background: rgba(253,248,246,0.85);
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(12px);
-    border: 2px solid rgba(200,176,232,0.5);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.30);
     border-radius: 20px;
     padding: 1.2rem 1.8rem;
     text-align: center;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 20px rgba(200,176,232,0.06);
     min-width: 110px;
     transition: transform 0.25s;
   }
-  .stat-card:hover { transform: translateY(-4px); }
+  .stat-card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.25); }
   .stat-num {
     font-family: 'Playfair Display', serif;
     font-size: 2rem;
@@ -333,7 +335,7 @@
     font-weight: 300;
   }
 
-  /* ── Project Cards (ĐÃ THAY ĐỔI) ── */
+  /* ── Project Cards (GLASS MỜ NHƯ KẾT LUẬN) ── */
   #duanSection { background: transparent; }
   .cards-grid {
     display: grid;
@@ -343,23 +345,25 @@
     width: 100%;
   }
   .card {
-    background: rgba(253,248,246,0.82);
-    backdrop-filter: blur(16px);
-    border: 2px solid rgba(200,176,232,0.5);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.30);
     border-radius: 24px;
     padding: 1.8rem;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
     position: relative;
     overflow: hidden;
     cursor: default;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 4px 20px rgba(200,176,232,0.06);
   }
   .card::before {
     content:'';
     position:absolute;
     top:0; left:0; right:0;
-    height:5px;
+    height:4px;
     border-radius:24px 24px 0 0;
     transition: opacity 0.3s;
   }
@@ -368,7 +372,11 @@
   .card-lavender::before{ background: linear-gradient(90deg, var(--lavender), var(--pink)); }
   .card-silver::before  { background: linear-gradient(90deg, var(--silver), var(--blue)); }
   .card-green::before   { background: linear-gradient(90deg, #a8c898, var(--pink-light)); }
-  .card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(200,176,232,0.2); }
+  .card:hover { 
+    transform: translateY(-8px); 
+    background: rgba(255, 255, 255, 0.30);
+    box-shadow: 0 12px 40px rgba(200,176,232,0.12);
+  }
 
   .card-icon {
     display: inline-flex;
@@ -393,12 +401,14 @@
     display: inline-block;
     font-size: 0.72rem;
     font-weight: 800;
-    background: linear-gradient(130deg, #fde6ed, #ffe4f0);
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     color: #b0507a;
     padding: 0.12rem 0.7rem;
     border-radius: 20px;
     margin-bottom: 0.4rem;
-    border: 1px solid rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.20);
     align-self: flex-start;
   }
   .card-title {
@@ -417,7 +427,9 @@
   .card-detail {
     font-size: 0.82rem;
     color: var(--text);
-    background: rgba(200,176,232,0.12);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     padding: 0.6rem 0.9rem;
     border-radius: 14px;
     border-left: 3px solid var(--blue);
@@ -457,11 +469,14 @@
     padding: 0.18rem 0.85rem;
     border-radius: 20px;
     font-weight: 700;
-    border: 1px solid rgba(255,255,255,0.4);
+    border: 1px solid rgba(255,255,255,0.20);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
   }
-  .chip-tool { background: rgba(122,200,221,0.25); color: #1a6a80; }
-  .chip-topic { background: rgba(240,176,184,0.25); color: #7a3848; }
-  .chip-result { background: rgba(168,218,186,0.3); color: #2a6a4a; }
+  .chip-tool { color: #1a6a80; }
+  .chip-topic { color: #7a3848; }
+  .chip-result { color: #2a6a4a; }
 
   .btn-pdf {
     display: inline-flex;
@@ -472,15 +487,17 @@
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 700;
-    background: linear-gradient(130deg, rgba(200,176,232,0.3), rgba(122,200,221,0.3));
-    border: 1.5px solid rgba(255,255,255,0.55);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.25);
     color: var(--text);
     cursor: pointer;
     transition: all 0.3s;
     font-family: 'Be Vietnam Pro', sans-serif;
   }
   .btn-pdf:hover {
-    background: linear-gradient(130deg, rgba(200,176,232,0.55), rgba(122,200,221,0.55));
+    background: rgba(255, 255, 255, 0.30);
     transform: translateY(-2px);
   }
   .btn-pdf i { color: var(--pink); }
@@ -570,73 +587,190 @@
     background: rgba(248,246,255,0.7);
   }
 
-  /* ── Timeline (Tổng kết) ── */
+  /* ── Summary (GLASS MỜ NHƯ KẾT LUẬN) ── */
   #tongket { background: transparent; }
-  .timeline-wrap {
-    max-width: 720px;
+  
+  .summary-wrap {
+    max-width: 900px;
     width: 100%;
   }
-  .timeline-item {
-    display: flex;
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
+
+  .sum-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.30);
+    border-radius: 24px;
+    padding: 2rem 2.2rem;
+    margin-bottom: 1.8rem;
+    box-shadow: 0 4px 20px rgba(200,176,232,0.06);
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    animation: cardIn 0.7s ease-out forwards;
     opacity: 0;
-    transform: translateX(-24px);
-    transition: opacity 0.7s, transform 0.7s;
   }
-  .timeline-item.visible {
-    opacity: 1; transform: translateX(0);
+  .sum-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.30);
+    box-shadow: 0 12px 40px rgba(200,176,232,0.12);
   }
-  .tl-dot-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
-    padding-top: 4px;
-  }
-  .tl-dot {
-    width: 16px; height: 16px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--pink), var(--lavender));
-    box-shadow: 0 0 16px rgba(200,176,232,0.9);
-    flex-shrink: 0;
-  }
-  .tl-line {
-    flex: 1;
-    width: 3px;
-    background: linear-gradient(180deg, rgba(200,176,232,0.9), rgba(122,200,221,0.3));
-    margin-top: 6px;
-  }
-  .tl-body {
-    background: rgba(253,248,246,0.82);
-    backdrop-filter: blur(16px);
-    border: 2px solid rgba(200,176,232,0.5);
-    border-radius: 20px;
-    padding: 1.4rem 1.6rem;
-    flex: 1;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    transition: transform 0.25s;
-  }
-  .tl-body:hover { transform: translateX(6px); }
-  .tl-tag {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #b088c0;
-    margin-bottom: 0.4rem;
-  }
-  .tl-title {
+  .sum-card:nth-child(1){ animation-delay: 0.05s; }
+  .sum-card:nth-child(2){ animation-delay: 0.1s; }
+  .sum-card:nth-child(3){ animation-delay: 0.15s; }
+  .sum-card:nth-child(4){ animation-delay: 0.2s; }
+
+  .sum-card h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: var(--text);
-    margin-bottom: 0.4rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
   }
-  .tl-desc {
-    font-size: 0.86rem;
-    color: var(--sub);
+  .sum-card h3 i {
+    padding: 0.3rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.20);
+    color: var(--pink-dark);
+    font-size: 1.1rem;
+  }
+
+  .sum-card p {
+    font-size: 0.95rem;
+    color: var(--text-b);
+    line-height: 1.85;
+    margin-bottom: 0.8rem;
+  }
+
+  /* GLASS BLOCK CON - MỜ NHƯ KẾT LUẬN */
+  .glass-block {
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    transition: background 0.3s;
+  }
+  .glass-block:hover {
+    background: rgba(255, 255, 255, 0.20);
+  }
+  .glass-block p {
+    font-size: 0.93rem;
+    color: var(--text-b);
     line-height: 1.7;
+    margin: 0;
+  }
+  .glass-block.pink-border {
+    border-left: 4px solid var(--pink);
+  }
+  .glass-block.lavender-border {
+    border-left: 4px solid var(--lavender);
+  }
+
+  .highlight-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 0.8rem;
+    margin-top: 0.5rem;
+  }
+  .highlight-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.88rem;
+    color: var(--text-b);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: background 0.3s;
+  }
+  .highlight-list li:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+  .highlight-list li i {
+    color: #4a9a6a;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .challenge-list {
+    list-style: none;
+    margin-top: 0.5rem;
+  }
+  .challenge-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.6rem 0;
+    font-size: 0.9rem;
+    color: var(--text-b);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  }
+  .challenge-list li:last-child { border-bottom: none; }
+  .challenge-list li .ch-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.15);
+    color: #b05a80;
+    margin-top: 0.05rem;
+  }
+  .challenge-list li .ch-text strong {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+  }
+  .challenge-list li .ch-text span {
+    font-size: 0.83rem;
+    color: var(--sub);
+    line-height: 1.6;
+  }
+
+  /* KẾT LUẬN - GIỮ NGUYÊN THÔNG SỐ NÀY */
+  .conclusion-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.30);
+    border-radius: 20px;
+    padding: 1.8rem 2rem;
+    text-align: center;
+    margin-top: 1rem;
+    box-shadow: 0 4px 20px rgba(200,176,232,0.06);
+    animation: cardIn 0.7s ease-out 0.25s forwards;
+    opacity: 0;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  .conclusion-box:hover {
+    background: rgba(255, 255, 255, 0.30);
+    box-shadow: 0 12px 40px rgba(200,176,232,0.12);
+  }
+  .conclusion-box p {
+    font-size: 1rem;
+    color: var(--text-b);
+    line-height: 1.9;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .conclusion-box i {
+    color: var(--pink);
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 0.8rem;
   }
 
   /* ── Skills bubbles ── */
@@ -646,49 +780,33 @@
     gap: 0.75rem;
     justify-content: center;
     max-width: 640px;
-    margin: 2.5rem auto 0;
+    margin: 2rem auto 0;
   }
   .skill-bubble {
     padding: 0.5rem 1.2rem;
     border-radius: 50px;
     font-size: 0.85rem;
     font-weight: 500;
-    border: 2px solid transparent;
+    border: 1px solid rgba(255, 255, 255, 0.20);
     cursor: default;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
     animation: floatBubble ease-in-out infinite;
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
   }
-  .skill-bubble:hover { transform: translateY(-4px) scale(1.05); }
-  .sb1 { background: rgba(240,176,184,0.7); border-color: #e08890; color: #7a3848; animation-duration: 4s; }
-  .sb2 { background: rgba(122,200,221,0.7); border-color: #5ab0c8; color: #1a6a80; animation-duration: 5s; animation-delay: 0.5s; }
-  .sb3 { background: rgba(200,176,232,0.7); border-color: #b090d0; color: #4a3870; animation-duration: 3.5s; animation-delay: 1s; }
-  .sb4 { background: rgba(122,168,208,0.7); border-color: #6090b8; color: #1a4870; animation-duration: 4.5s; animation-delay: 0.25s; }
+  .skill-bubble:hover { 
+    transform: translateY(-4px) scale(1.05); 
+    background: rgba(255, 255, 255, 0.25);
+  }
+  .sb1 { color: #7a3848; animation-duration: 4s; }
+  .sb2 { color: #1a6a80; animation-duration: 5s; animation-delay: 0.5s; }
+  .sb3 { color: #4a3870; animation-duration: 3.5s; animation-delay: 1s; }
+  .sb4 { color: #1a4870; animation-duration: 4.5s; animation-delay: 0.25s; }
   @keyframes floatBubble {
     0%,100% { transform: translateY(0); }
     50%      { transform: translateY(-5px); }
   }
-
-  /* ── Quote box ── */
-  .quote-box {
-    margin: 3.5rem auto 0;
-    max-width: 520px;
-    background: linear-gradient(135deg, rgba(240,176,184,0.6), rgba(200,176,232,0.6));
-    border: 2px solid rgba(200,176,232,0.6);
-    border-radius: 24px;
-    padding: 2rem 2.4rem;
-    text-align: center;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 4px 24px rgba(200,176,232,0.15);
-  }
-  .quote-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--text);
-    line-height: 1.7;
-    margin-bottom: 0.75rem;
-  }
-  .quote-author { font-size: 0.8rem; color: var(--sub); }
 
   /* ── Footer ── */
   footer {
@@ -734,6 +852,11 @@
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: rgba(200,176,232,0.8); border-radius: 3px; }
 
+  @media (max-width: 768px) {
+    .highlight-list {
+      grid-template-columns: 1fr;
+    }
+  }
   @media (max-width: 600px) {
     nav { padding: 0 1rem; }
     .nav-logo { font-size: 1rem; }
@@ -743,6 +866,9 @@
     .modal-box { max-width: 100%; margin: 0.5rem; }
     .pdf-frame-wrap { min-height: 300px; }
     .pdf-frame-wrap iframe { min-height: 300px; }
+    .sum-card { padding: 1.5rem; }
+    .conclusion-box { padding: 1.5rem; }
+    .glass-block { padding: 1rem; }
   }
 </style>
 </head>
@@ -851,8 +977,9 @@
   </div>
 </section>
 
-<!-- ══ SECTION 2: Dự án (ĐÃ THAY ĐỔI) ══ -->
+<!-- ══ SECTION 2: Dự án ══ -->
 <section id="duan" style="padding-top:5rem;">
+  <p class="section-eyebrow reveal">Hành trình sáng tạo</p>
   <h2 class="sec-title reveal">Dự án của tôi</h2>
   <p class="sec-sub reveal">6 bài thực hành CNS&AI: quản lý dữ liệu, tìm kiếm học thuật, viết prompt, hợp tác trực tuyến, AI sáng tạo và đạo đức AI.</p>
 
@@ -861,7 +988,7 @@
     <div class="card card-pink reveal" style="animation:cardIn .7s ease-out forwards;opacity:0;animation-delay:0.05s;">
       <div class="card-icon i1"><i class="fas fa-folder-tree"></i></div>
       <span class="card-number">Bài 1 · Mục 1.4</span>
-      <h3 class="card-title">Thao tác cơ bản với tệp tin và thư mục</h3>
+      <h3 class="card-title">Thao tác cơ bản với tệp tin & thư mục</h3>
       <p class="card-desc">Thực hành quản lý hệ thống tệp trên Windows: tạo, đổi tên, sao chép, di chuyển, xóa và khôi phục từ Recycle Bin.</p>
       <div class="card-detail">
         <i class="fas fa-folder"></i> <strong>Cấu trúc tạo:</strong><br/>
@@ -890,7 +1017,7 @@
     <div class="card card-blue reveal" style="animation:cardIn .7s ease-out forwards;opacity:0;animation-delay:0.1s;">
       <div class="card-icon i2"><i class="fas fa-search"></i></div>
       <span class="card-number">Bài 2 · Mục 2.4</span>
-      <h3 class="card-title">Tìm kiếm và đánh giá thông tin học thuật</h3>
+      <h3 class="card-title">Tìm kiếm & đánh giá thông tin học thuật</h3>
       <p class="card-desc">Chủ đề "Ngoại ngữ trong giáo dục" – sử dụng toán tử nâng cao trên 4 loại nguồn; đánh giá độ tin cậy theo 5 tiêu chí.</p>
       <div class="card-detail">
         <i class="fas fa-quote-right"></i> <strong>Toán tử đã dùng:</strong><br/>
@@ -1021,70 +1148,106 @@
 <!-- ══ SECTION 3: Tổng kết ══ -->
 <section id="tongket" style="padding-top:5rem;">
   <p class="section-eyebrow reveal">Nhìn lại hành trình</p>
-  <h2 class="sec-title reveal">Tổng kết học kỳ</h2>
-  <p class="sec-sub reveal">Những gì tôi đã học, trải nghiệm và trưởng thành trong kỳ học này</p>
+  <h2 class="sec-title reveal">Tổng kết</h2>
+  <p class="sec-sub reveal">Những trải nghiệm, kiến thức và kỹ năng đạt được sau 6 bài thực hành CNS&AI</p>
 
-  <div class="timeline-wrap">
-    <div class="timeline-item">
-      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
-      <div class="tl-body">
-        <p class="tl-tag">Tháng 9 · Bắt đầu</p>
-        <h4 class="tl-title">Làm quen với môi trường đại học</h4>
-        <p class="tl-desc">Bước vào ngôi trường mới với bao bỡ ngỡ và hào hứng. Học cách tổ chức tài liệu, quản lý thời gian và xây dựng thói quen học tập tích cực.</p>
+  <div class="summary-wrap">
+
+    <!-- 1. Trải nghiệm & Cảm nhận cá nhân -->
+    <div class="sum-card">
+      <h3><i class="fas fa-heart"></i> Trải nghiệm & Cảm nhận cá nhân</h3>
+      <div class="glass-block pink-border">
+        <p>Trong quá trình thực hiện Portfolio, em đã có cơ hội hệ thống lại toàn bộ những kiến thức và kỹ năng đã học trong môn Công nghệ số. Ban đầu, em gặp một số khó khăn trong việc tổng hợp tài liệu, sắp xếp nội dung và trình bày sản phẩm một cách khoa học. Tuy nhiên, nhờ thực hiện từng bài tập theo từng bước và tận dụng các công cụ số cũng như AI hỗ trợ, em đã hoàn thành Portfolio đầy đủ và rõ ràng hơn.</p>
+      </div>
+      <div class="glass-block lavender-border">
+        <p>Quá trình này giúp em nhận thấy việc lập kế hoạch, quản lý tài liệu và trình bày kết quả là những kỹ năng rất quan trọng trong học tập. Em cũng hiểu rõ hơn về giá trị của việc xây dựng một hồ sơ năng lực số để theo dõi sự tiến bộ của bản thân.</p>
       </div>
     </div>
 
-    <div class="timeline-item">
-      <div class="tl-dot-col"><div class="tl-dot" style="background:linear-gradient(135deg,var(--blue),var(--silver))"></div><div class="tl-line"></div></div>
-      <div class="tl-body">
-        <p class="tl-tag">Tháng 10 · Khám phá</p>
-        <h4 class="tl-title">Tiếp cận công cụ AI và nghiên cứu</h4>
-        <p class="tl-desc">Lần đầu tiên khám phá sức mạnh của các công cụ AI như ChatGPT, Claude. Học cách viết prompt hiệu quả và tìm kiếm tài liệu học thuật chuyên sâu.</p>
+    <!-- 2. Kiến thức & Kỹ năng quan trọng -->
+    <div class="sum-card">
+      <h3><i class="fas fa-graduation-cap"></i> Kiến thức & Kỹ năng quan trọng đã học được</h3>
+      
+      <div class="glass-block pink-border">
+        <p style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">Thông qua 6 bài tập thành phần, em đã học được nhiều kiến thức và kỹ năng thiết thực, bao gồm:</p>
+        <ul class="highlight-list">
+          <li><i class="fas fa-check-circle"></i> Tổ chức và quản lý tệp tin, thư mục một cách khoa học</li>
+          <li><i class="fas fa-check-circle"></i> Tìm kiếm, đánh giá và lựa chọn nguồn thông tin học thuật đáng tin cậy</li>
+          <li><i class="fas fa-check-circle"></i> Xây dựng Prompt hiệu quả để khai thác AI phục vụ học tập</li>
+          <li><i class="fas fa-check-circle"></i> Sử dụng công cụ cộng tác trực tuyến (Google Docs, Drive, Sheets, Zalo)</li>
+          <li><i class="fas fa-check-circle"></i> Kết hợp AI (ChatGPT, Gemini, Canva AI) để sáng tạo nội dung</li>
+          <li><i class="fas fa-check-circle"></i> Hiểu và áp dụng các nguyên tắc sử dụng AI có trách nhiệm</li>
+        </ul>
+      </div>
+
+      <div class="glass-block lavender-border">
+        <p style="font-style:italic;color:var(--sub);font-size:0.92rem;margin:0;">
+          <i class="fas fa-quote-left" style="color:var(--pink);margin-right:0.5rem;"></i>
+          Những kiến thức và kỹ năng này không chỉ hữu ích trong môn học mà còn có thể áp dụng trong quá trình học tập và làm việc sau này.
+        </p>
       </div>
     </div>
 
-    <div class="timeline-item">
-      <div class="tl-dot-col"><div class="tl-dot" style="background:linear-gradient(135deg,var(--lavender),#a8c898)"></div><div class="tl-line"></div></div>
-      <div class="tl-body">
-        <p class="tl-tag">Tháng 11 · Thực hành</p>
-        <h4 class="tl-title">Dự án nhóm Smart Bin IoT</h4>
-        <p class="tl-desc">Cùng nhóm bạn xây dựng thùng rác thông minh tích hợp AI. Học được cách làm việc nhóm, phân công nhiệm vụ và giải quyết vấn đề kỹ thuật thực tế.</p>
+    <!-- 3. Điểm tâm đắc & Thách thức -->
+    <div class="sum-card">
+      <h3><i class="fas fa-star"></i> Điểm tâm đắc nhất & Thách thức khi xây dựng Portfolio</h3>
+      
+      <div class="glass-block pink-border">
+        <p style="font-weight:600;color:var(--text);margin-bottom:0.3rem;"><i class="fas fa-gem" style="color:var(--pink-dark);margin-right:0.5rem;"></i>Điều em tâm đắc nhất:</p>
+        <p style="font-size:0.93rem;color:var(--text-b);line-height:1.7;">Được tiếp cận và ứng dụng AI như một công cụ hỗ trợ học tập hiệu quả. Thay vì chỉ sử dụng AI để tìm câu trả lời, em đã học được cách đặt Prompt rõ ràng, kiểm chứng thông tin và chỉnh sửa nội dung để tạo ra sản phẩm mang dấu ấn của bản thân. Điều này giúp em nâng cao khả năng tư duy, làm việc độc lập và sử dụng công nghệ một cách có trách nhiệm.</p>
+      </div>
+
+      <p style="font-weight:600;color:var(--text);margin-bottom:0.5rem;"><i class="fas fa-mountain" style="color:var(--blue);margin-right:0.5rem;"></i>Những thách thức đã gặp phải:</p>
+      <ul class="challenge-list">
+        <li>
+          <div class="ch-icon"><i class="fas fa-search"></i></div>
+          <div class="ch-text">
+            <strong>Lựa chọn nguồn tài liệu đáng tin cậy</strong>
+            <span>Việc đánh giá và chọn lọc thông tin từ nhiều nguồn khác nhau đòi hỏi sự kiên nhẫn và kỹ năng phân tích. Em đã học được cách sử dụng các tiêu chí đánh giá để chọn ra những tài liệu chất lượng nhất.</span>
+          </div>
+        </li>
+        <li>
+          <div class="ch-icon"><i class="fas fa-layer-group"></i></div>
+          <div class="ch-text">
+            <strong>Tổng hợp nội dung từ nhiều bài tập</strong>
+            <span>Việc tổng hợp và liên kết nội dung từ 6 bài tập khác nhau thành một Portfolio thống nhất, logic và trực quan là một thử thách lớn. Em đã vượt qua bằng cách xây dựng cấu trúc rõ ràng và sắp xếp nội dung một cách có hệ thống.</span>
+          </div>
+        </li>
+      </ul>
+      <div class="glass-block lavender-border" style="margin-top:0.8rem;">
+        <p style="font-size:0.9rem;color:var(--sub);font-style:italic;margin:0;">
+          <i class="fas fa-quote-left" style="color:var(--lavender);margin-right:0.4rem;"></i>
+          Nhờ kiên trì hoàn thiện từng phần và nhận được sự hỗ trợ từ các công cụ số, em đã khắc phục được những khó khăn này và hoàn thành Portfolio đúng yêu cầu.
+        </p>
       </div>
     </div>
 
-    <div class="timeline-item">
-      <div class="tl-dot-col"><div class="tl-dot" style="background:linear-gradient(135deg,var(--silver),var(--blue))"></div><div class="tl-line"></div></div>
-      <div class="tl-body">
-        <p class="tl-tag">Tháng 12 · Hoàn thiện</p>
-        <h4 class="tl-title">Portfolio & Trình bày kết quả</h4>
-        <p class="tl-desc">Tổng hợp toàn bộ hành trình học tập vào một portfolio số. Học cách trình bày kết quả, phản ánh về những gì đã đạt được và những điều cần cải thiện.</p>
+    <!-- Kết luận - GIỮ NGUYÊN NHƯ ẢNH -->
+    <div class="conclusion-box">
+      <i class="fas fa-flag-checkered"></i>
+      <p>
+        <strong style="color:var(--text);font-size:1.05rem;">Kết luận</strong><br/>
+        Qua quá trình xây dựng Portfolio, em không chỉ củng cố kiến thức về công nghệ số mà còn rèn luyện được kỹ năng học tập chủ động, làm việc nhóm, tư duy phản biện và sử dụng AI một cách hiệu quả, có trách nhiệm. Đây sẽ là nền tảng quan trọng giúp em tiếp tục học tập và phát triển trong môi trường số hiện nay.
+      </p>
+    </div>
+
+    <!-- Skills Cloud -->
+    <div class="reveal" style="width:100%; max-width:720px; margin-top:2rem;">
+      <p style="text-align:center; color:var(--sub); font-size:0.85rem; margin-bottom:1.2rem; letter-spacing:0.05em;">✦ Kỹ năng đã tích lũy ✦</p>
+      <div class="skills-cloud">
+        <span class="skill-bubble sb1">Quản lý tệp tin</span>
+        <span class="skill-bubble sb2">Tìm kiếm học thuật</span>
+        <span class="skill-bubble sb3">Prompt Engineering</span>
+        <span class="skill-bubble sb4">Hợp tác trực tuyến</span>
+        <span class="skill-bubble sb1">AI sáng tạo nội dung</span>
+        <span class="skill-bubble sb2">Canva & Thiết kế</span>
+        <span class="skill-bubble sb3">Đạo đức AI</span>
+        <span class="skill-bubble sb4">Tư duy phản biện</span>
+        <span class="skill-bubble sb1">Làm việc nhóm</span>
+        <span class="skill-bubble sb2">Học tập chủ động</span>
       </div>
     </div>
-  </div>
 
-  <!-- Skills Cloud -->
-  <div class="reveal" style="width:100%; max-width:720px; margin-top:1rem;">
-    <p style="text-align:center; color:var(--sub); font-size:0.85rem; margin-bottom:1.2rem; letter-spacing:0.05em;">✦ Kỹ năng đã tích lũy ✦</p>
-    <div class="skills-cloud">
-      <span class="skill-bubble sb1">HTML & CSS</span>
-      <span class="skill-bubble sb2">Prompt Engineering</span>
-      <span class="skill-bubble sb3">Nghiên cứu học thuật</span>
-      <span class="skill-bubble sb4">IoT / ESP32</span>
-      <span class="skill-bubble sb1">Canva & Thiết kế</span>
-      <span class="skill-bubble sb2">AI Content Creation</span>
-      <span class="skill-bubble sb3">Quản lý tệp</span>
-      <span class="skill-bubble sb4">Làm việc nhóm</span>
-      <span class="skill-bubble sb1">Tư duy phản biện</span>
-      <span class="skill-bubble sb2">Đạo đức AI</span>
-    </div>
-  </div>
-
-  <!-- Quote -->
-  <div class="quote-box reveal" style="margin-top:3.5rem;">
-    <p class="quote-text">
-      "Học tập không phải là đích đến — đó là một hành trình đầy màu sắc,<br/>mỗi ngày là một trang mới đang chờ được viết."
-    </p>
-    <p class="quote-author">— Cảm nhận sau một học kỳ đại học đầu tiên 🌸</p>
   </div>
 </section>
 
@@ -1128,14 +1291,12 @@
 
   /* ── Scroll reveal ── */
   const reveals = document.querySelectorAll('.reveal');
-  const tl_items = document.querySelectorAll('.timeline-item');
   const obs = new IntersectionObserver(entries=>{
     entries.forEach(e=>{
       if(e.isIntersecting) e.target.classList.add('visible');
     });
   },{threshold:0.12});
   reveals.forEach(el=>obs.observe(el));
-  tl_items.forEach(el=>obs.observe(el));
 
   /* ── Nav active on scroll ── */
   const sections = document.querySelectorAll('section');
@@ -1152,14 +1313,12 @@
   },{passive:true});
 
   /* ── PDF MODAL ── */
-  const pdfBase = '';
   function openPDF(filename, title){
     document.getElementById('modalTitle').innerHTML = '<i class="fas fa-file-pdf"></i> '+title;
     document.getElementById('pdfFileName').innerHTML = '<i class="fas fa-file-pdf" style="color:#f0b0b8;margin-right:.35rem;"></i>'+filename;
-    const src = filename;
     const frame = document.getElementById('pdfFrame');
-    frame.src = src;
-    document.getElementById('pdfDownload').href = src;
+    frame.src = filename;
+    document.getElementById('pdfDownload').href = filename;
     document.getElementById('pdfModal').classList.add('open');
     document.body.style.overflow='hidden';
   }
