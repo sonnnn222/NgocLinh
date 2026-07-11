@@ -272,6 +272,7 @@ footer i{color:var(--blue-deep);margin:0 .3rem;}
   </div>
 </nav>
 <div id="app">
+  <!-- PHẦN GIỚI THIỆU ĐÃ CẬP NHẬT -->
   <div id="page-home" class="page active">
     <section id="gioithieu">
       <div class="hero-wrap">
@@ -336,8 +337,141 @@ footer i{color:var(--blue-deep);margin:0 .3rem;}
       </div>
     </section>
   </div>
-  <!-- Phần còn lại giữ nguyên -->
+
+  <!-- PHẦN DỰ ÁN GIỮ NGUYÊN -->
+  <div id="page-projects" class="page">
+    <section id="duan">
+      <p class="eyebrow">Hành trình sáng tạo</p>
+      <h2 class="sec-title">Dự án của tôi</h2>
+      <p class="sec-sub">6 bài thực hành Công nghệ số &amp; AI — chạm nhẹ vào từng bài dưới đây để xem toàn văn báo cáo và bản PDF gốc.</p>
+      <div class="cards-grid" id="projectsGrid"></div>
+    </section>
+  </div>
+
+  <!-- PHẦN TỔNG KẾT GIỮ NGUYÊN -->
+  <div id="page-summary" class="page">
+    <section id="tongket">
+      <p class="eyebrow">Nhìn lại chặng đường</p>
+      <h2 class="sec-title">Tổng kết</h2>
+      <p class="sec-sub">Những trải nghiệm, kiến thức và kỹ năng đạt được sau 6 bài thực hành Công nghệ số &amp; AI</p>
+      <div class="summary-wrap">
+        <div class="sum-card">
+          <h3><i class="fas fa-heart"></i> Trải nghiệm và cảm nhận cá nhân</h3>
+          <div class="glass-block gb-blue">Trong quá trình thực hiện Portfolio, em đã có cơ hội hệ thống lại toàn bộ kiến thức và kỹ năng đã học trong môn Công nghệ số. Ban đầu, em gặp một số khó khăn trong việc tổng hợp tài liệu, sắp xếp nội dung và trình bày sản phẩm một cách khoa học. Nhờ thực hiện từng bài theo từng bước và tận dụng các công cụ số cũng như AI hỗ trợ, em đã hoàn thành Portfolio đầy đủ và rõ ràng hơn.</div>
+          <div class="glass-block gb-lav">Quá trình này giúp em nhận ra việc lập kế hoạch, quản lý tài liệu và trình bày kết quả là những kỹ năng rất quan trọng trong học tập. Em cũng hiểu rõ hơn giá trị của việc xây dựng một hồ sơ năng lực số để theo dõi sự tiến bộ của bản thân theo thời gian.</div>
+        </div>
+        <div class="sum-card">
+          <h3><i class="fas fa-graduation-cap"></i> Kiến thức và kỹ năng quan trọng đã học được</h3>
+          <div class="glass-block gb-blue" style="margin-bottom:1rem;">
+            <p style="font-weight:600;color:var(--ink);margin-bottom:.6rem;">Thông qua 6 bài thực hành, em đã học được nhiều kiến thức và kỹ năng thiết thực:</p>
+            <ul class="highlight-list">
+              <li><i class="fas fa-check"></i> Tổ chức và quản lý tệp tin, thư mục một cách khoa học</li>
+              <li><i class="fas fa-check"></i> Tìm kiếm, đánh giá và lựa chọn nguồn thông tin học thuật đáng tin cậy</li>
+              <li><i class="fas fa-check"></i> Xây dựng prompt hiệu quả để khai thác AI phục vụ học tập</li>
+              <li><i class="fas fa-check"></i> Sử dụng công cụ cộng tác trực tuyến (Docs, Drive, Sheets, Zalo)</li>
+              <li><i class="fas fa-check"></i> Kết hợp AI (ChatGPT, Gemini, Canva AI) để sáng tạo nội dung</li>
+              <li><i class="fas fa-check"></i> Hiểu và áp dụng các nguyên tắc sử dụng AI có trách nhiệm</li>
+            </ul>
+          </div>
+          <div class="glass-block gb-sky" style="font-style:italic;"><i class="fas fa-quote-left" style="margin-right:.4rem;color:var(--blue-deep);"></i>Những kiến thức và kỹ năng này không chỉ hữu ích trong môn học mà còn có thể áp dụng trong quá trình học tập và làm việc sau này.</div>
+        </div>
+        <div class="sum-card">
+          <h3><i class="fas fa-gem"></i> Điểm tâm đắc nhất và thách thức khi xây dựng Portfolio</h3>
+          <div class="glass-block gb-blue">
+            <p style="font-weight:600;color:var(--ink);margin-bottom:.4rem;"><i class="fas fa-star" style="color:var(--blue-deep);margin-right:.4rem;"></i>Điều em tâm đắc nhất:</p>
+            <p style="font-size:.9rem;">Được tiếp cận và ứng dụng AI như một công cụ hỗ trợ học tập hiệu quả. Thay vì chỉ dùng AI để tìm câu trả lời, em học được cách đặt prompt rõ ràng, kiểm chứng thông tin và chỉnh sửa nội dung để tạo ra sản phẩm mang dấu ấn cá nhân — nâng cao khả năng tư duy độc lập và sử dụng công nghệ có trách nhiệm.</p>
+          </div>
+          <p style="font-weight:600;color:var(--ink);margin:1rem 0 .3rem;"><i class="fas fa-mountain" style="color:var(--blue-deep);margin-right:.4rem;"></i>Những thách thức đã gặp phải:</p>
+          <ul class="challenge-list">
+            <li><div class="ch-icon"><i class="fas fa-magnifying-glass"></i></div><div class="ch-text"><strong>Lựa chọn nguồn tài liệu đáng tin cậy</strong><span>Việc đánh giá và chọn lọc thông tin từ nhiều nguồn đòi hỏi sự kiên nhẫn và kỹ năng phân tích. Em học được cách dùng các tiêu chí đánh giá để chọn ra tài liệu chất lượng nhất.</span></div></li>
+            <li><div class="ch-icon"><i class="fas fa-layer-group"></i></div><div class="ch-text"><strong>Tổng hợp nội dung từ nhiều bài tập</strong><span>Liên kết nội dung từ 6 bài khác nhau thành một Portfolio thống nhất, logic và trực quan là một thử thách lớn — vượt qua bằng cách xây dựng cấu trúc rõ ràng, sắp xếp có hệ thống.</span></div></li>
+          </ul>
+          <div class="glass-block gb-lav" style="margin-top:1rem;font-style:italic;"><i class="fas fa-quote-left" style="margin-right:.4rem;color:var(--lavender-deep);"></i>Nhờ kiên trì hoàn thiện từng phần và nhận được sự hỗ trợ từ các công cụ số, em đã khắc phục được những khó khăn này và hoàn thành Portfolio đúng yêu cầu.</div>
+        </div>
+        <div class="conclusion-box"><i class="fas fa-flag-checkered"></i><p><strong style="color:var(--ink);font-size:1.02rem;display:block;margin-bottom:.35rem;">Kết luận</strong>Qua quá trình xây dựng Portfolio, em không chỉ củng cố kiến thức về công nghệ số mà còn rèn luyện kỹ năng học tập chủ động, làm việc nhóm, tư duy phản biện và sử dụng AI một cách hiệu quả, có trách nhiệm. Đây sẽ là nền tảng quan trọng giúp em tiếp tục học tập và phát triển trong môi trường số hiện nay.</p></div>
+        <div class="future-box"><h4>Nhìn về phía trước</h4><p>Em dự định tiếp tục cập nhật portfolio này theo từng học kỳ, thử nghiệm nhiều công cụ số hơn trong việc thiết kế bài giảng tiếng Anh, và giữ vững nguyên tắc: AI là công cụ hỗ trợ tư duy, chứ không thay thế tư duy.</p></div>
+        <div style="width:100%;">
+          <p style="text-align:center;color:var(--sub);font-size:.84rem;margin-bottom:1.1rem;letter-spacing:.04em;">Kỹ năng đã tích luỹ</p>
+          <div class="skills-cloud">
+            <span class="skill-bubble">Quản lý tệp tin</span><span class="skill-bubble">Tìm kiếm học thuật</span><span class="skill-bubble">Prompt Engineering</span><span class="skill-bubble">Hợp tác trực tuyến</span><span class="skill-bubble">AI sáng tạo nội dung</span><span class="skill-bubble">Canva &amp; Thiết kế</span><span class="skill-bubble">Đạo đức AI</span><span class="skill-bubble">Tư duy phản biện</span><span class="skill-bubble">Làm việc nhóm</span><span class="skill-bubble">Học tập chủ động</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
-<!-- Script giữ nguyên -->
+
+<footer>
+  <p>Hà Thị Ngọc Linh</p>
+  <p>DIGITAL PORTFOLIO</p>
+</footer>
+
+<!-- MODAL VÀ SCRIPT GIỮ NGUYÊN -->
+<div class="modal-overlay" id="modalOverlay">
+  <button class="modal-close" id="modalClose"><i class="fas fa-xmark"></i></button>
+  <div class="bubbles">
+    <div class="bubble bubble-detail">
+      <div class="bubble-head"><div class="bubble-head-ic"><i class="fas fa-file-lines"></i></div><div><h3 id="detailTitle">Tiêu đề bài</h3><span id="detailSub">Nội dung đầy đủ</span></div></div>
+      <div class="bubble-body" id="detailBody"></div>
+    </div>
+    <div class="bubble bubble-pdf">
+      <div class="pdf-toolbar"><span class="fname" id="pdfFileName"><i class="fas fa-file-pdf"></i> tenfile.pdf</span><a href="#" id="pdfOpenBtn" target="_blank" class="pdf-open-btn"><i class="fas fa-arrow-up-right-from-square"></i> Mở PDF đầy đủ</a></div>
+      <div class="pdf-frame-wrap"><iframe id="pdfFrame" src=""></iframe></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const projects=[{id:1,accent:'var(--blue-deep)',icon:'fa-folder-tree',number:'Bài 1 · Mục 1.4',title:'Thao tác cơ bản với tệp tin & thư mục',summary:'Thực hành quản lý hệ thống tệp trên Windows: tạo, đổi tên, sao chép, di chuyển, xoá và khôi phục dữ liệu từ Recycle Bin một cách có hệ thống.',chips:['File Explorer','Windows 11'],pdf:'cnsbai1.pdf',pdfTitle:'Bài tập 1 – Thao tác tệp tin & thư mục',detailHtml:`<div class="detail-block"><i class="fas fa-folder"></i><strong>Cấu trúc tạo:</strong><span class="mono">ThucHanh_HaThiNgocLinh/<br>├─ TaiLieu/<br>│&nbsp;&nbsp;├─ GhiChuQuanTrong.txt (Copy)<br>│&nbsp;&nbsp;└─ DiChuyen.txt (Cut&amp;Paste)<br>└─ GhiChuQuanTrong.txt</span></div><ul class="detail-list"><li><i class="fas fa-circle"></i>Tạo thư mục ThucHanh_HaThiNgocLinh, tạo file GhiChu.txt → đổi tên thành GhiChuQuanTrong.txt</li><li><i class="fas fa-circle"></i>Tạo thư mục con TaiLieu; Copy &amp; Cut tệp vào đó</li><li><i class="fas fa-circle"></i>Xoá bằng Delete → Recycle Bin; xoá vĩnh viễn bằng Shift+Delete; khôi phục bằng Restore</li></ul><div class="detail-chips"><span class="dchip">File Explorer</span><span class="dchip">Windows 11</span><span class="dchip">✔ Hoàn thành</span></div>`},{id:2,accent:'var(--sky-deep)',icon:'fa-magnifying-glass',number:'Bài 2 · Mục 2.4',title:'Tìm kiếm & đánh giá thông tin học thuật',summary:'Chủ đề "Ngoại ngữ trong giáo dục" — dùng toán tử tìm kiếm nâng cao trên 4 loại nguồn và đánh giá độ tin cậy theo 5 tiêu chí học thuật.',chips:['Google Scholar','Springer'],pdf:'cnsbai2.pdf',pdfTitle:'Bài tập 2 – Tìm kiếm học thuật',detailHtml:`<div class="detail-block"><i class="fas fa-quote-right"></i><strong>Toán tử đã dùng:</strong><span class="mono">"Foreign Language Education", site:edu, filetype:pdf, "AI AND Foreign Language", intitle:research</span></div><ul class="detail-list"><li><i class="fas fa-circle"></i>Thu thập 10 tài liệu: Google Scholar, ResearchGate, Springer, Tạp chí GD, VNU-JFS, Báo Nhân Dân</li><li><i class="fas fa-circle"></i>Đánh giá 5 tiêu chí: Tác giả – Cơ quan – Phương pháp – Trích dẫn – Tính cập nhật</li><li><i class="fas fa-circle"></i>Xếp hạng: 6 nguồn Rất cao, 2 nguồn Cao, 1 nguồn Khá cao, 1 nguồn Trung bình</li></ul><div class="detail-chips"><span class="dchip">Google Scholar</span><span class="dchip">Springer</span><span class="dchip">Ngoại ngữ GD</span><span class="dchip">10 tài liệu</span></div>`},{id:3,accent:'var(--lavender-deep)',icon:'fa-pen-fancy',number:'Bài 3 · Mục 3.4',title:'Viết Prompt hiệu quả cho tác vụ học tập',summary:'So sánh 3 cấp độ prompt (cơ bản → cải tiến → nâng cao) trên 3 tác vụ học thuật về Triết học Mác–Lênin, dùng ChatGPT và Gemini.',chips:['ChatGPT','Gemini'],pdf:'cnsbai3.pdf',pdfTitle:'Bài tập 3 – Viết Prompt hiệu quả',detailHtml:`<div class="detail-block"><i class="fas fa-lightbulb"></i><strong>Kỹ thuật nâng cao:</strong><span class="mono">CLEAR Model + Few-shot Prompting + Chain-of-Thought + Định dạng yêu cầu → kết quả đầy đủ nhất</span></div><ul class="detail-list"><li><i class="fas fa-circle"></i>Tác vụ 1: Tóm tắt "Chủ nghĩa duy vật biện chứng" → sơ đồ tư duy dạng văn bản</li><li><i class="fas fa-circle"></i>Tác vụ 2: Giải thích "Phép biện chứng duy vật" → bảng so sánh tư duy biện chứng vs phiến diện</li><li><i class="fas fa-circle"></i>Tác vụ 3: Tạo 15 câu hỏi ôn tập (5 nhận biết + 5 thông hiểu + 5 vận dụng) kèm đáp án &amp; giải thích</li></ul><div class="detail-chips"><span class="dchip">ChatGPT</span><span class="dchip">Gemini</span><span class="dchip">Prompt Engineering</span><span class="dchip">CLEAR Model</span></div>`},{id:4,accent:'var(--blue-deeper)',icon:'fa-users-gear',number:'Bài 4 · Mục 4.4',title:'Hợp tác trực tuyến cho dự án nhóm',summary:'Dự án nhóm "Ứng dụng AI trong học ngoại ngữ" — vai trò Trưởng nhóm, điều phối 5 thành viên qua Google Workspace và Zalo.',chips:['Google Docs','Zalo'],pdf:'cnsbai4.pdf',pdfTitle:'Bài tập 4 – Hợp tác trực tuyến',detailHtml:`<div class="detail-block"><i class="fas fa-list-check"></i><strong>Bộ công cụ:</strong><span class="mono">Google Sheets (quản lý nhiệm vụ) · Google Docs (cộng tác văn bản) · Google Drive (lưu trữ) · Zalo (giao tiếp)</span></div><ul class="detail-list"><li><i class="fas fa-circle"></i>Tạo bảng phân công nhiệm vụ với deadline, người phụ trách và trạng thái hoàn thành</li><li><i class="fas fa-circle"></i>Theo dõi lịch sử chỉnh sửa Google Docs; thảo luận nhóm qua Zalo</li><li><i class="fas fa-circle"></i>Phân tích 3 AI nổi bật: ELSA Speak, ChatGPT, Gemini; làm slide và video thuyết trình</li></ul><div class="detail-chips"><span class="dchip">Google Docs</span><span class="dchip">Google Sheets</span><span class="dchip">Zalo</span><span class="dchip">Trưởng nhóm</span></div>`},{id:5,accent:'var(--sky-deep)',icon:'fa-paintbrush',number:'Bài 5 · Mục 5.4',title:'AI tạo sinh hỗ trợ sáng tạo nội dung',summary:'Thiết kế Infographic "AI trong Giáo dục: Trợ lý đắc lực của sinh viên" theo quy trình 3 bước dùng Gemini, ChatGPT và Canva AI.',chips:['Gemini','Canva AI'],pdf:'cnsbai5.pdf',pdfTitle:'Bài tập 5 – AI tạo sinh nội dung',detailHtml:`<div class="detail-block"><i class="fas fa-robot"></i><strong>Quy trình:</strong><span class="mono">Gemini viết nội dung → ChatGPT tạo logo/ảnh AI tools → Canva AI thiết kế layout → hoàn thiện thủ công</span></div><ul class="detail-list"><li><i class="fas fa-circle"></i>Gemini cung cấp nội dung bullet-point về 4 lợi ích AI (cá nhân hoá, sửa bài, sáng tạo, tóm tắt tài liệu)</li><li><i class="fas fa-circle"></i>ChatGPT tạo hình ảnh logo ChatGPT/Gemini/DeepSeek và icon minh hoạ</li><li><i class="fas fa-circle"></i>Canva AI xuất 4 mẫu infographic; lựa chọn và chỉnh sửa màu sắc, font, bố cục</li></ul><div class="detail-chips"><span class="dchip">Gemini</span><span class="dchip">ChatGPT</span><span class="dchip">Canva AI</span><span class="dchip">Infographic</span></div>`},{id:6,accent:'var(--lavender-deep)',icon:'fa-scale-balanced',number:'Bài 6 · Mục 6.4',title:'Sử dụng AI có trách nhiệm trong học thuật',summary:'Nghiên cứu chính sách AI của ULIS, thực hành với bài luận học thuật tiếng Anh, và xây dựng 7 nguyên tắc cá nhân cùng infographic minh hoạ.',chips:['Đạo đức AI','ULIS Policy'],pdf:'cnsbai6.pdf',pdfTitle:'Bài tập 6 – Sử dụng AI có trách nhiệm',detailHtml:`<div class="detail-block"><i class="fas fa-shield-halved"></i><strong>7 nguyên tắc vàng:</strong><span class="mono">Con người là chủ thể · Kiểm chứng thông tin · Minh bạch · Không sao chép nguyên văn · Giữ bản sắc cá nhân · Tôn trọng bản quyền · Bảo mật dữ liệu</span></div><ul class="detail-list"><li><i class="fas fa-circle"></i>Nghiên cứu chính sách ULIS: Chấp nhận AI, Minh bạch trong học thuật, Chống gian lận</li><li><i class="fas fa-circle"></i>Bài luận "Impact of AI on Foreign Language Learning" — dùng AI để tạo dàn ý, kiểm chứng và bổ sung quan điểm cá nhân</li><li><i class="fas fa-circle"></i>Thiết kế infographic "Sử dụng AI có trách nhiệm" với phần NÊN / KHÔNG NÊN / NGUYÊN TẮC VÀNG</li></ul><div class="detail-chips"><span class="dchip">Đạo đức AI</span><span class="dchip">ULIS Policy</span><span class="dchip">7 Nguyên tắc</span><span class="dchip">Infographic</span></div>`}];
+
+const grid=document.getElementById('projectsGrid');
+grid.innerHTML=projects.map(p=>`<button class="proj-card" style="--accent:${p.accent}" onclick="openProject(${p.id})"><div class="proj-top"><div class="proj-icon"><i class="fas ${p.icon}"></i></div><span class="proj-number">${p.number}</span></div><h3 class="proj-title">${p.title}</h3><p class="proj-summary">${p.summary}</p><div class="proj-chips">${p.chips.map(c=>`<span class="proj-chip">${c}</span>`).join('')}</div><span class="proj-open">Xem chi tiết đầy đủ <i class="fas fa-arrow-right"></i></span></button>`).join('');
+
+function openProject(id){const p=projects.find(x=>x.id===id);if(!p)return;document.getElementById('detailTitle').textContent=p.title;document.getElementById('detailSub').textContent=p.number+' · Nội dung đầy đủ';document.getElementById('detailBody').innerHTML=p.detailHtml;document.getElementById('pdfFileName').innerHTML='<i class="fas fa-file-pdf"></i> '+p.pdf;document.getElementById('pdfFrame').src=p.pdf;document.getElementById('pdfOpenBtn').href=p.pdf;document.getElementById('modalOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.getElementById('pdfFrame').src='';document.body.style.overflow='';}
+document.getElementById('modalClose').addEventListener('click',closeModal);
+document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+function positionIndicator(link){const ind=document.getElementById('navIndicator');const center=document.querySelector('.nav-center');const cRect=center.getBoundingClientRect();const lRect=link.getBoundingClientRect();ind.style.left=(lRect.left-cRect.left+10)+'px';ind.style.width=(lRect.width-20)+'px';}
+function showPage(pageId){
+  document.querySelectorAll('.page').forEach(p=>{p.classList.remove('active');});
+  const target=document.getElementById('page-'+pageId);
+  if(target){
+    target.classList.add('active');
+    target.style.animation='none';
+    target.offsetHeight;
+    target.style.animation='pageSlideIn .6s cubic-bezier(.4,0,.2,1)';
+  }
+  document.querySelectorAll('.nav-links a').forEach(link=>{
+    link.classList.remove('active');
+    if(link.dataset.page===pageId){
+      link.classList.add('active');
+      positionIndicator(link);
+    }
+  });
+  document.getElementById('navLinks').classList.remove('mobile-open');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+window.addEventListener('resize',()=>{const active=document.querySelector('.nav-links a.active');if(active)positionIndicator(active);});
+window.addEventListener('load',()=>{const active=document.querySelector('.nav-links a.active');if(active)positionIndicator(active);});
+document.getElementById('navBurger').addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('mobile-open');});
+
+const themeToggle=document.getElementById('themeToggle');const themeIcon=document.getElementById('themeIcon');
+function applyTheme(mode){if(mode==='dark'){document.documentElement.setAttribute('data-theme','dark');themeIcon.className='fas fa-sun';}else{document.documentElement.removeAttribute('data-theme');themeIcon.className='fas fa-moon';}}
+let savedTheme='light';try{savedTheme=localStorage.getItem('portfolio-theme')||'light';}catch(e){}
+applyTheme(savedTheme);
+themeToggle.addEventListener('click',()=>{const isDark=document.documentElement.getAttribute('data-theme')==='dark';const next=isDark?'light':'dark';applyTheme(next);try{localStorage.setItem('portfolio-theme',next);}catch(e){};});
+
+const pl=document.getElementById('particles');
+for(let i=0;i<40;i++){const s=document.createElement('div');s.className='spark';const size=Math.random()*4+1.5;s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-duration:${Math.random()*4+3}s;animation-delay:${Math.random()*6}s;opacity:0;`;pl.appendChild(s);}
+
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('mainNav');
+  if(window.scrollY>50){nav.classList.add('scrolled');}else{nav.classList.remove('scrolled');}
+});
+
+(function(){const cv=document.getElementById('bg-canvas');if(!cv)return;const cx=cv.getContext('2d');let W,H,pts=[];const N=46;function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}window.addEventListener('resize',resize);resize();function dotColor(){return document.documentElement.getAttribute('data-theme')==='dark'?'184,232,242':'110,157,201';}class Dot{constructor(){this.x=Math.random()*W;this.y=Math.random()*H;this.r=Math.random()*2.6+1;this.vx=(Math.random()-.5)*.35;this.vy=(Math.random()-.5)*.35;this.op=Math.random()*.35+.12;}step(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W)this.vx*=-1;if(this.y<0||this.y>H)this.vy*=-1;}draw(c){cx.beginPath();cx.arc(this.x,this.y,this.r,0,Math.PI*2);cx.fillStyle=`rgba(${c},${this.op})`;cx.fill();}}for(let i=0;i<N;i++)pts.push(new Dot());function lines(c){for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y;const d=Math.sqrt(dx*dx+dy*dy);if(d<130){cx.beginPath();cx.moveTo(pts[i].x,pts[i].y);cx.lineTo(pts[j].x,pts[j].y);cx.strokeStyle=`rgba(${c},${(1-d/130)*.14})`;cx.lineWidth=.7;cx.stroke();}}}(function loop(){cx.clearRect(0,0,W,H);const c=dotColor();pts.forEach(p=>{p.step();p.draw(c);});lines(c);requestAnimationFrame(loop);})();})();
+</script>
 </body>
 </html>
